@@ -33,7 +33,7 @@ def hot_encoding(X):
     X = ct.fit_transform(X)
     return X
 
-def sort_data_to_train(X,y)
+def sort_data_to_train(X,y):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
     data_list = [X_train, X_test, y_train, y_test]
     return data_list
