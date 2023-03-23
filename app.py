@@ -149,5 +149,5 @@ if add_selectbox == "학생 점수 예측":
         show_first_ml()
         state = 0
 
-if state = 1:
+if state == 1:
     show_main()
