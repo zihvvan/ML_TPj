@@ -153,5 +153,7 @@ st.markdown("""
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kpL3vP"
         crossorigin="anonymous">
-    <div class="d-flex justify-content-center><button class="btn btn-primary btn-lg">큰 버튼</button>
 """, unsafe_allow_html=True)
+
+st.sidebar.markdown(f'<div class="d-flex justify-content-center><button type="button" class="btn btn-primary">큰 버튼</button></div>', unsafe_allow_html=True )
+
