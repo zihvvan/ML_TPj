@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 from PIL import Image
 
-def show_main_img()
+def show_main_img():
     image1 = Image.open('image/m_img.png')
     st.image(image1, width=600)
 
