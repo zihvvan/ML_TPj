@@ -12,7 +12,7 @@ def show_first_ml(image1):
     data_url = "Data/test_scores.csv"
     df = pd.read_csv(data_url) # URL로 CSV 불러오기
     df1 = df.drop(['school','classroom','student_id'], axis=1)
-    # del image1
+    del image1
     image2 = Image.open('image/image.png')
 
     st.image(image2, width=600)
