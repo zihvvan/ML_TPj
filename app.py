@@ -155,11 +155,4 @@ st.markdown("""
         crossorigin="anonymous">
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div class="d-flex justify-content-center">
-  <button class="btn btn-primary btn-lg">큰 버튼</button>
-  <button class="btn btn-primary">기본 버튼</button>
-  <button class="btn btn-primary btn-sm">작은 버튼</button>
-</div>
-"""
-)
+st.sidebar.markdown(f'<div class="d-flex justify-content-center><button class="btn btn-primary btn-lg">큰 버튼</button></div>', unsafe_allow_html=True )
