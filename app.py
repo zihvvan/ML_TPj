@@ -13,10 +13,10 @@ def data_transform(df_input_data_set):
     from sklearn.compose import ColumnTransformer
     from sklearn.preprocessing import OneHotEncoder
     ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
-    ct
     X = ct.fit_transform(df_input_data_set)
     st.write(X)
-    
+    return X
+
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
 df1 = df.drop(['school','classroom','student_id'], axis=1)
@@ -126,15 +126,9 @@ with st.echo(code_location="below"):
     df_input_data_set = pd.DataFrame(input_data_set)
     st.write(df_input_data_set)
     data_transform(df_input_data_set)
-
-
-
-
-
-
-# input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
-# pred = model.predict(input_values)
-# st.write(pred)
+    # input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
+    # pred = model.predict(input_values)
+    # st.write(pred)
 
 
 
