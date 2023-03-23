@@ -12,7 +12,7 @@ import joblib
 def data_transform(df_input_data_set):
     from sklearn.compose import ColumnTransformer
     from sklearn.preprocessing import OneHotEncoder
-    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), ["area", "school_type", "teaching_method", "gender", "lunch"])], remainder='passthrough')
     X = ct.fit_transform(df_input_data_set)
     st.write(X)
     return X
