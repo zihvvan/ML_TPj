@@ -11,9 +11,10 @@ import joblib
 
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
+df1 = df.drop(['school','classroom','student_id'], axis=1)
 
-st.write(df) # 자동으로 표 그려줌
-# # st.table(df) # 이걸로 그려도 됨
+
+st.write(df1) # 자동으로 표 그려줌
 
 st.write("# 모델 통해 예측해 보기")
 
@@ -24,7 +25,9 @@ with st.echo(code_location="below"):
 
 st.write("---")
 
-
+input_values = [[]]
+pred = model.predict(input_values)
+st.write("결과")
 
 
 
