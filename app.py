@@ -25,7 +25,7 @@ with st.echo(code_location="below"):
 
 st.write("---")
 
-input_values = [[]]
+input_values = [['Urban','Non-public','Standard',20.0,'Female','Does not qualify',62]]
 pred = model.predict(input_values)
 st.write("결과")
 
