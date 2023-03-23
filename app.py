@@ -155,5 +155,5 @@ st.markdown("""
         crossorigin="anonymous">
 """, unsafe_allow_html=True)
 
-st.sidebar.markdown(f'<div class="d-flex justify-content-center><button type="button" class="btn btn-primary">큰 버튼</button></div>', unsafe_allow_html=True )
+st.sidebar.markdown(f'<div class="d-flex justify-content-center><button class="btn btn-primary">큰 버튼</button></div>', unsafe_allow_html=True )
 
