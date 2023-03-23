@@ -3,22 +3,19 @@ import seaborn as sns
 import pandas as pd
 import joblib
 from PIL import Image
-image = Image.open('image/m_img.png')
-st.image(image, width=600)
-# 초기 배경 이미지
-# state = 1 # 메인화면 컨트롤
-# def show_main():
-#     image = Image.open('image/m_img.png')
-#     st.image(image, width=600)
+
+def show_main():
+    image = Image.open('image/m_img.png')
+    st.image(image, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
     df = pd.read_csv(data_url) # URL로 CSV 불러오기
     df1 = df.drop(['school','classroom','student_id'], axis=1)
+    del image1
+    image2 = Image.open('image/image.png')
 
-    image = Image.open('image/image.png')
-
-    st.image(image, width=600)
+    st.image(image2, width=600)
 
 
     st.write("# 모델 통해 예측해 보기")
@@ -148,10 +145,7 @@ show_button = st.sidebar.button(
         )
 if add_selectbox == "학생 점수 예측":
     if show_button:
-        # state = 0
         show_first_ml()
-#         if st.button('메인으로'):
-#             state = 1
-
-# if state == 1:
-#     show_main()
+        if st.button('메인으로'):
+            show_main()
+show_main()
