@@ -117,17 +117,18 @@ with st.echo(code_location="below"):
                   "pretest": [pretest]}
     df_input_data_set = pd.DataFrame(input_data_set)
     st.write(df_input_data_set)
+    data_transform(df_input_data_set)
 
 
 
 
-# def data_transform():
-#     from sklearn.compose import ColumnTransformer
-#     from sklearn.preprocessing import OneHotEncoder
-#     ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
-#     ct
-#     X = ct.fit_transform(X)
-#     X
+def data_transform(df_input_data_set):
+    from sklearn.compose import ColumnTransformer
+    from sklearn.preprocessing import OneHotEncoder
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
+    ct
+    X = ct.fit_transform(df_input_data_set)
+    st.write(X)
 
 
 # input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
