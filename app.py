@@ -31,8 +31,6 @@ def show_first_ml():
         area = st.radio(
             label="지역", # 상단 표시되는 이름
             options=["Urban", "Suburban","Rural"], # 선택 옵션
-            # index=0 # 기본 선택 인덱스
-            # horizontal=True # 가로 표시 여부
         )
             
 
@@ -41,8 +39,6 @@ def show_first_ml():
         school_type = st.radio(
             label="학교 타입", # 상단 표시되는 이름
             options=["국립", "사립"], # 선택 옵션
-            # index=0 # 기본 선택 인덱스
-            # horizontal=True # 가로 표시 여부
         )
 
     with st.echo(code_location="below"):
@@ -50,8 +46,6 @@ def show_first_ml():
         teaching_method = st.radio(
             label="수업 타입", # 상단 표시되는 이름
             options=["일반", "체험"], # 선택 옵션
-            # index=0 # 기본 선택 인덱스
-            # horizontal=True # 가로 표시 여부
         )
 
     with st.echo(code_location="below"):
@@ -61,7 +55,6 @@ def show_first_ml():
             min_value=10.0, # 최솟값
             max_value=30.0, # 최댓값
             step=1.0, # 입력 단위
-            # value=25.0 # 기본값
         )
 
     with st.echo(code_location="below"):
@@ -69,8 +62,6 @@ def show_first_ml():
         gender = st.radio(
             label="성별", # 상단 표시되는 이름
             options=["Male", "Female"], # 선택 옵션
-            # index=0 # 기본 선택 인덱스
-            # horizontal=True # 가로 표시 여부
         )
 
 
