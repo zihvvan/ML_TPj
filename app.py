@@ -2,20 +2,17 @@ import streamlit as st
 import seaborn as sns
 import pandas as pd
 import joblib
-# import plotly.graph_objects as go
-# import matplotlib.pyplot as plt
-# from sklearn.compose import ColumnTransformer
-# from sklearn.preprocessing import OneHotEncoder
-# from sklearn.model_selection import train_test_split
-# from sklearn.linear_model import LinearRegression
 
 
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
 df1 = df.drop(['school','classroom','student_id'], axis=1)
 
+if st.button('전처리 전 데이터'):
+    st.write(df) # 자동으로 표 그려줌
 
-st.write(df1) # 자동으로 표 그려줌
+if st.button('전처리 후 데이터'):
+    st.write(df1) # 자동으로 표 그려줌
 
 st.write("# 모델 통해 예측해 보기")
 
@@ -29,7 +26,7 @@ st.write("---")
 with st.echo(code_location="below"):
     # 학교 지역 (라디오 버튼)
     area = st.radio(
-        label="지", # 상단 표시되는 이름
+        label="지역", # 상단 표시되는 이름
         options=["Urban", "Suburban","Rural"], # 선택 옵션
         # index=0 # 기본 선택 인덱스
         # horizontal=True # 가로 표시 여부
@@ -56,7 +53,7 @@ with st.echo(code_location="below"):
 
 with st.echo(code_location="below"):
     # 반 학생수 (숫자)
-    students = st.number_input(
+    students = st.slider(
         label="학급 인원", # 상단 표시되는 이름
         min_value=10.0, # 최솟값
         max_value=30.0, # 최댓값
