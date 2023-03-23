@@ -126,7 +126,7 @@ with st.echo(code_location="below"):
 
     input_values = [[area == "Urban",area =="Suburban",school_type == "국립",teaching_method == "일반",students,gender=="Male",lunch=="먹음",pretest]]
     pred = model.predict(input_values)
-    st.write(pred)
+    st.write(pred.iloc[0,0])
 
 
 
