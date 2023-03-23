@@ -9,9 +9,9 @@ data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
 df1 = df.drop(['school','classroom','student_id'], axis=1)
 
-image = Image.open('image/image.png', width='500')
+image = Image.open('image/image.png')
 
-st.image(image)
+st.image(image, width=500)
 
 
 st.write("# 모델 통해 예측해 보기")
