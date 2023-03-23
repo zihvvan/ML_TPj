@@ -83,10 +83,10 @@ with st.echo(code_location="below"):
     # 사전 시험 (숫자)
     pretest = st.number_input(
         label="사전 시험", # 상단 표시되는 이름
-        min_value=0, # 최솟값
+        min_value=0.0, # 최솟값
         max_value=100.0, # 최댓값
         step=1.0, # 입력 단위
-        # value=25.0 # 기본값
+        value=50.0 # 기본값
     )
 input_data_set ={
                         "area": [area], 
