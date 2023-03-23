@@ -3,11 +3,13 @@ import seaborn as sns
 import pandas as pd
 import joblib
 from PIL import Image
-state = 1 # 메인화면 컨트롤
+image = Image.open('image/m_img.png')
+st.image(image, width=600)
 # 초기 배경 이미지
-def show_main():
-    image = Image.open('image/m_img.png')
-    st.image(image, width=600)
+# state = 1 # 메인화면 컨트롤
+# def show_main():
+#     image = Image.open('image/m_img.png')
+#     st.image(image, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
