@@ -5,7 +5,7 @@ import joblib
 from PIL import Image
 
 # 초기 배경 이미지
-image = Image.open('image/main_banner.png')
+image = Image.open('image/m_img.png')
 st.image(image, width=600)
 
 def show_first_ml():
