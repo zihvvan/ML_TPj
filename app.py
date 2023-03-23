@@ -88,9 +88,37 @@ with st.echo(code_location="below"):
         # value=25.0 # 기본값
     )
 
-input_data_set = {{"area" : area, "school_type": school_type, "teaching_method": teaching_method, "students": students, "gender": gender, "lunch": lunch,  "pretest": pretest   }}
+input_data_set = {"area": [area], 
+                  "school_type": [school_type], 
+                  "teaching_method": [teaching_method], 
+                  "students": [students], 
+                  "gender": [gender], 
+                  "lunch": [lunch], 
+                  "pretest": [pretest]}
 df_input_data_set = pd.DataFrame(input_data_set)
 st.write(df_input_data_set)
+
+with st.echo(code_location="below"):
+    # 실행 버튼
+    play_button = st.button(
+        label="데이터생성", # 버튼 내부 표시되는 이름
+    )
+
+
+with st.echo(code_location="below"):
+    # 실행 버튼이 눌리면 모델을 불러와서 예측한다
+    if play_button:
+        input_data_set = {"area": [area], 
+                  "school_type": [school_type], 
+                  "teaching_method": [teaching_method], 
+                  "students": [students], 
+                  "gender": [gender], 
+                  "lunch": [lunch], 
+                  "pretest": [pretest]}
+    df_input_data_set = pd.DataFrame(input_data_set)
+    st.write(df_input_data_set)
+
+
 
 # def data_transform():
 #     from sklearn.compose import ColumnTransformer
