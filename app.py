@@ -5,7 +5,7 @@ import joblib
 from PIL import Image
 state = 1 # 메인화면 컨트롤
 # 초기 배경 이미지
-def show_main()
+def show_main():
     image = Image.open('image/m_img.png')
     st.image(image, width=600)
 
