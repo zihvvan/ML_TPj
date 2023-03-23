@@ -86,7 +86,7 @@ with st.echo(code_location="below"):
         min_value=0, # 최솟값
         max_value=100.0, # 최댓값
         step=1.0, # 입력 단위
-        value=50.0 # 기본값
+        # value=50.0 # 기본값
     )
 input_data_set ={
                         "area": [area], 
