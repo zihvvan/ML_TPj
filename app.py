@@ -4,6 +4,10 @@ import pandas as pd
 import joblib
 from PIL import Image
 
+# 초기 배경 이미지
+image = Image.open('image/main_banner.png')
+st.image(image, width=600)
+
 def show_first_ml():
     data_url = "Data/test_scores.csv"
     df = pd.read_csv(data_url) # URL로 CSV 불러오기
