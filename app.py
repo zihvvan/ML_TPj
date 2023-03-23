@@ -91,7 +91,15 @@ with st.echo(code_location="below"):
         step=1.0, # 입력 단위
         # value=25.0 # 기본값
     )
-
+input_data_set ={
+                        "area": [area], 
+                        "school_type": [school_type], 
+                        "teaching_method": [teaching_method], 
+                        "students": [students], 
+                        "gender": [gender], 
+                        "lunch": [lunch], 
+                        "pretest": [pretest]
+                    }
 
 df_input_data_set = pd.DataFrame(input_data_set)
 st.write(df_input_data_set)
