@@ -5,8 +5,8 @@ import joblib
 from PIL import Image
 
 
-# image1 = Image.open('image/m_img.png')
-# st.image(image1, width=600)
+image1 = Image.open('image/m_img.png')
+st.image(image1, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
@@ -113,24 +113,28 @@ def show_first_ml():
             pred = model.predict(input_values)
             pred_df = pd.DataFrame(pred)
             st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
-
-
+            if st.button('전처리 전 데이터'):
+                st.write(df) # 자동으로 표 그려줌
+            if st.button('전처리 후 데이터'):
+                st.write(df1) # 자동으로 표 그려줌
+show_first_ml()
     # Using object notation
 add_selectbox = st.sidebar.selectbox(
     "머신러닝 모델 선택",
     ("학생 점수 예측", "추가예정", "추가예정")
 )
-show_button = st.sidebar.button(
-            label="보기", # 버튼 내부 표시되는 이름
-        )
-if add_selectbox == "학생 점수 예측":
-    if show_button:
-        show_first_ml()
-        image2 = Image.open('image/image.png')
-        st.image(image2, width=600)
-        if st.button('전처리 전 데이터'):
-            st.write(df) # 자동으로 표 그려줌
-        if st.button('전처리 후 데이터'):
-            st.write(df1) # 자동으로 표 그려줌
-        if st.button('메인으로'):
-            st.experimental_rerun()
+
+# show_button = st.sidebar.button(
+#             label="보기", # 버튼 내부 표시되는 이름
+#         )
+# if add_selectbox == "학생 점수 예측":
+#     if show_button:
+#         show_first_ml()
+#         image2 = Image.open('image/image.png')
+#         st.image(image2, width=600)
+#         if st.button('전처리 전 데이터'):
+#             st.write(df) # 자동으로 표 그려줌
+#         if st.button('전처리 후 데이터'):
+#             st.write(df1) # 자동으로 표 그려줌
+#         if st.button('메인으로'):
+#             st.experimental_rerun()
