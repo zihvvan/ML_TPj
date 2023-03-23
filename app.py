@@ -11,7 +11,7 @@ df1 = df.drop(['school','classroom','student_id'], axis=1)
 
 image = Image.open('image/image.png')
 
-st.image(image, width=800)
+st.image(image, width=600)
 
 
 st.write("# 모델 통해 예측해 보기")
