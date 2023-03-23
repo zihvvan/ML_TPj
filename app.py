@@ -6,7 +6,7 @@ from PIL import Image
 
 def show_main():
     image1 = Image.open('image/m_img.png')
-    st.image(image, width=600)
+    st.image(image1, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
