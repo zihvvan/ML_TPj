@@ -119,10 +119,10 @@ with st.echo(code_location="below"):
                         "lunch": [lunch], 
                         "pretest": [pretest]
                     }
-    input_values = [[area == "Urban",area =="Suburban",school_type == "국립",teaching_method == "일반",students,gender=="Male",lunch=="안먹음",pretest]]
-    pred = model.predict(input_values)
-    pred_df = pd.DataFrame(pred)
-    st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
+        input_values = [[area == "Urban",area =="Suburban",school_type == "국립",teaching_method == "일반",students,gender=="Male",lunch=="안먹음",pretest]]
+        pred = model.predict(input_values)
+        pred_df = pd.DataFrame(pred)
+        st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
 
 
 
