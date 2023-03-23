@@ -99,12 +99,11 @@ input_data_set ={
                     }
 
 df_input_data_set = pd.DataFrame(input_data_set)
-st.write(df_input_data_set)
 
 with st.echo(code_location="below"):
     # 실행 버튼
     play_button = st.button(
-        label="데이터생성", # 버튼 내부 표시되는 이름
+        label="예측하기", # 버튼 내부 표시되는 이름
     )
 
 
@@ -120,7 +119,6 @@ with st.echo(code_location="below"):
                         "lunch": [lunch], 
                         "pretest": [pretest]
                     }
-
     input_values = [[area == "Urban",area =="Suburban",school_type == "국립",teaching_method == "일반",students,gender=="Male",lunch=="안먹음",pretest]]
     pred = model.predict(input_values)
     pred_df = pd.DataFrame(pred)
