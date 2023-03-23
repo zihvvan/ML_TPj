@@ -148,3 +148,18 @@ if add_selectbox == "학생 점수 예측":
         show_first_ml()
 
 
+# HTML 코드를 사용하여 bootstrap.min.css 파일을 로드
+st.markdown("""
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kpL3vP"
+        crossorigin="anonymous">
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="d-flex justify-content-center">
+  <button class="btn btn-primary btn-lg">큰 버튼</button>
+  <button class="btn btn-primary">기본 버튼</button>
+  <button class="btn btn-primary btn-sm">작은 버튼</button>
+</div>
+"""
+)
