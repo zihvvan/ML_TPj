@@ -7,9 +7,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-reg = LinearRegression()
-reg.fit(X_train, y_train) # 훈련 세트로 학습
-
 
 def data_processing():
     # csv데이터 호출
@@ -38,8 +35,6 @@ def sort_data_to_train(X,y):
     data_list = [X_train, X_test, y_train, y_test]
     return data_list
 
-        
-
 def draw_barchart(df):
     sns.barplot(data=df1, x='gender', y='posttest')
 
@@ -53,7 +48,6 @@ def create_model(processed_data):
     reg.fit(X_train, y_train) # 훈련 세트로 학습
     
     compare_model(X_test)
-
 
 def compare_model():
     y_pred = reg.predict(X_test)
