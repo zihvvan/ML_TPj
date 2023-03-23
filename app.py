@@ -8,7 +8,7 @@ from PIL import Image
 image1 = Image.open('image/m_img.png')
 st.image(image1, width=600)
 
-def show_first_ml(image1):
+def show_first_ml():
     data_url = "Data/test_scores.csv"
     df = pd.read_csv(data_url) # URL로 CSV 불러오기
     df1 = df.drop(['school','classroom','student_id'], axis=1)
