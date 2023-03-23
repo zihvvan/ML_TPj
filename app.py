@@ -12,10 +12,6 @@ def show_first_ml():
     data_url = "Data/test_scores.csv"
     df = pd.read_csv(data_url) # URL로 CSV 불러오기
     df1 = df.drop(['school','classroom','student_id'], axis=1)
-    image2 = Image.open('image/image.png')
-
-    st.image(image2, width=600)
-
 
     st.write("# 모델 통해 예측해 보기")
 
@@ -136,5 +132,7 @@ show_button = st.sidebar.button(
 if add_selectbox == "학생 점수 예측":
     if show_button:
         show_first_ml()
+        image2 = Image.open('image/image.png')
+        st.image(image2, width=600)
         if st.button('메인으로'):
             st.experimental_rerun()
