@@ -27,7 +27,7 @@ st.write("---")
 
 input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
 pred = model.predict(input_values)
-st.write("결과")
+st.write(pred)
 
 
 
