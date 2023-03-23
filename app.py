@@ -5,8 +5,8 @@ import joblib
 from PIL import Image
 
 
-image1 = Image.open('image/m_img.png')
-st.image(image1, width=600)
+# image1 = Image.open('image/m_img.png')
+# st.image(image1, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
