@@ -137,7 +137,7 @@ def show_first_ml():
 
     # Using object notation
 add_selectbox = st.sidebar.selectbox(
-    "어떤 머신러닝을 보시겠어요?",
+    "머신러닝 모델 선택",
     ("학생 점수 예측", "추가예정", "추가예정")
 )
 show_button = st.sidebar.button(
@@ -146,14 +146,4 @@ show_button = st.sidebar.button(
 if add_selectbox == "학생 점수 예측":
     if show_button:
         show_first_ml()
-
-
-# HTML 코드를 사용하여 bootstrap.min.css 파일을 로드
-st.markdown("""
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kpL3vP"
-        crossorigin="anonymous">
-""", unsafe_allow_html=True)
-
-st.sidebar.markdown(f'<div class="d-flex justify-content-center><button class="btn btn-primary">큰 버튼</button></div>', unsafe_allow_html=True )
 
