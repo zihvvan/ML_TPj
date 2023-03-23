@@ -4,9 +4,9 @@ import pandas as pd
 import joblib
 from PIL import Image
 
-def show_main_img():
-    image1 = Image.open('image/m_img.png')
-    st.image(image1, width=600)
+
+image1 = Image.open('image/m_img.png')
+st.image(image1, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
@@ -148,4 +148,3 @@ if add_selectbox == "학생 점수 예측":
         show_first_ml()
         if st.button('메인으로'):
             st.experimental_rerun()
-show_main_img()
