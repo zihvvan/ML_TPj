@@ -10,7 +10,7 @@ import joblib
 # from sklearn.linear_model import LinearRegression
 
 def data_transform(df_input_data_set):
-
+    from sklearn.preprocessing import OneHotEncoder
     # OneHotEncoder 객체 생성
     encoder = OneHotEncoder(drop='first')
 
