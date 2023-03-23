@@ -2,11 +2,16 @@ import streamlit as st
 import seaborn as sns
 import pandas as pd
 import joblib
+from PIL import Image
 
 
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
 df1 = df.drop(['school','classroom','student_id'], axis=1)
+
+image = Image.open('image/image.png')
+
+st.image(image)
 
 if st.button('전처리 전 데이터'):
     st.write(df) # 자동으로 표 그려줌
