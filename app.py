@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 from PIL import Image
 
-def show_main():
+def show_main_img()
     image1 = Image.open('image/m_img.png')
     st.image(image1, width=600)
 
@@ -147,5 +147,5 @@ if add_selectbox == "학생 점수 예측":
     if show_button:
         show_first_ml()
         if st.button('메인으로'):
-            show_main()
-show_main()
+            st.experimental_rerun()
+show_main_img()
