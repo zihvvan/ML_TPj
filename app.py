@@ -106,8 +106,7 @@ with st.echo(code_location="below"):
 with st.echo(code_location="below"):
     # 실행 버튼이 눌리면 모델을 불러와서 예측한다
     if play_button:
-        input_data_set =
-                    {
+        input_data_set ={
                         "area": [area], 
                         "school_type": [school_type], 
                         "teaching_method": [teaching_method], 
