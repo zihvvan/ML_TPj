@@ -119,10 +119,10 @@ def show_first_ml():
                 st.write(df1) # 자동으로 표 그려줌
 show_first_ml()
     # Using object notation
-add_selectbox = st.sidebar.selectbox(
-    "머신러닝 모델 선택",
-    ("학생 점수 예측", "추가예정", "추가예정")
-)
+# add_selectbox = st.sidebar.selectbox(
+#     "머신러닝 모델 선택",
+#     ("학생 점수 예측", "추가예정", "추가예정")
+# )
 
 # show_button = st.sidebar.button(
 #             label="보기", # 버튼 내부 표시되는 이름
