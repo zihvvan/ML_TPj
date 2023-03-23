@@ -3,10 +3,11 @@ import seaborn as sns
 import pandas as pd
 import joblib
 from PIL import Image
-
+state = 1 # 메인화면 컨트롤
 # 초기 배경 이미지
-image = Image.open('image/m_img.png')
-st.image(image, width=600)
+def show_main()
+    image = Image.open('image/m_img.png')
+    st.image(image, width=600)
 
 def show_first_ml():
     data_url = "Data/test_scores.csv"
@@ -146,4 +147,7 @@ show_button = st.sidebar.button(
 if add_selectbox == "학생 점수 예측":
     if show_button:
         show_first_ml()
+        state = 0
 
+if state = 1:
+    show_main()
