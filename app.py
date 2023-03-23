@@ -10,12 +10,27 @@ import joblib
 # from sklearn.linear_model import LinearRegression
 
 def data_transform(df_input_data_set):
-    from sklearn.compose import ColumnTransformer
-    from sklearn.preprocessing import OneHotEncoder
-    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0,1,2,4,5])], remainder='passthrough')
-    X = ct.fit_transform(df_input_data_set)
+
+    # OneHotEncoder 객체 생성
+    encoder = OneHotEncoder(drop='first')
+
+    # 변환할 컬럼 인덱스
+    columns_to_encode = [0, 1, 2, 4, 5]
+
+    # OneHotEncoder를 적용할 컬럼들을 선택
+    X_categorical = df_input_data_set.iloc[:, columns_to_encode]
+
+    # OneHotEncoding을 수행
+    X_encoded = encoder.fit_transform(X_categorical)
+
+    # 변환할 컬럼을 제외한 컬럼들 선택
+    X_numerical = df_input_data_set.drop(columns=X_categorical.columns)
+
+    # OneHotEncoding 결과와 나머지 컬럼들을 합치기
+    X = pd.concat([pd.DataFrame(X_encoded.toarray()), X_numerical], axis=1)
+
+    # 결과 출력
     st.write(X)
-    return X
 
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
