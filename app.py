@@ -127,6 +127,7 @@ with st.echo(code_location="below"):
     input_values = [[area == "Urban",area =="Suburban",school_type == "국립",teaching_method == "일반",students,gender=="Male",lunch=="먹음",pretest]]
     pred = model.predict(input_values)
     pred_df = pd.DataFrame(pred)
+    st.write(pred_df)
     st.markdown(f"<div style='text-align:center; font-size:24px'>예측 점수 :{pred_df}</div>", unsafe_allow_html=True)
 
 
