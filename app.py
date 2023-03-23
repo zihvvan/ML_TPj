@@ -145,6 +145,6 @@ show_button = st.sidebar.button(
         )
 if add_selectbox == "학생 점수 예측":
     if show_button:
-        show_first_ml()
+        show_first_ml(image1)
         if st.button('메인으로'):
             st.experimental_rerun()
