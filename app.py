@@ -12,7 +12,7 @@ import joblib
 def data_transform(df_input_data_set):
     from sklearn.compose import ColumnTransformer
     from sklearn.preprocessing import OneHotEncoder
-    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), ["area", "school_type", "teaching_method", "gender", "lunch"])], remainder='passthrough')
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0,1,2,4,5])], remainder='passthrough')
     X = ct.fit_transform(df_input_data_set)
     st.write(X)
     return X
@@ -96,13 +96,13 @@ with st.echo(code_location="below"):
         # value=25.0 # 기본값
     )
 
-input_data_set = {"area": [area], 
-                  "school_type": [school_type], 
-                  "teaching_method": [teaching_method], 
-                  "students": [students], 
-                  "gender": [gender], 
-                  "lunch": [lunch], 
-                  "pretest": [pretest]}
+input_data_set = {"0": [area], 
+                  "1": [school_type], 
+                  "2": [teaching_method], 
+                  "3": [students], 
+                  "4": [gender], 
+                  "5": [lunch], 
+                  "6": [pretest]}
 df_input_data_set = pd.DataFrame(input_data_set)
 st.write(df_input_data_set)
 
