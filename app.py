@@ -5,7 +5,7 @@ import joblib
 from PIL import Image
 
 def show_main():
-    image = Image.open('image/m_img.png')
+    image1 = Image.open('image/m_img.png')
     st.image(image, width=600)
 
 def show_first_ml():
