@@ -9,28 +9,6 @@ import joblib
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
 
-def data_transform(df_input_data_set):
-    from sklearn.preprocessing import OneHotEncoder
-    # OneHotEncoder 객체 생성
-    encoder = OneHotEncoder(drop='first')
-
-    # 변환할 컬럼 인덱스
-    columns_to_encode = [0, 1, 2, 4, 5]
-
-    # OneHotEncoder를 적용할 컬럼들을 선택
-    X_categorical = df_input_data_set.iloc[:, columns_to_encode]
-
-    # OneHotEncoding을 수행
-    X_encoded = encoder.fit_transform(X_categorical)
-
-    # 변환할 컬럼을 제외한 컬럼들 선택
-    X_numerical = df_input_data_set.drop(columns=X_categorical.columns)
-
-    # OneHotEncoding 결과와 나머지 컬럼들을 합치기
-    X = pd.concat([pd.DataFrame(X_encoded.toarray()), X_numerical], axis=1)
-
-    # 결과 출력
-    st.write(X)
 
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
@@ -56,6 +34,7 @@ with st.echo(code_location="below"):
         # index=0 # 기본 선택 인덱스
         # horizontal=True # 가로 표시 여부
     )
+        
 
 with st.echo(code_location="below"):
     # 학교 종류 (라디오 버튼)
@@ -94,12 +73,14 @@ with st.echo(code_location="below"):
         # horizontal=True # 가로 표시 여부
     )
 
+
 with st.echo(code_location="below"):
     # 점심 유무
     lunch = st.radio(
         label="점심식사 유무", # 상단 표시되는 이름
         options=["먹음", "안먹음"], # 선택 옵션
     )
+
 
 with st.echo(code_location="below"):
     # 사전 시험 (숫자)
@@ -111,13 +92,7 @@ with st.echo(code_location="below"):
         # value=25.0 # 기본값
     )
 
-input_data_set = {"0": [area], 
-                  "1": [school_type], 
-                  "2": [teaching_method], 
-                  "3": [students], 
-                  "4": [gender], 
-                  "5": [lunch], 
-                  "6": [pretest]}
+
 df_input_data_set = pd.DataFrame(input_data_set)
 st.write(df_input_data_set)
 
@@ -131,19 +106,21 @@ with st.echo(code_location="below"):
 with st.echo(code_location="below"):
     # 실행 버튼이 눌리면 모델을 불러와서 예측한다
     if play_button:
-        input_data_set = {"area": [area], 
-                  "school_type": [school_type], 
-                  "teaching_method": [teaching_method], 
-                  "students": [students], 
-                  "gender": [gender], 
-                  "lunch": [lunch], 
-                  "pretest": [pretest]}
-    df_input_data_set = pd.DataFrame(input_data_set)
-    st.write(df_input_data_set)
-    data_transform(df_input_data_set)
-    # input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
-    # pred = model.predict(input_values)
-    # st.write(pred)
+        input_data_set =
+                    {
+                        "area": [area], 
+                        "school_type": [school_type], 
+                        "teaching_method": [teaching_method], 
+                        "students": [students], 
+                        "gender": [gender], 
+                        "lunch": [lunch], 
+                        "pretest": [pretest]
+                    }
+
+    input_values = [[area == "Urban",area =="Suburban",school_type == "국립",teaching_method ="일반",students,gender=="Male",lunch=="먹음",pretest]]
+    pred = model.predict(input_values)
+    st.write(pred)
+
 
 
 
