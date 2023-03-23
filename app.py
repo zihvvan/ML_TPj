@@ -25,9 +25,85 @@ with st.echo(code_location="below"):
 
 st.write("---")
 
-input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
-pred = model.predict(input_values)
-st.write(pred)
+with st.echo(code_location="below"):
+    # 학교 지역 (라디오 버튼)
+    area = st.radio(
+        label="지", # 상단 표시되는 이름
+        options=["Urban", "Suburban","Rural"], # 선택 옵션
+        # index=0 # 기본 선택 인덱스
+        # horizontal=True # 가로 표시 여부
+    )
+
+with st.echo(code_location="below"):
+    # 학교 종류 (라디오 버튼)
+    school_type = st.radio(
+        label="학교 타입", # 상단 표시되는 이름
+        options=["국립", "사립"], # 선택 옵션
+        # index=0 # 기본 선택 인덱스
+        # horizontal=True # 가로 표시 여부
+    )
+
+with st.echo(code_location="below"):
+    # 수업 방식 (라디오 버튼)
+    teaching_method = st.radio(
+        label="수업 타입", # 상단 표시되는 이름
+        options=["일반", "체험"], # 선택 옵션
+        # index=0 # 기본 선택 인덱스
+        # horizontal=True # 가로 표시 여부
+    )
+
+with st.echo(code_location="below"):
+    # 반 학생수 (숫자)
+    students = st.number_input(
+        label="학급 인원", # 상단 표시되는 이름
+        min_value=10.0, # 최솟값
+        max_value=30.0, # 최댓값
+        step=1.0, # 입력 단위
+        # value=25.0 # 기본값
+    )
+
+with st.echo(code_location="below"):
+    # 성별 입력 (라디오 버튼)
+    gender = st.radio(
+        label="성별", # 상단 표시되는 이름
+        options=["Male", "Female"], # 선택 옵션
+        # index=0 # 기본 선택 인덱스
+        # horizontal=True # 가로 표시 여부
+    )
+
+with st.echo(code_location="below"):
+    # 점심 유무
+    lunch = st.radio(
+        label="점심식사 유무", # 상단 표시되는 이름
+        options=["먹음", "안먹음"], # 선택 옵션
+    )
+
+with st.echo(code_location="below"):
+    # 사전 시험 (숫자)
+    pretest = st.number_input(
+        label="사전 시험", # 상단 표시되는 이름
+        min_value=0.0, # 최솟값
+        max_value=100.0, # 최댓값
+        step=1.0, # 입력 단위
+        # value=25.0 # 기본값
+    )
+
+input_data_set = {{"area" : area, "school_type": school_type, "teaching_method": teaching_method, "students": students, "gender": gender, "lunch": lunch,  "pretest": pretest   }}
+df_input_data_set = pd.DataFrame(input_data_set)
+st.write(df_input_data_set)
+
+# def data_transform():
+#     from sklearn.compose import ColumnTransformer
+#     from sklearn.preprocessing import OneHotEncoder
+#     ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
+#     ct
+#     X = ct.fit_transform(X)
+#     X
+
+
+# input_values = [[1.0,0,0,1.0,20.0,0,0,62]]
+# pred = model.predict(input_values)
+# st.write(pred)
 
 
 
