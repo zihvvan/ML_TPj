@@ -33,8 +33,7 @@ def pre_processing(df):
     polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
     return poly_df
-
-def show_poly_info(poly_df):
+    
     st.write("전처리 후 데이터") # 마크다운으로 꾸미기
     st.write(poly_df.describe(include='all'))
 
@@ -107,7 +106,6 @@ def line_model2(df):
     pre_processed_df = pre_processing(df)
     X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
     run_model(X_train, X_test, y_train, y_test)
-    return pre_processed_df
 
 # 이미지 불러오기
 def line_model1():
