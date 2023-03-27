@@ -209,11 +209,7 @@ def line_model1():
             pred = model.predict(input_values)
             pred_df = pd.DataFrame(pred)
             st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
-            
-def main():
-    image1 = Image.open('image/m_img.png')
-    st.image(image1, width=600)
-
+def view_model1():
     df = load_data()
     st.write("전처리 전 데이터") # 마크다운으로 꾸미기
     st.write(df)
@@ -232,6 +228,20 @@ def main():
     with tab3:
             st.header("지표 분석")
             # show_poly_info(line_model2.pre_processed_df)
+
+def main():
+    image1 = Image.open('image/m_img.png')
+    st.image(image1, width=600)
+
+    add_selectbox = st.sidebar.selectbox(
+        "모델을 선택하세요. ",
+        ("성적 예측 모델", "회사퇴사 예측 모델")
+    )
+
+    if add_selectbox == 성적 예측 모델
+        view_model1()
+    else:
+        pass
 
 
 main()
