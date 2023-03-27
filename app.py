@@ -218,7 +218,7 @@ df = load_data()
 st.write("전처리 전 데이터") # 마크다운으로 꾸미기
 st.write(df)
 
-
+ 
 st.title("다중선형회귀 vs 다항선형회귀")
 tab1, tab2 = st.tabs(["LinearRegression", "Polynomial Regression"])
 
