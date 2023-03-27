@@ -3,7 +3,7 @@ import seaborn as sns
 import pandas as pd
 import joblib
 from PIL import Image
-
+from sklearn import preprocessing
 
 image1 = Image.open('image/m_img.png')
 st.image(image1, width=600)
