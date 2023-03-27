@@ -78,12 +78,12 @@ st.write(sqrt(mse))
 comparison = pd.DataFrame(
     {
         'actual' : y_test, # 실제값
-        'pred': pred, #  머신러닝 모델을 통해 예측한 예측값
+        'pred': y_pred, #  머신러닝 모델을 통해 예측한 예측값
     }
 )
 
 import plotly.express as px
-fig = px.scatter(comparison, x="pred", y="y_test")
+fig = px.scatter(comparison, x="y_pred", y="y_test")
 fig.show()
 
 
