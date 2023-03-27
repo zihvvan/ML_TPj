@@ -3,6 +3,8 @@ import seaborn as sns
 import pandas as pd
 import joblib
 from PIL import Image
+from math import sqrt
+from sklearn.metrics import mean_absolute_error
 from sklearn import preprocessing
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
@@ -59,6 +61,26 @@ st.write(model.intercept_)
 # 성능평가
 st.write(model.score(X_train, y_train)) # 훈련 세트
 st.write(model.score(X_test, y_test)) # 테스트 세트
+
+
+y_train_predict = model.predict(X_train)
+y_test_predict = model.predict(X_test)
+
+mse = mean_absolute_error(y_train, y_train_predict)
+print("train-set에서 성능")
+st.write("train-set에서 성능")
+st.write(sqrt(mse))
+
+mse = mean_absolute_error(y_test, y_test_predict)
+st.write("test-set에서 성능")
+st.write(sqrt(mse))
+
+
+
+
+
+
+
 # def show_first_ml():
 
 #     st.write("# 모델 통해 예측해 보기")
