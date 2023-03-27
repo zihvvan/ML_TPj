@@ -53,6 +53,7 @@ def split_dataset(pre_processed_df):
     return X_train, X_test, y_train, y_test
 
 def run_model(X_train, X_test, y_train, y_test):
+    import plotly.express as px
     # 모델 선언(선형회귀)
     model = LinearRegression()
     model.fit(X_train, y_train) # 훈련 세트로 학습
