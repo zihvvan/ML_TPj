@@ -35,7 +35,6 @@ poly_columns = concated_df.columns
 polynomial_transformer = PolynomialFeatures(2)
 polynomial_data = polynomial_transformer.fit_transform(poly_data)
 polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
-polynomial_features_names
 poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
 X = poly_df.drop('posttest',axis=1)
 y = poly_df['posttest']
