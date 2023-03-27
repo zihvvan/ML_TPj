@@ -84,7 +84,7 @@ comparison = pd.DataFrame(
 comparison
 
 import plotly.express as px
-fig = px.scatter(comparison, x="sepal_width", y="sepal_length")
+fig = px.scatter(comparison, x="actual", y="pred")
 fig.show()
 
 
