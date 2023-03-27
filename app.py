@@ -32,6 +32,9 @@ def pre_processing(df):
     polynomial_data = polynomial_transformer.fit_transform(poly_data)
     polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
+    return poly_df
+
+def show_poly_info(poly_df):
     st.write("전처리 후 데이터") # 마크다운으로 꾸미기
     st.write(poly_df.describe(include='all'))
 
@@ -40,7 +43,6 @@ def pre_processing(df):
     fig.layout.update({'width':800, 'height':600})
     st.plotly_chart(fig)
     st.write('---')
-    return poly_df
 
 def split_dataset(pre_processed_df):
     # 테스트 셋 나누기 작업
@@ -55,7 +57,7 @@ def run_model(X_train, X_test, y_train, y_test):
     # 모델 선언(선형회귀)
     model = LinearRegression()
     model.fit(X_train, y_train) # 훈련 세트로 학습
-
+    X_train, X_test, y_train, y_test = X_train, X_test, y_train, y_test
     # 예측
     y_pred = model.predict(X_test)
 
@@ -210,23 +212,28 @@ def line_model1():
             pred_df = pd.DataFrame(pred)
             st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
             
+def main():
+    image1 = Image.open('image/m_img.png')
+    st.image(image1, width=600)
 
-image1 = Image.open('image/m_img.png')
-st.image(image1, width=600)
-
-df = load_data()
-st.write("전처리 전 데이터") # 마크다운으로 꾸미기
-st.write(df)
+    df = load_data()
+    st.write("전처리 전 데이터") # 마크다운으로 꾸미기
+    st.write(df)
 
  
-st.title("다중선형회귀 vs 다항선형회귀")
-tab1, tab2 = st.tabs(["LinearRegression", "Polynomial Regression"])
+    st.title("다중선형회귀 vs 다항선형회귀")
+    tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression", '지표분석'])
 
-#########################
-with tab1:
-        st.header("LinearRegression")
-        line_model1()
-with tab2:
-        st.header("Polynomial Regression")
-        line_model2()
-    
+    #########################
+    with tab1:
+            st.header("LinearRegression")
+            line_model1()
+    with tab2:
+            st.header("Polynomial Regression")
+            line_model2()
+    with tab3:
+            st.header("지표 분석")
+            show_poly_info(line_model2.pre_processed_df)
+
+
+main()
