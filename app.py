@@ -74,7 +74,17 @@ mse = mean_absolute_error(y_test, y_test_predict)
 st.write("test-set에서 성능")
 st.write(sqrt(mse))
 
+# 테이블로 평가
+comparison = pd.DataFrame(
+    {
+        'actual' : y_test, # 실제값
+        'pred': pred, #  머신러닝 모델을 통해 예측한 예측값
+    }
+)
 
+import plotly.express as px
+fig = px.scatter(comparison, x="pred", y="y_test")
+fig.show()
 
 
 
