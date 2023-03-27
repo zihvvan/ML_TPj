@@ -103,10 +103,11 @@ def load_data():
     df = pd.read_csv(data_url) # URL로 CSV 불러오기
     return df
 
-def line_model2():
-    pre_processed_df = pre_processing(main.df)
+def line_model2(df):
+    pre_processed_df = pre_processing(df)
     X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
     run_model(X_train, X_test, y_train, y_test)
+    return pre_processed_df
 
 # 이미지 불러오기
 def line_model1():
@@ -230,10 +231,10 @@ def main():
             line_model1()
     with tab2:
             st.header("Polynomial Regression")
-            line_model2()
+            line_model2(df)
     with tab3:
             st.header("지표 분석")
-            show_poly_info(line_model2.pre_processed_df)
+            # show_poly_info(line_model2.pre_processed_df)
 
 
 main()
