@@ -85,7 +85,7 @@ comparison
 
 import plotly.express as px
 fig = px.scatter(comparison, x="pred", y="actual")
-fig.show()
+st.plotly_chart(fig)
 
 
 
