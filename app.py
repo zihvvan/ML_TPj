@@ -53,7 +53,9 @@ model.fit(X_train, y_train) # 훈련 세트로 학습
 y_pred = model.predict(X_test)
 
 # 관계도
+st.write("관계")
 st.write(model.coef_)
+st.write("갭차이")
 st.write(model.intercept_)
 
 # 성능평가
