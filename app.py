@@ -209,10 +209,7 @@ def line_model1():
             pred = model.predict(input_values)
             pred_df = pd.DataFrame(pred)
             st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
-    if st.button('전처리 전 데이터'):
-        st.write(df) # 자동으로 표 그려줌
-    if st.button('전처리 후 데이터'):
-        st.write(df1) # 자동으로 표 그려줌
+            
 
 image1 = Image.open('image/m_img.png')
 st.image(image1, width=600)
