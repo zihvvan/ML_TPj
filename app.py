@@ -18,7 +18,7 @@ st.write("전처리 전 데이터") # 마크다운으로 꾸미기
 st.write(df1)
 st.write("전처리 후 데이터") # 마크다운으로 꾸미기
 df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
-st.write(df1.columns)
+st.write(df1)
 
 # 스케일링
 scaler = preprocessing.MinMaxScaler()
@@ -42,12 +42,23 @@ y = poly_df['posttest']
 # 테스트셋 분리
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
 
-
+# 모델 선언(선형회귀)
 model = LinearRegression()
 # model = Lasso(alpha=0.001, max_iter=1000)
 # model = Ridge(alpha=0.001, max_iter=1000)
 model.fit(X_train, y_train) # 훈련 세트로 학습
 
+# 예측
+y_pred = model.predict(X_test)
+st.write(y_pred)
+
+# 관계도
+st.write(model.coef_)
+st.write(model.intercept_)
+
+# 성능평가
+st.write(model.score(X_train, y_train)) # 훈련 세트
+st.write(model.score(X_test, y_test)) # 테스트 세트
 # def show_first_ml():
 
 #     st.write("# 모델 통해 예측해 보기")
