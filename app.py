@@ -11,27 +11,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
 
-
-# 이미지 불러오기
-image1 = Image.open('image/m_img.png')
-st.image(image1, width=600)
-
-# csv데이터 불러오기
-data_url = "Data/test_scores.csv"
-df = pd.read_csv(data_url) # URL로 CSV 불러오기
-
-st.write("전처리 전 데이터") # 마크다운으로 꾸미기
-st.write(df)
-pre_processed_df = pre_processing(df)
-X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
-run_model(X_train, X_test, y_train, y_test)
 def pre_processing(df):
     # 필요없는 Columns 드랍
     df1 = df.drop(['school','classroom','student_id'], axis=1)
-
+    
     # 원 핫 인코딩으로 분류형 데이터 처리
     df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
-
 
     # 스케일링
     scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
@@ -103,6 +88,21 @@ def run_model(X_train, X_test, y_train, y_test):
     import plotly.express as px
     fig = px.scatter(comparison, x="실제값", y="예측값")
     st.plotly_chart(fig)
+
+# 이미지 불러오기
+image1 = Image.open('image/m_img.png')
+st.image(image1, width=600)
+
+# csv데이터 불러오기
+data_url = "Data/test_scores.csv"
+df = pd.read_csv(data_url) # URL로 CSV 불러오기
+
+st.write("전처리 전 데이터") # 마크다운으로 꾸미기
+st.write(df)
+pre_processed_df = pre_processing(df)
+X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
+run_model(X_train, X_test, y_train, y_test)
+
 
 
 
