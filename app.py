@@ -4,6 +4,10 @@ import pandas as pd
 import joblib
 from PIL import Image
 from sklearn import preprocessing
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Lasso, Ridge
 
 image1 = Image.open('image/m_img.png')
 st.image(image1, width=600)
@@ -24,6 +28,25 @@ scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest
 concated_df = pd.concat([scaled_data1,features],axis=1)
 st.write(concated_df)
 
+# 다항회귀 추가
+poly_data = concated_df.values
+poly_columns = concated_df.columns
+polynomial_transformer = PolynomialFeatures(2)
+polynomial_data = polynomial_transformer.fit_transform(poly_data)
+polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
+polynomial_features_names
+poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
+X = poly_df.drop('posttest',axis=1)
+y = poly_df['posttest']
+
+# 테스트셋 분리
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
+
+
+model = LinearRegression()
+# model = Lasso(alpha=0.001, max_iter=1000)
+# model = Ridge(alpha=0.001, max_iter=1000)
+model.fit(X_train, y_train) # 훈련 세트로 학습
 
 # def show_first_ml():
 
