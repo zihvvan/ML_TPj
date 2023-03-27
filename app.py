@@ -10,7 +10,21 @@ st.image(image1, width=600)
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
 df1 = df.drop(['school','classroom','student_id'], axis=1)
+st.write("전처리 전 데이터") # 마크다운으로 꾸미기
 st.write(df1)
+st.write("전처리 후 데이터") # 마크다운으로 꾸미기
+df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
+st.write(df1.columns)
+
+# 스케일링
+scaler = preprocessing.MinMaxScaler()
+scaled_data = scaler.fit_transform(df1.loc[:,['n_student','pretest','posttest']])
+features = df1.loc[:,['school_setting_Suburban','school_setting_Urban', 'school_type_Public','teaching_method_Standard', 'gender_Male','lunch_Qualifies for reduced/free lunch']]
+scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest'])
+concated_df = pd.concat([scaled_data1,features],axis=1)
+st.write(concated_df)
+
+
 # def show_first_ml():
 
 #     st.write("# 모델 통해 예측해 보기")
