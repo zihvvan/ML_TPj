@@ -236,7 +236,7 @@ def main():
     add_selectbox = st.sidebar.selectbox(
         "모델을 선택하세요. ",
         ("성적 예측 모델", "회사퇴사 예측 모델"),
-        default = "모델 선택"
+        default = "회사퇴사 예측 모델"
     )
 
     if add_selectbox == "성적 예측 모델":
