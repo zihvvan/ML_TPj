@@ -49,20 +49,16 @@ def split_dataset(pre_processed_df):
 
     # 테스트셋 분리
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
-    test_set = [X_train, X_test, y_train, y_test]
-    return test_set
+    return X_train, X_test, y_train, y_test
 
-def run_model(test_set):
+def run_model(X_train, X_test, y_train, y_test):
     # 모델 선언(선형회귀)
     model = LinearRegression()
-    model.fit(test_set[0], test_set[2]) # 훈련 세트로 학습
-
-    return model
-
-def show_model_info(model, test_set):
+    model.fit(X_train, y_train) # 훈련 세트로 학습
 
     # 예측
-    y_pred = model.predict(test_set[1])
+    y_pred = model.predict(X_test)
+
     # 관계도
     st.write("관계")
     st.write(model.coef_)
@@ -71,25 +67,25 @@ def show_model_info(model, test_set):
 
     # 성능평가
     st.write("훈련셋 Score")
-    st.write(model.score(test_set[0], test_set[2])) # 훈련 세트
+    st.write(model.score(X_train, y_train)) # 훈련 세트
     st.write("테스트 셋 Score")
-    st.write(model.score(test_set[1], test_set[3])) # 테스트 세트
+    st.write(model.score(X_test, y_test)) # 테스트 세트
 
-    y_train_predict = model.predict(test_set[0])
-    y_test_predict = model.predict(test_set[1])
+    y_train_predict = model.predict(X_train)
+    y_test_predict = model.predict(X_test)
 
-    mse = mean_absolute_error(test_set[2], y_train_predict)
+    mse = mean_absolute_error(y_train, y_train_predict)
     st.write("train-set에서 성능")
     st.write(sqrt(mse))
 
-    mse = mean_absolute_error(test_set[2], y_test_predict)
+    mse = mean_absolute_error(y_test, y_test_predict)
     st.write("test-set에서 성능")
     st.write(sqrt(mse))
 
     # 테이블로 평가
     comparison = pd.DataFrame(
         {
-            '실제값' : test_set[2], # 실제값
+            '실제값' : y_test, # 실제값
             '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
         }
     )
@@ -113,9 +109,8 @@ st.write("전처리 전 데이터") # 마크다운으로 꾸미기
 st.write(df)
 
 pre_processed_df = pre_processing(df)
-test_set = split_dataset(pre_processed_df) # test_set = [X_train, X_test, y_train, y_test]
-model = run_model(test_set)
-show_model_info(model, test_set)
+X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
+run_model(X_train, X_test, y_train, y_test)
 
 
 
