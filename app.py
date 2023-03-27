@@ -42,7 +42,7 @@ def pre_processing(df):
     st.plotly_chart(fig)
     st.write('---')
     return poly_df
-    
+
 def split_dataset(pre_processed_df):
     # 테스트 셋 나누기 작업
     X = pre_processed_df.drop('시험점수',axis=1)
@@ -61,10 +61,8 @@ def run_model(X_train, X_test, y_train, y_test):
     y_pred = model.predict(X_test)
 
     # 관계도
-    st.write("관계")
-    st.write(model.coef_)
-    st.write("갭차이")
-    st.write(model.intercept_)
+    st.write(f"coef_ {model.coef_}")
+    st.write(f"intercept_ {model.intercept_}")
 
     # 성능평가
     st.write("훈련셋 Score")
