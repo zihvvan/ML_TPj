@@ -222,6 +222,14 @@ st.write("전처리 전 데이터") # 마크다운으로 꾸미기
 st.write(df)
 
 
-line_model1()
-line_model2()
+st.title("다중선형회귀 vs 다항선형회귀")
+tab1, tab2 = st.tabs(["LinearRegression", "Polynomial Regression"])
 
+#########################
+with tab1:
+        st.header("LinearRegression")
+        line_model1()
+with tab2:
+        st.header("Polynomial Regression")
+        line_model2()
+    
