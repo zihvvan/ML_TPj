@@ -32,8 +32,7 @@ def pre_processing(df):
     polynomial_data = polynomial_transformer.fit_transform(poly_data)
     polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
-    return poly_df
-    
+
     st.write("전처리 후 데이터") # 마크다운으로 꾸미기
     st.write(poly_df.describe(include='all'))
 
@@ -42,7 +41,8 @@ def pre_processing(df):
     fig.layout.update({'width':800, 'height':600})
     st.plotly_chart(fig)
     st.write('---')
-
+    return poly_df
+    
 def split_dataset(pre_processed_df):
     # 테스트 셋 나누기 작업
     X = pre_processed_df.drop('시험점수',axis=1)
