@@ -16,7 +16,7 @@ def pre_processing(df):
     df1 = df.drop(['school','classroom','student_id'], axis=1)
     # 원 핫 인코딩으로 분류형 데이터 처리
     df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
-    df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':' Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
+    df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':'Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
     # 스케일링
     scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
     scaled_data = scaler.fit_transform(df2.loc[:,['학생수','사전점수','시험점수']])
