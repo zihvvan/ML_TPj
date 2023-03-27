@@ -29,7 +29,7 @@ def scaler_df(df2):
     concated_df = pd.concat([scaled_data1,features],axis=1)
     return concated_df
 
-def make_polynomial_df(poly_data):
+def make_polynomial_df(concated_df):
     # 다항회귀 추가 (복잡도를 높이기 위해 추가)
     poly_data = concated_df.values
     poly_columns = concated_df.columns
