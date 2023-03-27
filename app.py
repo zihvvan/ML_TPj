@@ -20,6 +20,9 @@ def pre_processing(df):
     df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':'Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
     return df2
 
+def show_processed_df(df):
+    st.write(df)
+
 def scaler_df(df2):
     # 스케일링
     scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
@@ -226,7 +229,9 @@ def view_model1():
     df = load_data()
     st.write("전처리 전 데이터") # 마크다운으로 꾸미기
     st.write(df)
-
+    st.write("전처리 후 데이터")
+    p_df = pre_processing(df)
+    show_processed_df(p_df)
     #########################
     with tab1:
             st.header("LinearRegression")
