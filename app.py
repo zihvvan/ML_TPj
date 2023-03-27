@@ -61,8 +61,8 @@ def run_model(X_train, X_test, y_train, y_test):
     y_pred = model.predict(X_test)
 
     # 관계도
-    st.write(f"coef_ {model.coef_}")
-    st.write(f"intercept_ {model.intercept_}")
+    st.write(model.coef_)
+    st.write(model.intercept_)
 
 
     # 성능평가
