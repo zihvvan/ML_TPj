@@ -1,7 +1,4 @@
 pandas
 numpy
-plotly
-seaborn
-matplotlib
 sklearn
 mlxtend
