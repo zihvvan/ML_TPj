@@ -210,13 +210,13 @@ def line_model1():
             pred_df = pd.DataFrame(pred)
             st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
 def view_model1():
-    df = load_data()
-    st.write("전처리 전 데이터") # 마크다운으로 꾸미기
-    st.write(df)
 
  
     st.title("다중선형회귀 vs 다항선형회귀")
     tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression", '지표분석'])
+    df = load_data()
+    st.write("전처리 전 데이터") # 마크다운으로 꾸미기
+    st.write(df)
 
     #########################
     with tab1:
