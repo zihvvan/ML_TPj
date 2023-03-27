@@ -84,7 +84,7 @@ comparison = pd.DataFrame(
 comparison
 colors = ['red', 'blue']
 import plotly.express as px
-fig = px.scatter(comparison, x="실제값", y="예측값", color=colors)
+fig = px.scatter(comparison, x="실제값", y="예측값")
 st.plotly_chart(fig)
 
 
