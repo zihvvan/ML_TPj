@@ -107,15 +107,6 @@ def line_model2():
     run_model(X_train, X_test, y_train, y_test)
 
 # 이미지 불러오기
-image1 = Image.open('image/m_img.png')
-st.image(image1, width=600)
-
-df = load_data()
-st.write("전처리 전 데이터") # 마크다운으로 꾸미기
-st.write(df)
-
-
-
 def line_model1():
 
     st.write("# 모델 통해 예측해 보기")
@@ -222,4 +213,15 @@ def line_model1():
         st.write(df) # 자동으로 표 그려줌
     if st.button('전처리 후 데이터'):
         st.write(df1) # 자동으로 표 그려줌
-show_first_ml()
+
+image1 = Image.open('image/m_img.png')
+st.image(image1, width=600)
+
+df = load_data()
+st.write("전처리 전 데이터") # 마크다운으로 꾸미기
+st.write(df)
+
+
+line_model1()
+line_model2()
+
