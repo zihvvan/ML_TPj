@@ -61,8 +61,21 @@ def run_model(X_train, X_test, y_train, y_test):
     y_pred = model.predict(X_test)
 
     # 관계도
-    st.write(f"coef_ {model.coef_}")
     st.write(f"intercept_ {model.intercept_}")
+
+
+    fig = px.scatter(model.coef_)
+    fig.update_layout(title='다항 회귀 계수',xaxis_nticks=36)
+    fig.layout.update({'width':800, 'height':600})
+    st.plotly_chart(fig)
+
+
+    fig = px.imshow(concated_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
+    fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
+    fig.layout.update({'width':800, 'height':600})
+    st.plotly_chart(fig)
+
+
 
     # 성능평가
     st.write("훈련셋 Score")
