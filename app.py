@@ -10,7 +10,7 @@ st.image(image1, width=600)
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
 df1 = df.drop(['school','classroom','student_id'], axis=1)
-
+st.write(df1)
 # def show_first_ml():
 
 #     st.write("# 모델 통해 예측해 보기")
