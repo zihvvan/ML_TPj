@@ -35,7 +35,7 @@ def pre_processing(df):
     st.write("전처리 후 데이터") # 마크다운으로 꾸미기
     st.write(poly_df.describe(include='all'))
 
-    fig = px.imshow(concated_df.corr(), color_continuous_scale='RdBu_r', aspect='auto')
+    fig = px.imshow(concated_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
     fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
     fig.layout.update({'width':800, 'height':800})
     st.plotly_chart(fig)
