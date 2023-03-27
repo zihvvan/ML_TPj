@@ -14,7 +14,7 @@ from sklearn.linear_model import Lasso, Ridge
 def pre_processing(df):
     # 필요없는 Columns 드랍
     df1 = df.drop(['school','classroom','student_id'], axis=1)
-    
+
     # 원 핫 인코딩으로 분류형 데이터 처리
     df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
 
@@ -34,12 +34,13 @@ def pre_processing(df):
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
     st.write("전처리 후 데이터") # 마크다운으로 꾸미기
     st.write(poly_df)
+
     return poly_df
 
 def split_dataset(pre_processed_df):
     # 테스트 셋 나누기 작업
-    X = poly_df.drop('posttest',axis=1)
-    y = poly_df['posttest']
+    X = pre_processed_df.drop('posttest',axis=1)
+    y = pre_processed_df['posttest']
 
     # 테스트셋 분리
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
