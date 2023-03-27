@@ -16,7 +16,7 @@ def show_first_ml():
     st.write("# 모델 통해 예측해 보기")
 
     with st.echo(code_location="below"):
-        model_path = "Data/multi_LinearRegression_model.pkl"
+        model_path = "Data/LinearRegression.pkl"
         model = joblib.load(model_path)
         st.write("## 다중 선형 회귀 모델")
 
