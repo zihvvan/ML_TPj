@@ -44,8 +44,8 @@ def pre_processing(df):
 
 def split_dataset(pre_processed_df):
     # 테스트 셋 나누기 작업
-    X = pre_processed_df.drop('posttest',axis=1)
-    y = pre_processed_df['posttest']
+    X = pre_processed_df.drop('시험점수',axis=1)
+    y = pre_processed_df['시험점수']
 
     # 테스트셋 분리
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
