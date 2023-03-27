@@ -2,7 +2,6 @@ import streamlit as st
 import seaborn as sns
 import pandas as pd
 import joblib
-import plotly.express as px
 from PIL import Image
 from math import sqrt
 from sklearn.metrics import mean_absolute_error
@@ -15,14 +14,13 @@ from sklearn.linear_model import Lasso, Ridge
 def pre_processing(df):
     # 필요없는 Columns 드랍
     df1 = df.drop(['school','classroom','student_id'], axis=1)
-
     # 원 핫 인코딩으로 분류형 데이터 처리
     df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
-
+    df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':' Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
     # 스케일링
     scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
     scaled_data = scaler.fit_transform(df1.loc[:,['n_student','pretest','posttest']])
-    features = df1.loc[:,['school_setting_Suburban','school_setting_Urban', 'school_type_Public','teaching_method_Standard', 'gender_Male','lunch_Qualifies for reduced/free lunch']]
+    features = df1.loc[:,['Suburban','Urban', 'Public','Standard', 'Male','free lunch']]
     scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest'])
     concated_df = pd.concat([scaled_data1,features],axis=1)
 
