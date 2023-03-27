@@ -19,8 +19,8 @@ def pre_processing(df):
     df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':' Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
     # 스케일링
     scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
-    scaled_data = scaler.fit_transform(df1.loc[:,['n_student','pretest','posttest']])
-    features = df1.loc[:,['Suburban','Urban', 'Public','Standard', 'Male','free lunch']]
+    scaled_data = scaler.fit_transform(df2.loc[:,['n_student','pretest','posttest']])
+    features = df2.loc[:,['Suburban','Urban', 'Public','Standard', 'Male','free lunch']]
     scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest'])
     concated_df = pd.concat([scaled_data1,features],axis=1)
 
