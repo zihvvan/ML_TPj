@@ -104,7 +104,7 @@ def load_data():
     return df
 
 def line_model2():
-    pre_processed_df = pre_processing(df)
+    pre_processed_df = pre_processing(main.df)
     X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
     run_model(X_train, X_test, y_train, y_test)
 
