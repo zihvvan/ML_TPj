@@ -77,8 +77,8 @@ st.write(sqrt(mse))
 # 테이블로 평가
 comparison = pd.DataFrame(
     {
-        'actual' : y_test, # 실제값
-        'pred': y_pred, #  머신러닝 모델을 통해 예측한 예측값
+        '실제값' : y_test, # 실제값
+        '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
     }
 )
 comparison
