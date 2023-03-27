@@ -51,7 +51,6 @@ model.fit(X_train, y_train) # 훈련 세트로 학습
 
 # 예측
 y_pred = model.predict(X_test)
-st.write(y_pred)
 
 # 관계도
 st.write(model.coef_)
