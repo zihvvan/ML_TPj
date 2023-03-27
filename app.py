@@ -82,9 +82,9 @@ comparison = pd.DataFrame(
     }
 )
 comparison
-
+colors = ['red', 'blue']
 import plotly.express as px
-fig = px.scatter(comparison, x="실제값", y="예측값", color='petal_length')
+fig = px.scatter(comparison, x="실제값", y="예측값", color=colors)
 st.plotly_chart(fig)
 
 
