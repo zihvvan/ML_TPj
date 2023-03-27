@@ -28,7 +28,6 @@ scaled_data = scaler.fit_transform(df1.loc[:,['n_student','pretest','posttest']]
 features = df1.loc[:,['school_setting_Suburban','school_setting_Urban', 'school_type_Public','teaching_method_Standard', 'gender_Male','lunch_Qualifies for reduced/free lunch']]
 scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest'])
 concated_df = pd.concat([scaled_data1,features],axis=1)
-st.write(concated_df)
 
 # 다항회귀 추가
 poly_data = concated_df.values
@@ -59,15 +58,15 @@ st.write(model.coef_)
 st.write(model.intercept_)
 
 # 성능평가
+st.write("훈련셋 Score")
 st.write(model.score(X_train, y_train)) # 훈련 세트
+st.write("테스트 셋 Score")
 st.write(model.score(X_test, y_test)) # 테스트 세트
-
 
 y_train_predict = model.predict(X_train)
 y_test_predict = model.predict(X_test)
 
 mse = mean_absolute_error(y_train, y_train_predict)
-print("train-set에서 성능")
 st.write("train-set에서 성능")
 st.write(sqrt(mse))
 
