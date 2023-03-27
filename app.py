@@ -18,13 +18,18 @@ def pre_processing(df):
     # 원 핫 인코딩으로 분류형 데이터 처리
     df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
     df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':'Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
+    return df2
+
+def scaler_df(df2)
     # 스케일링
     scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
     scaled_data = scaler.fit_transform(df2.loc[:,['학생수','사전점수','시험점수']])
     features = df2.loc[:,['Suburban','Urban', 'Public','Standard', 'Male','free lunch']]
     scaled_data1 = pd.DataFrame(scaled_data,columns=['학생수','사전점수','시험점수'])
     concated_df = pd.concat([scaled_data1,features],axis=1)
+    return concated_df
 
+def make_polynomial_df(poly_data):
     # 다항회귀 추가 (복잡도를 높이기 위해 추가)
     poly_data = concated_df.values
     poly_columns = concated_df.columns
@@ -102,7 +107,9 @@ def load_data():
     return df
 
 def line_model2(df):
-    pre_processed_df = pre_processing(df)
+    df2 = pre_processing(df)
+    scaled_df = scaler_df(df2)
+    pre_processed_df = make_polynomial_df(scaled_df)
     X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
     run_model(X_train, X_test, y_train, y_test)
 
@@ -209,6 +216,8 @@ def line_model1():
             pred = model.predict(input_values)
             pred_df = pd.DataFrame(pred)
             st.markdown(f"<div style='text-align:center; font-size:24px'>예측 학생 점수 :{(pred_df.iloc[0,0]).round(1)}</div>", unsafe_allow_html=True)
+            
+            st.write()
 def view_model1():
 
  
