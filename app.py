@@ -37,6 +37,7 @@ def pre_processing(df):
 
     fig = px.imshow(poly_df.corr(), color_continuous_scale='RdBu_r', aspect='auto')
     fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
+    fig.layout.update({'width':800, 'height':800})
     st.plotly_chart(fig)
     st.write('---')
     return poly_df
