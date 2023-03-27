@@ -81,10 +81,11 @@ comparison = pd.DataFrame(
         'pred': y_pred, #  머신러닝 모델을 통해 예측한 예측값
     }
 )
+comparison
 
-import plotly.express as px
-fig = px.scatter(x=actual, y=pred)
-fig.show()
+# import plotly.express as px
+# fig = px.scatter(x=actual, y=pred)
+# fig.show()
 
 
 
