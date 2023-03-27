@@ -238,7 +238,7 @@ def main():
         ("성적 예측 모델", "회사퇴사 예측 모델")
     )
 
-    if add_selectbox == 성적 예측 모델
+    if add_selectbox == "성적 예측 모델":
         view_model1()
     else:
         pass
