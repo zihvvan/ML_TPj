@@ -11,81 +11,98 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
 
+
+# 이미지 불러오기
 image1 = Image.open('image/m_img.png')
 st.image(image1, width=600)
+
+# csv데이터 불러오기
 data_url = "Data/test_scores.csv"
 df = pd.read_csv(data_url) # URL로 CSV 불러오기
-df1 = df.drop(['school','classroom','student_id'], axis=1)
+
 st.write("전처리 전 데이터") # 마크다운으로 꾸미기
-st.write(df1)
-st.write("전처리 후 데이터") # 마크다운으로 꾸미기
-df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
-st.write(df1)
+st.write(df)
+pre_processed_df = pre_processing(df)
+X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
+run_model(X_train, X_test, y_train, y_test)
+def pre_processing(df):
+    # 필요없는 Columns 드랍
+    df1 = df.drop(['school','classroom','student_id'], axis=1)
 
-# 스케일링
-scaler = preprocessing.MinMaxScaler()
-scaled_data = scaler.fit_transform(df1.loc[:,['n_student','pretest','posttest']])
-features = df1.loc[:,['school_setting_Suburban','school_setting_Urban', 'school_type_Public','teaching_method_Standard', 'gender_Male','lunch_Qualifies for reduced/free lunch']]
-scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest'])
-concated_df = pd.concat([scaled_data1,features],axis=1)
+    # 원 핫 인코딩으로 분류형 데이터 처리
+    df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
 
-# 다항회귀 추가
-poly_data = concated_df.values
-poly_columns = concated_df.columns
-polynomial_transformer = PolynomialFeatures(2)
-polynomial_data = polynomial_transformer.fit_transform(poly_data)
-polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
-poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
-X = poly_df.drop('posttest',axis=1)
-y = poly_df['posttest']
 
-# 테스트셋 분리
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
+    # 스케일링
+    scaler = preprocessing.MinMaxScaler() # 최대최소값을 이용한 스케일러 
+    scaled_data = scaler.fit_transform(df1.loc[:,['n_student','pretest','posttest']])
+    features = df1.loc[:,['school_setting_Suburban','school_setting_Urban', 'school_type_Public','teaching_method_Standard', 'gender_Male','lunch_Qualifies for reduced/free lunch']]
+    scaled_data1 = pd.DataFrame(scaled_data,columns=['n_student','pretest','posttest'])
+    concated_df = pd.concat([scaled_data1,features],axis=1)
 
-# 모델 선언(선형회귀)
-model = LinearRegression()
-# model = Lasso(alpha=0.001, max_iter=1000)
-# model = Ridge(alpha=0.001, max_iter=1000)
-model.fit(X_train, y_train) # 훈련 세트로 학습
+    # 다항회귀 추가 (복잡도를 높이기 위해 추가)
+    poly_data = concated_df.values
+    poly_columns = concated_df.columns
+    polynomial_transformer = PolynomialFeatures(2) # 2차원으로 다항회귀 
+    polynomial_data = polynomial_transformer.fit_transform(poly_data)
+    polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
+    poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
+    st.write("전처리 후 데이터") # 마크다운으로 꾸미기
+    st.write(poly_df)
+    return poly_df
 
-# 예측
-y_pred = model.predict(X_test)
+def split_dataset(pre_processed_df):
+    # 테스트 셋 나누기 작업
+    X = poly_df.drop('posttest',axis=1)
+    y = poly_df['posttest']
 
-# 관계도
-st.write("관계")
-st.write(model.coef_)
-st.write("갭차이")
-st.write(model.intercept_)
+    # 테스트셋 분리
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
+    return X_train, X_test, y_train, y_test
 
-# 성능평가
-st.write("훈련셋 Score")
-st.write(model.score(X_train, y_train)) # 훈련 세트
-st.write("테스트 셋 Score")
-st.write(model.score(X_test, y_test)) # 테스트 세트
+def run_model(X_train, X_test, y_train, y_test):
+    # 모델 선언(선형회귀)
+    model = LinearRegression()
+    model.fit(X_train, y_train) # 훈련 세트로 학습
 
-y_train_predict = model.predict(X_train)
-y_test_predict = model.predict(X_test)
+    # 예측
+    y_pred = model.predict(X_test)
 
-mse = mean_absolute_error(y_train, y_train_predict)
-st.write("train-set에서 성능")
-st.write(sqrt(mse))
+    # 관계도
+    st.write("관계")
+    st.write(model.coef_)
+    st.write("갭차이")
+    st.write(model.intercept_)
 
-mse = mean_absolute_error(y_test, y_test_predict)
-st.write("test-set에서 성능")
-st.write(sqrt(mse))
+    # 성능평가
+    st.write("훈련셋 Score")
+    st.write(model.score(X_train, y_train)) # 훈련 세트
+    st.write("테스트 셋 Score")
+    st.write(model.score(X_test, y_test)) # 테스트 세트
 
-# 테이블로 평가
-comparison = pd.DataFrame(
-    {
-        '실제값' : y_test, # 실제값
-        '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
-    }
-)
-comparison
-colors = ['red', 'blue']
-import plotly.express as px
-fig = px.scatter(comparison, x="실제값", y="예측값")
-st.plotly_chart(fig)
+    y_train_predict = model.predict(X_train)
+    y_test_predict = model.predict(X_test)
+
+    mse = mean_absolute_error(y_train, y_train_predict)
+    st.write("train-set에서 성능")
+    st.write(sqrt(mse))
+
+    mse = mean_absolute_error(y_test, y_test_predict)
+    st.write("test-set에서 성능")
+    st.write(sqrt(mse))
+
+    # 테이블로 평가
+    comparison = pd.DataFrame(
+        {
+            '실제값' : y_test, # 실제값
+            '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
+        }
+    )
+    comparison
+    colors = ['red', 'blue']
+    import plotly.express as px
+    fig = px.scatter(comparison, x="실제값", y="예측값")
+    st.plotly_chart(fig)
 
 
 
