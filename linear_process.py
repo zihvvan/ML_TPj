@@ -42,7 +42,7 @@ def linear_processed_df(df, s_df):
     mean_squared_error(y_test, y_pred, squared=False) # RMSE
     r2_score(y_test, y_pred) # R2
 
-    specs = [{'type': 'pie'}, {'type': 'pie'}]
+    specs = [[{'type': 'pie'}, {'type': 'pie'}]]
 
     fig = make_subplots(rows=1, cols=2, specs=specs)
     
