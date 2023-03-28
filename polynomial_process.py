@@ -73,8 +73,8 @@ def run_model(X, y):
     st.write(f"이 모델의 최적의 Alpha 값 :  {best_params['alpha']}")
     st.write(f"이 모델의 최적의 Max_iter 횟수  :  {best_params['max_iter']}")
     # # 관계도
-    # coef = model.coef_
-    # intercept = model.intercept_
+    coef = model.coef_
+    intercept = model.intercept_
 
 
     # 성능평가
