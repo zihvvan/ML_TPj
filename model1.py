@@ -12,15 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
 from sklearn.model_selection import GridSearchCV
-import preprocessing
-
-# def pre_processing(df):
-#     # 필요없는 Columns 드랍
-#     df1 = df.drop(['school','classroom','student_id'], axis=1)
-#     # 원 핫 인코딩으로 분류형 데이터 처리
-#     df1 = pd.get_dummies(df1, columns=['school_setting','school_type','teaching_method','gender','lunch'], drop_first=True)
-#     df2 = df1.rename(columns={'n_student' : '학생수', 'pretest' : '사전점수', 'posttest': '시험점수', 'school_setting_Suburban':'Suburban', 'school_setting_Urban':'Urban', 'school_type_Public':'Public', 'teaching_method_Standard':'Standard', 'gender_Male':'Male','lunch_Qualifies for reduced/free lunch':'free lunch'})
-#     return df2
+import pre_process
 
 def show_processed_df(df):
     st.write(df)
@@ -115,7 +107,7 @@ def run_model(X, y):
     st.plotly_chart(fig)
 
 def poly_model(df):
-    df2 = preprocessing.pre_processing(df)
+    df2 = pre_process.pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
