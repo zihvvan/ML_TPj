@@ -4,8 +4,8 @@ import polynomial_process, visualization_process, models
 import pre_process
 
 def view_model1():
-    st.title("다중선형회귀 vs 다항선형회귀")
-    tab1, tab2, tab3, tab4 = st.tabs(["성적 예측","데이터셋","시각화", "PolynomialRegression 지표"])
+    st.title("다중선형회귀 vs 다항선형회귀(Lasso)")
+    tab1, tab2, tab3 = st.tabs(["성적 예측","데이터셋 지표분석","시각화"])
     df = pre_process.load_data(1)
     s_df, comparison = polynomial_process.poly_model(df)
     with tab1:
@@ -21,10 +21,7 @@ def view_model1():
     with tab3:
             st.header("시각화")
             visualization_process.visualization(df, s_df, comparison)
-    with tab4:
-            st.header("PolynomialRegression")
-            st.write("## Describe(include='all')")
-            polynomial_process.poly_model(df)
+
 
 
 def view_model2():

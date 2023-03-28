@@ -70,8 +70,7 @@ def run_model(X, y):
     hyper_param_tuner = GridSearchCV(lasso_model,hyper_params,cv=5)
     hyper_param_tuner.fit(X,y)
     best_params = hyper_param_tuner.best_params_
-    st.write(f"이 모델의 최적의 Alpha 값 :  {best_params['alpha']}")
-    st.write(f"이 모델의 최적의 Max_iter 횟수  :  {best_params['max_iter']}")
+
     # # 관계도
     coef = model.coef_
     intercept = model.intercept_
@@ -79,9 +78,7 @@ def run_model(X, y):
 
     # 성능평가
     
-    st.write("훈련셋 Score")
     train_score = model.score(X_train, y_train) # 훈련 세트
-    st.write("테스트 셋 Score")
     test_score = model.score(X_test, y_test) # 테스트 세트
 
     y_train_predict = model.predict(X_train)
@@ -93,8 +90,8 @@ def run_model(X, y):
 
     r2 = r2_score(y_test, y_test_predict) # R2
 
-    index = ["다항선형회귀모델"]
-    total_info = {"coef" : coef, "intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
+    index = ["다항선형회귀모델(Lasso)"]
+   total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : best_params['alpha'], "그리드 max_iter": best_params['max_iter']}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
     # 테이블로 평가
@@ -127,7 +124,6 @@ def linear_process(df):
 
     reg = LinearRegression()
     reg.fit(X_train, y_train) # 훈련 세트로 학습
-    coef = reg.coef_
     reg = reg.intercept_
     y_pred = reg.predict(X_test)
 
@@ -139,8 +135,8 @@ def linear_process(df):
     rmse = mean_squared_error(y_test, y_pred, squared=False) # RMSE
     r2 = r2_score(y_test, y_pred) # R2
 
-    index = ["선형회귀모델"]
-    total_info = {"coef" : coef, "intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
+    index = ["다중선형회귀모델"]
+    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : "x", "그리드 max_iter": x}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
 
