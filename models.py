@@ -31,6 +31,7 @@ def data_preprocessing(df):
 
 def show_user_interface(model_num):
     model_path_list = ['Data/pkl/RandomForest_model.pkl','Data/pkl/LightGBM_model.pkl', 'Data/pkl/XGBoost.pkl']
+    model_num = int(model_num)
     if model_num == 1:
         model_path = model_path_list[0]
     elif model_num == 2:
