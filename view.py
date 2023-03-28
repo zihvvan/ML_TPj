@@ -16,7 +16,7 @@ def view_model1():
             st.write(df)
             st.header("데이터셋 전처리 후")
             processed_df = pre_process.pre_processing(df)
-            linear_process.describe_linear_model(df)
+            visualization_process.describe_linear_model(df)
             st.write(processed_df)
     with tab3:
             st.header("시각화")
