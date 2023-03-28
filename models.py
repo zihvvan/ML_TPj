@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import plotly.express as px
-import lightgbm as lgb
+# import lightgbm as lgb
 import xgboost as xgb
 from PIL import Image
 from math import sqrt
@@ -65,7 +65,7 @@ def lightGBM_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/LightGBM_model.pkl"
         model = joblib.load(model_path)
-        st.write("## Randomforest model")
+        st.write("## LightGBM model")
 
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_test, test_pred)
