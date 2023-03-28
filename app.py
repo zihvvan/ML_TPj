@@ -61,7 +61,10 @@ def split_dataset(pre_processed_df):
     return X_train, X_test, y_train, y_test
 
 def run_model(X_train, X_test, y_train, y_test):
-    # 모델 선언(선형회귀)
+    # 모델 선언(그리드 서치)
+    hyper_params = {
+        'alpha' : [0.01, 0.1, 1, 10]
+    }
     model = LinearRegression()
     model.fit(X_train, y_train) # 훈련 세트로 학습
     X_train, X_test, y_train, y_test = X_train, X_test, y_train, y_test
