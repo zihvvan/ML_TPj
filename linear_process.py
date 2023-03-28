@@ -49,6 +49,8 @@ def linear_processed_df(df):
     st.write('---')
 
     st.write("## 파이차트 ")
+
+
     a_labels = df1['school_setting'].unique()
     a_values = df1['school_setting'].value_counts()
     st_labels = df1['school_type'].unique()
@@ -59,7 +61,10 @@ def linear_processed_df(df):
     teaching_values = df1['teaching_method'].value_counts()
 
     
-    fig = make_subplots(rows=2, cols=2)
+    specs = [[{'type': 'pie'}, {'type': 'pie'}],
+         [{'type': 'pie'}, {'type': 'pie'}]]
+
+    fig = make_subplots(rows=2, cols=2, specs=specs)
 
     # subplot에 그래프 추가
     fig.add_trace(go.Pie(labels=a_labels, values=a_values, pull=[0.1, 0, 0], textinfo='label+percent', insidetextorientation='radial'), row=1, col=1)
