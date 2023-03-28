@@ -114,13 +114,18 @@ def run_model(X, y):
     fig = px.scatter(comparison, x="실제값", y="예측값")
     st.plotly_chart(fig)
 
-def load_data():
+def load_data(choose):
     # csv데이터 불러오기
-    data_url = "Data/test_scores.csv"
-    df = pd.read_csv(data_url) # URL로 CSV 불러오기
+    if chooose == 1:
+        data_url = "Data/test_scores.csv"
+        df = pd.read_csv(data_url) # URL로 CSV 불러오기
+    else:
+        data_url = "Data/HR_Analytics.csv"
+        df = pd.read_csv(data_url) # URL로 CSV 불러오기
     return df
+    
 
-def line_model2(df):
+def poly_model(df):
     df2 = pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
@@ -128,7 +133,7 @@ def line_model2(df):
     run_model(X, y)
 
 # 이미지 불러오기
-def line_model1():
+def linear_model():
 
     st.write("# 모델 통해 예측해 보기")
 
@@ -234,20 +239,18 @@ def line_model1():
             st.write()
 def view_model1():
 
- 
     st.title("다중선형회귀 vs 다항선형회귀")
     tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression", '지표분석'])
-    df = load_data()
+    df = load_data(1)
     #########################
     with tab1:
             st.header("LinearRegression")
-            line_model1()
+            linear_model()
     with tab2:
             st.header("Polynomial Regression")
-            line_model2(df)
+            poly_model(df)
     with tab3:
             st.header("지표 분석")
-            # show_poly_info(line_model2.pre_processed_df)
             st.write("전처리 전 데이터") # 마크다운으로 꾸미기
             st.write(df)
             st.write("전처리 후 데이터")
@@ -255,7 +258,19 @@ def view_model1():
             show_processed_df(p_df)
 
 def view_model2():
-    st.write("To be continued")
+    st.title("회사퇴사 예측 모델")
+    tab1, tab2, tab3 = st.tabs(["RandomForest", "XGBoost", 'LightGBM'])
+    df = load_data(2)
+    #########################
+    with tab1:
+            st.header("RandomForest")
+            
+    with tab2:
+            st.header("XGBoost")
+            
+    with tab3:
+            st.header("LightGBM")
+            
 
 def main():
     image1 = Image.open('image/m_img.png')
