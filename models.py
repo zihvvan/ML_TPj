@@ -90,7 +90,7 @@ def xgBoost_model(df):
 
     with st.echo(code_location="below"):
         model_path = "Data/pkl/XGBoost_model.pkl"
-        model = joblib.load(model_path)
+        xgb = joblib.load(model_path)
         st.write("## XGBoost model")
 
     dtrain = xgb.DMatrix(X_train, label=y_train)
