@@ -150,7 +150,8 @@ def linear_model():
             options=["Urban", "Suburban","Rural"], # 선택 옵션
         )
         
-            
+    st.write("---")
+
     with st.echo(code_location="below"):
         # 학교 종류 (라디오 버튼)
         st.write("**학생들이 다니는 학교의 종류를 구분하여 선택할 수 있습니다.**")
@@ -158,7 +159,8 @@ def linear_model():
             label="학교 타입", # 상단 표시되는 이름
             options=["국립", "사립"], # 선택 옵션
         )
-        
+
+    st.write("---")    
 
     with st.echo(code_location="below"):
         # 수업 방식 (라디오 버튼)
@@ -167,7 +169,8 @@ def linear_model():
             label="수업 타입", # 상단 표시되는 이름
             options=["일반", "체험"], # 선택 옵션
         )
-        
+
+    st.write("---")    
 
     with st.echo(code_location="below"):
         # 반 학생수 (숫자)
@@ -178,7 +181,8 @@ def linear_model():
             max_value=30.0, # 최댓값
             step=1.0, # 입력 단위
         )
-        
+
+    st.write("---")    
 
     with st.echo(code_location="below"):
         # 성별 입력 (라디오 버튼)
@@ -188,6 +192,7 @@ def linear_model():
             options=["Male", "Female"], # 선택 옵션
         )
 
+    st.write("---")
 
     with st.echo(code_location="below"):
         # 점심 유무
@@ -197,6 +202,7 @@ def linear_model():
             options=["먹음", "안먹음"], # 선택 옵션
         )
 
+    st.write("---")
 
     with st.echo(code_location="below"):
         # 사전 시험 (숫자)
@@ -220,7 +226,10 @@ def linear_model():
 
     df_input_data_set = pd.DataFrame(input_data_set)
 
+    st.write("---")
+    
     with st.echo(code_location="below"):
+        st.write("**예측하기**")
         # 실행 버튼
         play_button = st.button(
             label="예측하기", # 버튼 내부 표시되는 이름
