@@ -99,6 +99,6 @@ def xgBoost_model(df):
     # gridcv.fit(X_train, y_train, early_stopping_rounds=30, eval_metric='auc', eval_set=[(X_valid, y_valid)])
     # print(gridcv.best_params_)
 
-    xgb_model = XGBClassifier(n_estimators=1000, learning_rate=0.02, max_depth=5, min_child_weight=3, colsample_bytree=0.75, reg_alpha=0.03)
+    xgb_model = XGBClassifier(n_estimators=200, learning_rate=0.1, max_depth=3, min_child_weight=3, colsample_bytree=1)
 
     xgb_model.fit(X_train, y_train, early_stopping_rounds=200, eval_metric='auc', eval_set=[(X_valid, y_valid)])
