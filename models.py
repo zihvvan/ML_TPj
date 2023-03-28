@@ -52,38 +52,38 @@ def random_forest_model(df):
     st.write(accuracy)
 
     st.header("random_forest")
-                # 첫번째 행
-                r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
-                나이 = r1_col1.slider("나이",1,80)
-                일일급여 = r1_col2.slider("일일급여". 1, 1500)
-                회사와의거리 = r1_col3.slider("회사와의거리", 1, 30)
-                근무환경만족 = r1_col4.slider("근무환경만족", 1, 4)
+    # 첫번째 행
+    r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
+    나이 = r1_col1.slider("나이",1,80)
+    일일급여 = r1_col2.slider("일일급여". 1, 1500)
+    회사와의거리 = r1_col3.slider("회사와의거리", 1, 30)
+    근무환경만족 = r1_col4.slider("근무환경만족", 1, 4)
 
-                # 두번째 행
-                r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
-                시간당임금 = r2_col1.slider("시간당임금",15, 100)
-                직업만족도 = r2_col2.slider("직업만족도",1,4)
-                월수입 = r2_col3.slider('월수입',1,4)
-                이직회사수 = r2_col4.slider('이직회사수',0,9)
+    # 두번째 행
+    r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
+    시간당임금 = r2_col1.slider("시간당임금",15, 100)
+    직업만족도 = r2_col2.slider("직업만족도",1,4)
+    월수입 = r2_col3.slider('월수입',1,4)
+    이직회사수 = r2_col4.slider('이직회사수',0,9)
 
-                # 세번째 행
-                r3_col1, r3_col2, r3_col3, r3_col4 = st.columns(4)
-                급여인상비율 = r3_col1.slider("급여인상률",10,25)
-                동료관계만족도 = r3_col2.slider('동료관계만족도',1,4)
-                스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3)
-                워라벨 = r3_col4.slider('워라벨',1,4)
+    # 세번째 행
+    r3_col1, r3_col2, r3_col3, r3_col4 = st.columns(4)
+    급여인상비율 = r3_col1.slider("급여인상률",10,25)
+    동료관계만족도 = r3_col2.slider('동료관계만족도',1,4)
+    스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3)
+    워라벨 = r3_col4.slider('워라벨',1,4)
 
-                성별 = st.selectbox(
-                    '성별',
-                ('남자', '여자'))
-            
-                predict_button = st.button("예측")
-                
-                if predict_button:
-                        variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별, 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
-                        model1 = joblib.load('Data/pkl/RandomForest_model.pkl')
-                        pred1 = model1.predict([variable1])
-                        st.metric("결과: ", pred1[0])
+    성별 = st.selectbox(
+        '성별',
+    ('남자', '여자'))
+
+    predict_button = st.button("예측")
+    
+    if predict_button:
+            variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별, 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
+            model1 = joblib.load('Data/pkl/RandomForest_model.pkl')
+            pred1 = model1.predict([variable1])
+            st.metric("결과: ", pred1[0])
 
 def lightGBM_model(df):
     X,y = data_preprocessing(df)
