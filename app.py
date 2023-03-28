@@ -134,8 +134,6 @@ def poly_model(df):
 # 이미지 불러오기
 def linear_model():
 
-    st.write("# 모델 통해 예측해 보기")
-
     with st.echo(code_location="below"):
         model_path = "Data/multi_LinearRegression_model.pkl"
         model = joblib.load(model_path)
@@ -247,6 +245,10 @@ def view_model1():
             linear_model()
     with tab2:
             st.header("Polynomial Regression")
+            st.write("## 다항 선형 회귀 모델")
+            st.write("## 전처리 후 데이터의 모습")
+            st.write("## 전처리 후 데이터의 모습")
+
             poly_model(df)
     with tab3:
             st.header("지표 분석")
