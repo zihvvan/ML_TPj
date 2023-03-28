@@ -35,7 +35,7 @@ def show_user_interface(model_num):
         model_path = model_path_list[0]
     elif model_num == 2:
         model_path = model_path_list[1]
-    else
+    else:
         model_path = model_path_list[2]
 
     st.header("random_forest")
