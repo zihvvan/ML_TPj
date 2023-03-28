@@ -100,14 +100,15 @@ def run_model(X, y):
         }
     )
     comparison
-    colors = ['red', 'blue']
-    fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
-    st.plotly_chart(fig)
+    # colors = ['red', 'blue']
+    # fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
+    # st.plotly_chart(fig)
+    return comparison
 
 def poly_model(df):
     df2 = pre_process.pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
-    run_model(X, y)
-    return scaled_df
+    comparison = run_model(X, y)
+    return scaled_df, comparison

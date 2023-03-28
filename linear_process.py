@@ -21,7 +21,7 @@ import pre_process
 def describe_linear_model(df):
     st.write(df.describe(include='all'))
 
-def linear_processed_df(df, s_df):
+def linear_processed_df(df, s_df, comparison1):
     df1 = df.drop(['school','classroom','student_id'], axis=1)
 
     X = df1.iloc[:, :-1].values
@@ -98,7 +98,6 @@ def linear_processed_df(df, s_df):
     fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
     st.plotly_chart(fig)
 
-
-
-    labels = df1['school_setting'].unique()
-    values = df1['school_setting'].value_counts()
+    colors = ['red', 'blue']
+    fig = px.scatter(comparison1, x="실제값", y="예측값", color_discrete_sequence=colors)
+    st.plotly_chart(fig)

@@ -7,7 +7,7 @@ def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀")
     tab1, tab2, tab3, tab4 = st.tabs(["성적 예측","데이터셋","LinearRegression 지표", "PolynomialRegression 지표"])
     df = pre_process.load_data(1)
-    s_df = polynomial_process.poly_model(df)
+    s_df, comparison = polynomial_process.poly_model(df)
     with tab1:
             st.header("성적 예측 모델")
             models.linear_model()
@@ -21,7 +21,7 @@ def view_model1():
             st.header("LinearRegression")
             st.write("## Describe(include='all')")
             linear_process.describe_linear_model(df)
-            linear_process.linear_processed_df(df, s_df)
+            linear_process.linear_processed_df(df, s_df, comparison)
     with tab4:
             st.header("PolynomialRegression")
             st.write("## Describe(include='all')")
