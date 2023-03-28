@@ -59,7 +59,7 @@ def show_user_interface(model_num):
     급여인상비율 = r3_col1.slider("급여인상률",10,25,key=keys[model_num])
     동료관계만족도 = r3_col2.slider('동료관계만족도',1,4,key=keys[model_num])
     스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3,key=keys[model_num])
-    워라벨 = r3_col4.slider('워라벨',1,4,key=key=keys[model_num])
+    워라벨 = r3_col4.slider('워라벨',1,4,key=keys[model_num])
 
     성별 = st.selectbox(
         '성별',
