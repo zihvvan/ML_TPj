@@ -4,16 +4,19 @@ import model1, model2
 import pre_process
 
 def view_model1():
-
     st.title("다중선형회귀 vs 다항선형회귀")
-    tab1, tab2 = st.tabs(["LinearRegression", "Polynomial Regression"])
+    tab1, tab2, tab3 = st.tabs(["성적예측","LinearRegression 지표분석", "PolynomialRegression 지표분석"])
     df = pre_process.load_data(1)
     with tab1:
-            st.header("LinearRegression")
+            st.header("성적 예측 모델")
             model1.linear_model()
     with tab2:
-            st.header("Polynomial Regression")
-            st.write("## 전처리 후 데이터의 모습")
+            st.header("LinearRegression")
+            st.write("## LinearRegression Describe()")
+            model1.poly_model(df)
+    with tab3:
+            st.header("PolynomialRegression")
+            st.write("## PolynomialRegression Describe()")
             model1.poly_model(df)
 
 
@@ -22,12 +25,12 @@ def view_model2():
     tab1, tab2, tab3 = st.tabs(["RandomForest", "XGBoost", 'LightGBM'])
     df = pre_process.load_data(2)
     with tab1:
-            st.header("RandomForest")
+            # RandomForest Model
             model2.random_forest_model(df)
     with tab2:
-            st.header("XGBoost")
+            # XGBoost Model
             model2.xgBoost_model(df)
     with tab3:
-            st.header("LightGBM")
+            # LightGBM Model
             model2.lightGBM_model(df)
             
