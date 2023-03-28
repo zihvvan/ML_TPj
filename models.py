@@ -96,7 +96,7 @@ def xgBoost_model(df):
     # y_pred = xgb_model.predict(X_valid)
     # # 정확도 계산
 
-    predict_button_dt3 = st.button('예측하기')
+    predict_button_dt3 = st.button('예측!')
 
     if predict_button_dt3:        
         st.write(f'Train-set : {xgb_model.score(X_train, y_train)}')
