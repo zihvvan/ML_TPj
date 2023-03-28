@@ -106,5 +106,13 @@ def xgBoost_model(df):
     y_pred = xgb_model.predict(X_valid)
 
     # 정확도 계산
-    acc = accuracy_score(y_valid, y_pred)
-    st.write(acc)
+
+    predict_button_dt3 = st.button('예측하기')
+
+    if predict_button_dt3:        
+        st.write(f'Train-set : {xgb_model.score(X_train, y_train)}')
+        st.write(f'Test-set : {xgb_model.score(X_valid, y_valid)}')
+
+    # 정확도를 계산하여 모델의 성능을 평가합니다.
+    accuracy = accuracy_score(y_valid, y_pred)
+    st.write(accuracy)
