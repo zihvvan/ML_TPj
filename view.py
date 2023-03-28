@@ -16,10 +16,10 @@ def view_model1():
             st.write(df)
             st.header("데이터셋 전처리 후")
             processed_df = pre_process.pre_processing(df)
-            st.header("One-Hot Enconding")
             visualization_process.describe_linear_model(df)
-            st.header("Min-Max Scaling")
+            st.header("One-Hot Enconding")
             st.write(processed_df)
+            st.header("Min-Max Scaling")
     with tab3:
             st.header("시각화")
             visualization_process.visualization(df, s_df, comparison)
