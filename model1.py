@@ -203,7 +203,6 @@ def linear_model():
     st.write("---")
 
     with st.echo(code_location="below"):
-        st.write("**예측하기**")
         # 실행 버튼
         play_button = st.button(
             label="예측하기", # 버튼 내부 표시되는 이름
