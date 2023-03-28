@@ -138,6 +138,7 @@ def linear_model():
         model_path = "Data/multi_LinearRegression_model.pkl"
         model = joblib.load(model_path)
         st.write("## 다중 선형 회귀 모델")
+        st.write("모델링 소요시간이 짧으며 구현과 해석이 쉬운 선형 회귀 모델을 사용하였습니다.")
 
     st.write("---")
 
