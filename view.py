@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import model1, model2
+import polynomial_process, models
 import pre_process
 
 def view_model1():
@@ -9,15 +9,15 @@ def view_model1():
     df = pre_process.load_data(1)
     with tab1:
             st.header("성적 예측 모델")
-            model2.linear_model()
+            models.linear_model()
     with tab2:
             st.header("LinearRegression")
             st.write("## Describe()")
-            model1.poly_model(df)
+            polynomial_process.poly_model(df)
     with tab3:
             st.header("PolynomialRegression")
             st.write("## Describe()")
-            model1.poly_model(df)
+            polynomial_process.poly_model(df)
 
 
 def view_model2():
@@ -26,11 +26,11 @@ def view_model2():
     df = pre_process.load_data(2)
     with tab1:
             # RandomForest Model
-            model2.random_forest_model(df)
+            models.random_forest_model(df)
     with tab2:
             # XGBoost Model
-            model2.xgBoost_model(df)
+            models.xgBoost_model(df)
     with tab3:
             # LightGBM Model
-            model2.lightGBM_model(df)
+            models.lightGBM_model(df)
             
