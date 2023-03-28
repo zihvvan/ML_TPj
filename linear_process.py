@@ -63,9 +63,9 @@ def linear_processed_df(df):
 
     # subplot에 그래프 추가
     fig.add_trace(go.Pie(labels=a_labels, values=a_values, pull=[0.1, 0, 0], textinfo='label+percent', insidetextorientation='radial'), row=1, col=1)
-    fig.add_trace(go.Pie(labels=st_labels, values=st_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=1, col=1)
-    fig.add_trace(go.Pie(labels=gender_labels, values=gender_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=1, col=1)
-    fig.add_trace(go.Pie(labels=teaching_labels, values=teaching_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=1, col=1)
+    fig.add_trace(go.Pie(labels=st_labels, values=st_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=1, col=2)
+    fig.add_trace(go.Pie(labels=gender_labels, values=gender_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=2, col=1)
+    fig.add_trace(go.Pie(labels=teaching_labels, values=teaching_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=2, col=2)
 
     # subplot 레이아웃 설정
     fig.update_layout(height=600, width=800, title_text="Subplots")
