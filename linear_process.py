@@ -21,7 +21,7 @@ import pre_process
 def describe_linear_model(df):
     st.write(df.describe(include='all'))
 
-def linear_processed_df(df, p_df):
+def linear_processed_df(df, s_df):
     df1 = df.drop(['school','classroom','student_id'], axis=1)
 
     X = df1.iloc[:, :-1].values
@@ -48,7 +48,7 @@ def linear_processed_df(df, p_df):
     st.plotly_chart(fig)
     st.write('---')
 
-    fig = px.imshow(p_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
+    fig = px.imshow(s_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
     fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
     fig.layout.update({'width':800, 'height':600})
     st.plotly_chart(fig)

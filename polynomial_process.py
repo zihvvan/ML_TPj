@@ -110,4 +110,4 @@ def poly_model(df):
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
     run_model(X, y)
-    return pre_processed_df
+    return scaled_df
