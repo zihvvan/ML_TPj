@@ -263,7 +263,7 @@ def view_model2():
     #########################
     with tab1:
             st.header("RandomForest")
-            model2.pre_processing
+            model2.pre_processing()
     with tab2:
             st.header("XGBoost")
             
