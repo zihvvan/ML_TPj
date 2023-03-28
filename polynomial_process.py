@@ -102,7 +102,7 @@ def run_model(X, y):
     comparison
     colors = ['red', 'blue']
     import plotly.express as px
-    fig = px.scatter(comparison, x="실제값", y="예측값")
+    fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
     st.plotly_chart(fig)
 
 def poly_model(df):
