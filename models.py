@@ -35,6 +35,7 @@ def data_preprocessing():
 
     ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [1,3,6,8,13,17,29])], remainder='passthrough')
     X = ct.fit_transform(X)
+    return X,y
 
 def random_forest_model(df):
     X,y = data_preprocessing(df)
