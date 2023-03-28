@@ -15,8 +15,9 @@ def view_model1():
             st.header("원본 데이터")
             st.write(df)
             st.header("데이터셋 전처리 후")
-            # visualization_process.describe_linear_model(df)
-            # processed_df = pre_process.pre_processing(df)
+            processed_df = pre_process.pre_processing(df)
+            st.header("Describe(include='all')")
+            visualization_process.describe_linear_model(df)
             st.write(processed_df)
     with tab3:
             st.header("시각화")
