@@ -82,11 +82,10 @@ def lightGBM_model(df):
     st.write(accuracy)
 
 def xgBoost_model(df):
-    pass
-    # with st.echo(code_location="below"):
-    #     model_path = "Data/pkl/XGBoost_model.pkl"
-    #     xgb_model = joblib.load(model_path)
-    #     st.write("## XGBoost_model model")
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/XGBoost_model.pkl"
+        xgb_model = joblib.load(model_path)
+        st.write("## XGBoost_model model")
 
     # X,y = data_preprocessing(df)
     # # # 훈련 및 검증 데이터 분할
