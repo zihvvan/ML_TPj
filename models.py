@@ -29,15 +29,72 @@ def data_preprocessing(df):
     X = ct.fit_transform(X)
     return X,y
 
-def show_user_interface(model_num):
-    model_path_list = ['Data/pkl/RandomForest_model.pkl','Data/pkl/LightGBM_model.pkl', 'Data/pkl/XGBoost.pkl']
-    keys = ["key0", "key1", "key2", "key3"]
-    if model_num == 1:
-        model_path = model_path_list[0]
-    elif model_num == 2:
-        model_path = model_path_list[1]
-    else:
-        model_path = model_path_list[2]
+# def show_user_interface(model_num):
+#     model_path_list = ['Data/pkl/RandomForest_model.pkl','Data/pkl/LightGBM_model.pkl', 'Data/pkl/XGBoost.pkl']
+#     keys = ["key0", "key1", "key2", "key3"]
+#     if model_num == 1:
+#         model_path = model_path_list[0]
+#     elif model_num == 2:
+#         model_path = model_path_list[1]
+#     else:
+#         model_path = model_path_list[2]
+
+#     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
+#     나이 = r1_col1.slider("나이",20,70,key="test1")
+#     일일급여 = r1_col2.slider("일일급여", 110, 1500,key="test2")
+#     회사와의거리 = r1_col3.slider("회사와의거리", 1, 30,key="test3")
+#     근무환경만족 = r1_col4.slider("근무환경만족", 1, 4,key="test4")
+
+#     # 두번째 행
+#     r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
+#     시간당임금 = r2_col1.slider("시간당임금",30, 100,key="test5")
+#     직업만족도 = r2_col2.slider("직업만족도",1,4,key="test6")
+#     월수입 = r2_col3.slider('월수입',1000,20000,key="test7")
+#     이직회사수 = r2_col4.slider('이직회사수',0,9,key="test8")
+
+#     # 세번째 행
+#     r3_col1, r3_col2, r3_col3, r3_col4 = st.columns(4)
+#     급여인상비율 = r3_col1.slider("급여인상률",10,25,key="test9")
+#     동료관계만족도 = r3_col2.slider('동료관계만족도',1,4,key="test10")
+#     스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3,key="test11")
+#     워라벨 = r3_col4.slider('워라벨',1,4,key="test12")
+
+#     성별 = st.selectbox(
+#         '성별',
+#     ('남자', '여자'),key="test13")
+
+#     predict_button = st.button("퇴사유무 예측",key="test14")
+    
+#     if predict_button:
+#             variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
+#             model1 = joblib.load(model_path)
+#             pred1 = model1.predict([variable1])
+#             if pred1 == 1:
+#                 st.write("퇴사")
+#             else:
+#                 st.write("근속")
+
+def random_forest_model(df):
+    X,y = data_preprocessing(df)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
+
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/RandomForest_model.pkl"
+        model = joblib.load(model_path)
+        st.write("## Randomforest")
+    
+    train_pred_dt = model.predict(X_train) 
+    test_pred_dt = model.predict(X_test)
+    
+    predict_button_dt1 = st.button('예측')
+
+    if predict_button_dt1:        
+        st.write(f'Train-set : {model.score(X_train, y_train)}')
+        st.write(f'Test-set : {model.score(X_test, y_test)}')
+
+    # 정확도를 계산하여 모델의 성능을 평가합니다.
+    accuracy = accuracy_score(y_test, test_pred_dt)
+    st.write(accuracy)
 
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
     나이 = r1_col1.slider("나이",20,70,key="test1")
@@ -67,35 +124,14 @@ def show_user_interface(model_num):
     
     if predict_button:
             variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
-            model1 = joblib.load(model_path)
+            model1 = joblib.load('Data/pkl/RandomForest_model.pkl')
             pred1 = model1.predict([variable1])
             if pred1 == 1:
                 st.write("퇴사")
             else:
                 st.write("근속")
 
-def random_forest_model(df):
-    X,y = data_preprocessing(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
-
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/RandomForest_model.pkl"
-        model = joblib.load(model_path)
-        st.write("## Randomforest")
-    
-    train_pred_dt = model.predict(X_train) 
-    test_pred_dt = model.predict(X_test)
-    
-    predict_button_dt1 = st.button('예측')
-
-    if predict_button_dt1:        
-        st.write(f'Train-set : {model.score(X_train, y_train)}')
-        st.write(f'Test-set : {model.score(X_test, y_test)}')
-
-    # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_test, test_pred_dt)
-    st.write(accuracy)
-
+                
 
 def lightGBM_model(df):
     X,y = data_preprocessing(df)
@@ -118,6 +154,43 @@ def lightGBM_model(df):
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_test, test_pred_dt)
     st.write(accuracy)
+    
+    r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
+    나이 = r1_col1.slider("나이",20,70,key="test21")
+    일일급여 = r1_col2.slider("일일급여", 110, 1500,key="test22")
+    회사와의거리 = r1_col3.slider("회사와의거리", 1, 30,key="test23")
+    근무환경만족 = r1_col4.slider("근무환경만족", 1, 4,key="test24")
+
+    # 두번째 행
+    r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
+    시간당임금 = r2_col1.slider("시간당임금",30, 100,key="test25")
+    직업만족도 = r2_col2.slider("직업만족도",1,4,key="test26")
+    월수입 = r2_col3.slider('월수입',1000,20000,key="test27")
+    이직회사수 = r2_col4.slider('이직회사수',0,9,key="test28")
+
+    # 세번째 행
+    r3_col1, r3_col2, r3_col3, r3_col4 = st.columns(4)
+    급여인상비율 = r3_col1.slider("급여인상률",10,25,key="test29")
+    동료관계만족도 = r3_col2.slider('동료관계만족도',1,4,key="test210")
+    스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3,key="test211")
+    워라벨 = r3_col4.slider('워라벨',1,4,key="test212")
+
+    성별 = st.selectbox(
+        '성별',
+    ('남자', '여자'),key="test213")
+
+    predict_button = st.button("퇴사유무 예측",key="test214")
+    
+    if predict_button:
+            variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
+            model1 = joblib.load('Data/pkl/LightGBM_model.pkl')
+            pred1 = model1.predict([variable1])
+            if pred1 == 1:
+                st.write("퇴사")
+            else:
+                st.write("근속")
+
+                
 
 def xgBoost_model(df):
     with st.echo(code_location="below"):
@@ -143,3 +216,38 @@ def xgBoost_model(df):
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_valid, y_pred)
     st.write(accuracy)
+    
+    r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
+    나이 = r1_col1.slider("나이",20,70,key="test31")
+    일일급여 = r1_col2.slider("일일급여", 110, 1500,key="test32")
+    회사와의거리 = r1_col3.slider("회사와의거리", 1, 30,key="test33")
+    근무환경만족 = r1_col4.slider("근무환경만족", 1, 4,key="test34")
+
+    # 두번째 행
+    r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
+    시간당임금 = r2_col1.slider("시간당임금",30, 100,key="test35")
+    직업만족도 = r2_col2.slider("직업만족도",1,4,key="test36")
+    월수입 = r2_col3.slider('월수입',1000,20000,key="test37")
+    이직회사수 = r2_col4.slider('이직회사수',0,9,key="test38")
+
+    # 세번째 행
+    r3_col1, r3_col2, r3_col3, r3_col4 = st.columns(4)
+    급여인상비율 = r3_col1.slider("급여인상률",10,25,key="test39")
+    동료관계만족도 = r3_col2.slider('동료관계만족도',1,4,key="test310")
+    스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3,key="test311")
+    워라벨 = r3_col4.slider('워라벨',1,4,key="test312")
+
+    성별 = st.selectbox(
+        '성별',
+    ('남자', '여자'),key="test313")
+
+    predict_button = st.button("퇴사유무 예측",key="test314")
+    
+    if predict_button:
+            variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
+            model1 = joblib.load('Data/pkl/XGBoost.pkl')
+            pred1 = model1.predict([variable1])
+            if pred1 == 1:
+                st.write("퇴사")
+            else:
+                st.write("근속")
