@@ -128,8 +128,8 @@ def linear_process(df):
     intercept = reg.intercept_
     y_pred = reg.predict(X_test)
 
-    train_score = model.score(X_train, y_train) # 훈련 세트
-    test_score = model.score(X_test, y_test) # 테스트 세트
+    train_score = reg.score(X_train, y_train) # 훈련 세트
+    test_score = reg.score(X_test, y_test) # 테스트 세트
 
     mae = mean_absolute_error(y_test, y_pred) # 실제 값, 예측 값 # MAE
     mse = mean_squared_error(y_test, y_pred) # MSE
