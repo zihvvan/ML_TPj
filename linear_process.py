@@ -33,6 +33,7 @@ def linear_processed_df(df):
     reg.fit(X_train, y_train) # 훈련 세트로 학습
     reg.coef_
     reg.intercept_
+    y_pred = reg.predict(X_test)
 
     mean_absolute_error(y_test, y_pred) # 실제 값, 예측 값 # MAE
     mean_squared_error(y_test, y_pred) # MSE
