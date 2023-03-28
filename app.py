@@ -12,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
 from sklearn.model_selection import GridSearchCV
+import model2
 
 def pre_processing(df):
     # 필요없는 Columns 드랍
@@ -262,7 +263,7 @@ def view_model2():
     #########################
     with tab1:
             st.header("RandomForest")
-            
+            model2.pre_processing
     with tab2:
             st.header("XGBoost")
             
