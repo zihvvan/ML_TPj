@@ -82,15 +82,16 @@ def lightGBM_model(df):
     st.write(accuracy)
 
 def xgBoost_model(df):
-    X,y = data_preprocessing(df)
+    pass
+    # X,y = data_preprocessing(df)
 
-    # 훈련 및 검증 데이터 분할
-    X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
+    # # 훈련 및 검증 데이터 분할
+    # X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/XGBoost_model.pkl"
-        model = joblib.load(model_path)
-        st.write("## Randomforest model")
+    # with st.echo(code_location="below"):
+    #     model_path = "Data/pkl/XGBoost_model.pkl"
+    #     model = joblib.load(model_path)
+    #     st.write("## XGBoost model")
 
     # dtrain = xgb.DMatrix(X_train, label=y_train)
     # dvalid = xgb.DMatrix(X_valid, label=y_valid)
