@@ -82,26 +82,27 @@ def lightGBM_model(df):
     st.write(accuracy)
 
 def xgBoost_model(df):
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/XGBoost_model.pkl"
-        xgb_model = joblib.load(model_path)
-        st.write("## XGBoost_model model")
+    pass
+    # with st.echo(code_location="below"):
+    #     model_path = "Data/pkl/XGBoost_model.pkl"
+    #     xgb_model = joblib.load(model_path)
+    #     st.write("## XGBoost_model model")
 
-    X,y = data_preprocessing(df)
-    # 훈련 및 검증 데이터 분할
-    X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
+    # X,y = data_preprocessing(df)
+    # # # 훈련 및 검증 데이터 분할
+    # X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # train_pred_dt = xgb.predict(X_train) 
-    # test_pred_dt = xgb.predict(X_valid)
-    y_pred = xgb_model.predict(X_valid)
-    # 정확도 계산
+    # # train_pred_dt = xgb.predict(X_train) 
+    # # test_pred_dt = xgb.predict(X_valid)
+    # y_pred = xgb_model.predict(X_valid)
+    # # 정확도 계산
 
-    predict_button_dt3 = st.button('예측하기')
+    # predict_button_dt3 = st.button('예측하기')
 
-    if predict_button_dt3:        
-        st.write(f'Train-set : {xgb_model.score(X_train, y_train)}')
-        st.write(f'Test-set : {xgb_model.score(X_valid, y_valid)}')
+    # if predict_button_dt3:        
+    #     st.write(f'Train-set : {xgb_model.score(X_train, y_train)}')
+    #     st.write(f'Test-set : {xgb_model.score(X_valid, y_valid)}')
 
-    # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_valid, y_pred)
-    st.write(accuracy)
+    # # 정확도를 계산하여 모델의 성능을 평가합니다.
+    # accuracy = accuracy_score(y_valid, y_pred)
+    # st.write(accuracy)
