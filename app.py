@@ -157,6 +157,7 @@ def linear_model():
             label="학교 타입", # 상단 표시되는 이름
             options=["국립", "사립"], # 선택 옵션
         )
+        st.write("학생들이 다니는 학교의 종류를 구분하여 선택할 수 있습니다.")
 
     with st.echo(code_location="below"):
         # 수업 방식 (라디오 버튼)
