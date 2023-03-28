@@ -83,34 +83,34 @@ def lightGBM_model(df):
 
 def xgBoost_model(df):
     pass
-    # X,y = data_preprocessing(df)
+    X,y = data_preprocessing(df)
 
-    # # 훈련 및 검증 데이터 분할
-    # X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
+    # 훈련 및 검증 데이터 분할
+    X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # with st.echo(code_location="below"):
-    #     model_path = "Data/pkl/XGBoost_model.pkl"
-    #     model = joblib.load(model_path)
-    #     st.write("## XGBoost model")
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/XGBoost_model.pkl"
+        model = joblib.load(model_path)
+        st.write("## XGBoost model")
 
-    # dtrain = xgb.DMatrix(X_train, label=y_train)
-    # dvalid = xgb.DMatrix(X_valid, label=y_valid)
+    dtrain = xgb.DMatrix(X_train, label=y_train)
+    dvalid = xgb.DMatrix(X_valid, label=y_valid)
 
-    # # 하이퍼 파라미터 설정
-    # params = {
-    #     'max_depth': 3,
-    #     'eta': 0.1,
-    #     'objective': 'binary:logistic',
-    #     'eval_metric': 'logloss'
-    # }
+    # 하이퍼 파라미터 설정
+    params = {
+        'max_depth': 3,
+        'eta': 0.1,
+        'objective': 'binary:logistic',
+        'eval_metric': 'logloss'
+    }
 
-    # # 모델 훈련
-    # num_rounds = 100
-    # model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
+    # 모델 훈련
+    num_rounds = 100
+    model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
 
-    # # 검증 데이터 예측
-    # y_pred = model.predict(dvalid)
+    # 검증 데이터 예측
+    y_pred = model.predict(dvalid)
 
-    # # 정확도 계산
-    # acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
-    # st.write(accuracy)
+    # 정확도 계산
+    acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
+    st.write(accuracy)
