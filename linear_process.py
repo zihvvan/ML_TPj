@@ -102,9 +102,9 @@ def linear_processed_df(df, s_df, comparison1):
     # fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
     # st.plotly_chart(fig)
     # fig = px.scatter(comparison1, x="실제값", y="예측값", color_discrete_sequence=colors)
-    st.plotly_chart(fig)
 
 
     scatter_trace = go.Scatter(x=comparison["실제값"], y=comparison["예측값"], mode="markers", 
                                marker=dict(color=colors, size=8))
     fig.add_trace(scatter_trace, row=1, col=1)
+    st.plotly_chart(fig)
