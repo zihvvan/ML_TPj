@@ -7,7 +7,7 @@ def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀(Lasso)")
     tab1, tab2, tab3 = st.tabs(["성적 예측","데이터셋 지표분석","시각화"])
     df = pre_process.load_data(1)
-    s_df, comparison = polynomial_process.poly_model(df)
+    s_df, comparison = data_preprocess.poly_model(df)
     with tab1:
             st.header("성적 예측 모델")
             models.linear_model()
