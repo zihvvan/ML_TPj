@@ -86,13 +86,13 @@ def xgBoost_model(df):
         model_path = "Data/pkl/XGBoost_model.pkl"
         xgb = joblib.load(model_path)
         st.write("## XGBoost_model model")
-        
+
     X,y = data_preprocessing(df)
     # 훈련 및 검증 데이터 분할
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
     dtrain = xgb.DMatrix(X_train, label=y_train)
-    dvalid = xgb.DMatrix(X_valid, label=y_valid)
+    dtest = xgb.DMatrix(X_test, label=y_test)
 
     # 하이퍼 파라미터 설정
     params = {
