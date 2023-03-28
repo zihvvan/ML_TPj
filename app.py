@@ -148,6 +148,7 @@ def linear_model():
             label="지역", # 상단 표시되는 이름
             options=["Urban", "Suburban","Rural"], # 선택 옵션
         )
+        st.write("학생들이 다니는 학교의 지역을 선택할 수 있습니다.")
             
 
     with st.echo(code_location="below"):
