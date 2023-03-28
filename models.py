@@ -49,9 +49,9 @@ def random_forest_model(df):
     train_pred_dt = model.predict(X_train) 
     test_pred_dt = model.predict(X_test)
     
-    predict_button_dt = st.button('예측')
+    predict_button_dt1 = st.button('예측')
 
-    if predict_button_dt:        
+    if predict_button_dt1:        
         st.write(f'Train-set : {model.score(X_train, y_train)}')
         st.write(f'Test-set : {model.score(X_test, y_test)}')
 
@@ -71,9 +71,9 @@ def lightGBM_model(df):
     train_pred_dt = model.predict(X_train) 
     test_pred_dt = model.predict(X_test)
     
-    predict_button_dt = st.button('예측하기')
+    predict_button_dt2 = st.button('예측하기')
 
-    if predict_button_dt:        
+    if predict_button_dt2:        
         st.write(f'Train-set : {model.score(X_train, y_train)}')
         st.write(f'Test-set : {model.score(X_test, y_test)}')
 
