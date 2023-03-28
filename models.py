@@ -66,12 +66,12 @@ def lightGBM_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/LightGBM_model.pkl"
         model = joblib.load(model_path)
-        st.write("## Randomforest model")
+        st.write("## lightGBM_model model")
     
     train_pred_dt = model.predict(X_train) 
     test_pred_dt = model.predict(X_test)
     
-    predict_button_dt = st.button('예측')
+    predict_button_dt = st.button('예측하기')
 
     if predict_button_dt:        
         st.write(f'Train-set : {model.score(X_train, y_train)}')
