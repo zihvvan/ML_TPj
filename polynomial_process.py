@@ -92,7 +92,7 @@ def run_model(X, y):
     r2 = r2_score(y_test, y_test_predict) # R2
 
     index = ["다항선형회귀모델"]
-    total_info = {"coef" : coef, "intercept":, intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
+    total_info = {"coef" : coef, "intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
     # 테이블로 평가
@@ -138,7 +138,7 @@ def linear_process(df):
     r2 = r2_score(y_test, y_pred) # R2
 
     index = ["선형회귀모델"]
-    total_info = {"coef" : coef, "intercept":, intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
+    total_info = {"coef" : coef, "intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
 
