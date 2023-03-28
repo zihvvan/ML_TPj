@@ -136,7 +136,7 @@ def linear_process(df):
     r2 = r2_score(y_test, y_pred) # R2
 
     index = ["다중선형회귀모델"]
-    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : "x", "그리드 max_iter": x}
+    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : "X", "그리드 max_iter": "X"}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
 
