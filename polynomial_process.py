@@ -34,7 +34,7 @@ def make_polynomial_df(concated_df):
     polynomial_data = polynomial_transformer.fit_transform(poly_data)
     polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
-
+    st.write(poly_df.info())
     st.write(poly_df.describe(include='all'))
 
     fig = px.imshow(concated_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
