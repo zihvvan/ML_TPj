@@ -70,9 +70,9 @@ def run_model(X, y):
     best_params = hyper_param_tuner.best_params_
     st.write(f"이 모델의 최적의 Alpha 값 :  {best_params['alpha']}")
     st.write(f"이 모델의 최적의 Max_iter 횟수  :  {best_params['max_iter']}")
-    # 관계도
-    st.write(model.coef_)
-    st.write(model.intercept_)
+    # # 관계도
+    # coef = model.coef_
+    # intercept = model.intercept_
 
 
     # 성능평가
@@ -85,14 +85,14 @@ def run_model(X, y):
     y_train_predict = model.predict(X_train)
     y_test_predict = model.predict(X_test)
 
-    mse = mean_absolute_error(y_train, y_train_predict)
-    train_performance = sqrt(mse)
+    mae = mean_absolute_error(y_test, y_test_predict) # 실제 값, 예측 값 # MAE
+    mse = mean_squared_error(y_test, y_test_predict) # MSE
+    rmse = mean_squared_error(y_test, y_test_predict, squared=False) # RMSE
 
-    mse = mean_absolute_error(y_test, y_test_predict)
-    test_performance = sqrt(mse)
+    r2 = r2_score(y_test, y_test_predict) # R2
 
     index = ["다항선형회귀모델"]
-    total_info = {"훈련셋 점수" : train_score, "테스트셋 점수" : test_score, "훈련셋 MAE": train_performance, "테스트셋 MAE": test_performance}
+    total_info = {"coef" : coef, "intercept":, intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
     # 테이블로 평가
@@ -102,12 +102,45 @@ def run_model(X, y):
             '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
         }
     )
-    return comparison
+    return comparison, total_df
 
 def poly_model(df):
     df2 = pre_process.pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
-    comparison = run_model(X, y)
+    comparison, total_df2 = run_model(X, y)
+    draw_table(total_df1, total_df2)
     return scaled_df, comparison
+
+def linear_process(df):
+    df1 = df.drop(['school','classroom','student_id'], axis=1)
+
+    X = df1.iloc[:, :-1].values
+    y = df1.iloc[:, -1].values
+
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
+    X = ct.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
+
+    reg = LinearRegression()
+    reg.fit(X_train, y_train) # 훈련 세트로 학습
+    coef = reg.coef_
+    reg = reg.intercept_
+    y_pred = reg.predict(X_test)
+
+    train_score = model.score(X_train, y_train) # 훈련 세트
+    test_score = model.score(X_test, y_test) # 테스트 세트
+
+    mae = mean_absolute_error(y_test, y_pred) # 실제 값, 예측 값 # MAE
+    mse = mean_squared_error(y_test, y_pred) # MSE
+    rmse = mean_squared_error(y_test, y_pred, squared=False) # RMSE
+    r2 = r2_score(y_test, y_pred) # R2
+
+    index = ["선형회귀모델"]
+    total_info = {"coef" : coef, "intercept":, intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2}
+    total_df = pd.DataFrame([total_info], index=index)
+    st.write(total_df)
+
+def draw_table(total_df1):
+    pass
