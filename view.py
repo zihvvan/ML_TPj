@@ -20,6 +20,7 @@ def view_model1():
             st.header("데이터셋 Drop & One-Hot Enconding")
             st.write(processed_df)
             st.header("Min-Max Scaling")
+            data_frame = data_preprocess.linear_process(df)
     with tab3:
             st.header("시각화")
             visualization_process.visualization(df, s_df, comparison)

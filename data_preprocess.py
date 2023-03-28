@@ -140,5 +140,7 @@ def linear_process(df):
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
 
+    return total_df
+
 def draw_table(total_df1):
     pass
