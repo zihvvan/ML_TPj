@@ -75,7 +75,7 @@ def run_model(X, y):
 
     lasso_model = Lasso()
     hyper_param_tuner = GridSearchCV(lasso_model,hyper_params,cv=5)
-    hyper_param_tuner.fit()
+    hyper_param_tuner.fit(X,y)
     
     # 관계도
     st.write(model.coef_)
