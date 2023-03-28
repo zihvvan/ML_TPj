@@ -143,5 +143,5 @@ def linear_process(df):
     return total_df
 
 def draw_table(total_df1, total_df2):
-    total_set = pd.concat(total_df1, total_df2)
+    total_set = pd.concat([total_df1, total_df2],axis=1)
     st.write(total_set)
