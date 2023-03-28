@@ -55,5 +55,5 @@ def linear_processed_df(df):
     )
     comparison
     colors = ['red', 'blue']
-    fig = px.scatter(comparison, x="실제값", y="예측값")
+    fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
     st.plotly_chart(fig)
