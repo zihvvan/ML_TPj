@@ -14,10 +14,10 @@ def view_model1():
     with tab2:
             st.header("원본 데이터")
             st.write(df)
-            st.header("데이터셋 전처리 (Drop) ")
+            st.header("데이터셋 통계자료 ")
             processed_df = pre_process.pre_processing(df)
             visualization_process.describe_linear_model(df)
-            st.header("One-Hot Enconding")
+            st.header("데이터셋 Drop & One-Hot Enconding")
             st.write(processed_df)
             st.header("Min-Max Scaling")
     with tab3:
