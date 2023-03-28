@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import polynomial_process, visualization_process, models
+import data_preprocess, visualization_process, models
 import pre_process
 
 def view_model1():
