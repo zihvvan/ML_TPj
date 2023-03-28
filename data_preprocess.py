@@ -6,6 +6,7 @@ import plotly.express as px
 from PIL import Image
 from math import sqrt
 from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
