@@ -6,6 +6,8 @@ import plotly.express as px
 from PIL import Image
 from math import sqrt
 from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 from sklearn import preprocessing
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
