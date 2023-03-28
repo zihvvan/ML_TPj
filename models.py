@@ -40,7 +40,7 @@ def show_user_interface(model_num):
         model_path = model_path_list[2]
 
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
-    나이 = r1_col1.slider("나이",20,70, key="test1")
+    나이 = r1_col1.slider("나이",20,70,key="test1")
     일일급여 = r1_col2.slider("일일급여", 110, 1500,key="test2")
     회사와의거리 = r1_col3.slider("회사와의거리", 1, 30,key="test3")
     근무환경만족 = r1_col4.slider("근무환경만족", 1, 4,key="test4")
