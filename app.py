@@ -247,8 +247,6 @@ def view_model1():
             st.header("Polynomial Regression")
             st.write("## 다항 선형 회귀 모델")
             st.write("## 전처리 후 데이터의 모습")
-            st.write("## 전처리 후 데이터의 모습")
-
             poly_model(df)
     with tab3:
             st.header("지표 분석")
