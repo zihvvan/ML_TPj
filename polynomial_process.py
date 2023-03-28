@@ -91,8 +91,8 @@ def run_model(X, y):
     mse = mean_absolute_error(y_test, y_test_predict)
     test_performance = sqrt(mse)
 
-    index = ["선형회귀모델", "다항선형회귀모델"]
-    total_info = {"훈련셋 점수" : train_score, "테스트셋 점수" : test_score, "훈련셋 성능": train_performance, "테스트셋 성능": test_performance}
+    index = ["다항선형회귀모델"]
+    total_info = {"훈련셋 점수" : train_score, "테스트셋 점수" : test_score, "훈련셋 MAE": train_performance, "테스트셋 MAE": test_performance}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
     # 테이블로 평가
