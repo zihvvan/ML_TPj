@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score
 
 
 
-def pre_processing():
+def pre_processing(df):
     df1 = df.drop(['EmployeeCount','EmployeeNumber','Over18','StandardHours'],axis=1)
     df2 = df1.loc[:,['Age','BusinessTravel','DailyRate','Department','DistanceFromHome','Education','EducationField','EnvironmentSatisfaction','Gender','HourlyRate','JobInvolvement','JobLevel', 'JobSatisfaction',
         'MaritalStatus', 'MonthlyIncome', 'MonthlyRate', 'NumCompaniesWorked','OverTime', 'PercentSalaryHike', 'PerformanceRating',
