@@ -139,33 +139,39 @@ def linear_model():
         model_path = "Data/pkl/multi_LinearRegression_model.pkl"
         model = joblib.load(model_path)
         st.write("## 다중 선형 회귀 모델")
+        st.write("모델링 소요시간이 짧으며 구현과 해석이 쉬운 선형 회귀 모델을 사용하였습니다.")
 
     st.write("---")
-
     with st.echo(code_location="below"):
         # 학교 지역 (라디오 버튼)
+        st.write("**학생들이 다니는 학교의 지역을 선택할 수 있습니다.**")
         area = st.radio(
             label="지역", # 상단 표시되는 이름
             options=["Urban", "Suburban","Rural"], # 선택 옵션
         )
-            
-
+        
+    st.write("---")
     with st.echo(code_location="below"):
         # 학교 종류 (라디오 버튼)
+        st.write("**학생들이 다니는 학교의 종류를 구분하여 선택할 수 있습니다.**")
         school_type = st.radio(
             label="학교 타입", # 상단 표시되는 이름
             options=["국립", "사립"], # 선택 옵션
         )
 
+    st.write("---")    
     with st.echo(code_location="below"):
         # 수업 방식 (라디오 버튼)
+        st.write("**학생들이 듣는 수업 방식을 선택할 수 있습니다.**")
         teaching_method = st.radio(
             label="수업 타입", # 상단 표시되는 이름
             options=["일반", "체험"], # 선택 옵션
         )
 
+    st.write("---")    
     with st.echo(code_location="below"):
         # 반 학생수 (숫자)
+        st.write("**학급의 인원을 선택할 수 있습니다.(10~30명)**")
         students = st.slider(
             label="학급 인원", # 상단 표시되는 이름
             min_value=10.0, # 최솟값
@@ -173,24 +179,28 @@ def linear_model():
             step=1.0, # 입력 단위
         )
 
+    st.write("---")    
     with st.echo(code_location="below"):
         # 성별 입력 (라디오 버튼)
+        st.write("**학생의 성별을 선택할 수 있습니다.**")
         gender = st.radio(
             label="성별", # 상단 표시되는 이름
             options=["Male", "Female"], # 선택 옵션
         )
 
-
+    st.write("---")
     with st.echo(code_location="below"):
         # 점심 유무
+        st.write("**시험 전 학생들의 점심식사 유무를 선택할 수 있습니다.**")
         lunch = st.radio(
             label="점심식사 유무", # 상단 표시되는 이름
             options=["먹음", "안먹음"], # 선택 옵션
         )
 
-
+    st.write("---")
     with st.echo(code_location="below"):
         # 사전 시험 (숫자)
+        st.write("**학생들의 사전 시험점수를 선택할 수 있습니다.(0~100점)**")
         pretest = st.number_input(
             label="사전 시험", # 상단 표시되는 이름
             min_value=0.0, # 최솟값
@@ -210,7 +220,10 @@ def linear_model():
 
     df_input_data_set = pd.DataFrame(input_data_set)
 
+    st.write("---")
+
     with st.echo(code_location="below"):
+        st.write("**예측하기**")
         # 실행 버튼
         play_button = st.button(
             label="예측하기", # 버튼 내부 표시되는 이름
