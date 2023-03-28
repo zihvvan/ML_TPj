@@ -65,5 +65,5 @@ def linear_processed_df(df):
     values = df1['school_setting'].value_counts()
 
     # pull is given as a fraction of the pie radius
-    fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0.2, 0, 0])])
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0.2, 0, 0], textinfo='label+percent', insidetextorientation='radial')])
     st.plotly_chart(fig)
