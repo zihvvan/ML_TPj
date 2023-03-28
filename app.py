@@ -156,7 +156,7 @@ def linear_model():
             label="학교 타입", # 상단 표시되는 이름
             options=["국립", "사립"], # 선택 옵션
         )
-        st.write("학생들이 다니는 학교의 종류를 구분하여 선택할 수 있습니다.")
+        st.write("**학생들이 다니는 학교의 종류를 구분하여 선택할 수 있습니다.**")
 
     with st.echo(code_location="below"):
         # 수업 방식 (라디오 버튼)
@@ -164,7 +164,7 @@ def linear_model():
             label="수업 타입", # 상단 표시되는 이름
             options=["일반", "체험"], # 선택 옵션
         )
-        st.write("학생들이 듣는 수업 방식을 선택할 수 있습니다.")
+        st.write("**학생들이 듣는 수업 방식을 선택할 수 있습니다.**")
 
     with st.echo(code_location="below"):
         # 반 학생수 (숫자)
@@ -174,6 +174,7 @@ def linear_model():
             max_value=30.0, # 최댓값
             step=1.0, # 입력 단위
         )
+        st.write("**학급의 인원을 선택할 수 있습니다.(10~30명)**")
 
     with st.echo(code_location="below"):
         # 성별 입력 (라디오 버튼)
