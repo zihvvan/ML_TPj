@@ -44,7 +44,7 @@ def random_forest_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/RandomForest_model.pkl"
         model = joblib.load(model_path)
-        st.write("## Randomforest model")
+        st.write("## Randomforest")
     
     train_pred_dt = model.predict(X_train) 
     test_pred_dt = model.predict(X_test)
@@ -66,7 +66,7 @@ def lightGBM_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/LightGBM_model.pkl"
         model = joblib.load(model_path)
-        st.write("## lightGBM_model model")
+        st.write("## lightGBM_model")
     
     train_pred_dt = model.predict(X_train) 
     test_pred_dt = model.predict(X_test)
@@ -85,7 +85,7 @@ def xgBoost_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/XGBoost_model2.pkl"
         xgb_model = joblib.load(model_path)
-        st.write("## XGBoost_model model")
+        st.write("## XGBoost_model")
 
     X,y = data_preprocessing(df)
     # # 훈련 및 검증 데이터 분할
