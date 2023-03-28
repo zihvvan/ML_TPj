@@ -116,7 +116,7 @@ def run_model(X, y):
 
 def load_data(choose):
     # csv데이터 불러오기
-    if chooose == 1:
+    if choose == 1:
         data_url = "Data/test_scores.csv"
         df = pd.read_csv(data_url) # URL로 CSV 불러오기
     else:
