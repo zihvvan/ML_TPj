@@ -41,13 +41,42 @@ def linear_processed_df(df):
     mean_squared_error(y_test, y_pred, squared=False) # RMSE
     r2_score(y_test, y_pred) # R2
 
+    st.write("## 컬럼별 상관 관계")
     fig = px.imshow(df1.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
-    fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
     fig.layout.update({'width':800, 'height':600})
     st.plotly_chart(fig)
     st.write('---')
 
+    st.write("## 파이차트 ")
+    a_labels = df1['school_setting'].unique()
+    a_values = df1['school_setting'].value_counts()
+    st_labels = df1['school_type'].unique()
+    st_values = df1['school_type'].value_counts()
+    gender_labels = df1['school_type'].unique()
+    gender_values = df1['school_type'].value_counts()
+    teaching_labels = df1['teaching_method'].unique()
+    teaching_values = df1['teaching_method'].value_counts()
+
+    
+    fig = make_subplots(rows=2, cols=2)
+
+    # subplot에 그래프 추가
+    fig.add_trace(go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0.1, 0, 0], textinfo='label+percent', insidetextorientation='radial')]), row=1, col=1)
+    fig.add_trace(go.Figure(data=[go.Pie(labels=st_labels, values=st_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial')]), row=1, col=1)
+    fig.add_trace(go.Figure(data=[go.Pie(labels=gender_labels, values=gender_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial')]), row=1, col=1)
+    fig.add_trace(go.Figure(data=[go.Pie(labels=teaching_labels, values=teaching_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial')]), row=1, col=1)
+
+    # subplot 레이아웃 설정
+    fig.update_layout(height=600, width=800, title_text="Subplots")
+
+    # subplot을 streamlit에 출력
+    st.plotly_chart(fig)
+
+
+
     # 테이블로 평가
+
+    st.write("## LinearRegression 산점도")
     comparison = pd.DataFrame(
         {
             '실제값' : y_test, # 실제값
@@ -63,7 +92,3 @@ def linear_processed_df(df):
 
     labels = df1['school_setting'].unique()
     values = df1['school_setting'].value_counts()
-
-    # pull is given as a fraction of the pie radius
-    fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0.2, 0, 0], textinfo='label+percent', insidetextorientation='radial')])
-    st.plotly_chart(fig)
