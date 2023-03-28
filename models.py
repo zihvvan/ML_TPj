@@ -63,7 +63,7 @@ def show_user_interface(model_num):
 
     성별 = st.selectbox(
         '성별',
-    ('남자', '여자'),,key="test13")
+    ('남자', '여자'),key="test13")
 
     predict_button = st.button("퇴사유무 예측",,key="test14")
     
