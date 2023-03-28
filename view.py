@@ -14,7 +14,7 @@ def view_model1():
     with tab2:
             st.header("원본 데이터")
             st.write(df)
-            st.header("데이터셋 전처리 후")
+            st.header("데이터셋 전처리 (Drop) ")
             processed_df = pre_process.pre_processing(df)
             visualization_process.describe_linear_model(df)
             st.header("One-Hot Enconding")
