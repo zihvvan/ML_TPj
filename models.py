@@ -4,8 +4,8 @@ import pandas as pd
 import numpy as np
 import joblib
 import plotly.express as px
-import lightgbm as lgb
-import xgboost as xgb
+# import lightgbm as lgb
+# import xgboost as xgb
 from PIL import Image
 from math import sqrt
 from sklearn import preprocessing
@@ -82,16 +82,9 @@ def lightGBM_model(df):
     st.write(accuracy)
 
 def xgBoost_model(df):
-    pass
     X,y = data_preprocessing(df)
-
     # 훈련 및 검증 데이터 분할
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/XGBoost_model.pkl"
-        xgb = joblib.load(model_path)
-        st.write("## XGBoost model")
 
     dtrain = xgb.DMatrix(X_train, label=y_train)
     dvalid = xgb.DMatrix(X_valid, label=y_valid)
@@ -103,14 +96,17 @@ def xgBoost_model(df):
         'objective': 'binary:logistic',
         'eval_metric': 'logloss'
     }
-
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/XGBoost_model.pkl"
+        xgb = joblib.load(model_path)
+        st.write("## XGBoost_model model")
     # 모델 훈련
     num_rounds = 100
-    model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
+    xgb_model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
 
     # 검증 데이터 예측
-    y_pred = model.predict(dvalid)
+    y_pred = xgb_model.predict(dvalid)
 
     # 정확도 계산
     acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
-    st.write(accuracy)
+    print(f'Accuracy: {acc}')
