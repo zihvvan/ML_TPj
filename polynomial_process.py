@@ -76,22 +76,26 @@ def run_model(X, y):
 
 
     # 성능평가
+    
     st.write("훈련셋 Score")
-    st.write(model.score(X_train, y_train)) # 훈련 세트
+    train_score = model.score(X_train, y_train) # 훈련 세트
     st.write("테스트 셋 Score")
-    st.write(model.score(X_test, y_test)) # 테스트 세트
+    test_score = model.score(X_test, y_test) # 테스트 세트
 
     y_train_predict = model.predict(X_train)
     y_test_predict = model.predict(X_test)
 
     mse = mean_absolute_error(y_train, y_train_predict)
     st.write("train-set에서 성능")
-    st.write(sqrt(mse))
+    train_performance = sqrt(mse)
 
     mse = mean_absolute_error(y_test, y_test_predict)
     st.write("test-set에서 성능")
-    st.write(sqrt(mse))
+    test_performance = sqrt(mse)
 
+    total_info = {"훈련셋 점수" : train_score, "테스트셋 점수" : test_score, "훈련셋 성능": train_performance, "테스트셋 성능": test_performance}
+    total_df = pd.DataFrame(total_info)
+    st.write(total_df)
     # 테이블로 평가
     comparison = pd.DataFrame(
         {
@@ -99,10 +103,6 @@ def run_model(X, y):
             '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
         }
     )
-    comparison
-    # colors = ['red', 'blue']
-    # fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
-    # st.plotly_chart(fig)
     return comparison
 
 def poly_model(df):
