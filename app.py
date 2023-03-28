@@ -277,12 +277,15 @@ def view_model2():
     with tab1:
             st.header("RandomForest")
             models.random_forest_model(df)
+            show_user_interface(1)
     with tab2:
             st.header("XGBoost")
             models.xgBoost_model(df)
+            show_user_interface(3)
     with tab3:
             st.header("LightGBM")
             models.lightGBM_model(df)
+            show_user_interface(2)
             
 
 def main():

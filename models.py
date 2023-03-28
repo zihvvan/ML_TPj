@@ -29,27 +29,14 @@ def data_preprocessing(df):
     X = ct.fit_transform(X)
     return X,y
 
-def random_forest_model(df):
-    X,y = data_preprocessing(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
-
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/RandomForest_model.pkl"
-        model = joblib.load(model_path)
-        st.write("## Randomforest")
-    
-    train_pred_dt = model.predict(X_train) 
-    test_pred_dt = model.predict(X_test)
-    
-    predict_button_dt1 = st.button('예측')
-
-    if predict_button_dt1:        
-        st.write(f'Train-set : {model.score(X_train, y_train)}')
-        st.write(f'Test-set : {model.score(X_test, y_test)}')
-
-    # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_test, test_pred_dt)
-    st.write(accuracy)
+def show_user_interface(model_num):
+    model_path_list = ['Data/pkl/RandomForest_model.pkl','Data/pkl/LightGBM_model.pkl', 'Data/pkl/XGBoost.pkl']
+    if model_num == 1:
+        model_path = model_path_list[0]
+    elif model_num == 2:
+        model_path = model_path_list[1]
+    else
+        model_path = model_path_list[2]
 
     st.header("random_forest")
     # 첫번째 행
@@ -81,12 +68,35 @@ def random_forest_model(df):
     
     if predict_button:
             variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
-            model1 = joblib.load('Data/pkl/RandomForest_model.pkl')
+            model1 = joblib.load(model_path)
             pred1 = model1.predict([variable1])
             if pred1 == 1:
                 st.write("퇴사")
             else:
                 st.write("근속")
+
+def random_forest_model(df):
+    X,y = data_preprocessing(df)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
+
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/RandomForest_model.pkl"
+        model = joblib.load(model_path)
+        st.write("## Randomforest")
+    
+    train_pred_dt = model.predict(X_train) 
+    test_pred_dt = model.predict(X_test)
+    
+    predict_button_dt1 = st.button('예측')
+
+    if predict_button_dt1:        
+        st.write(f'Train-set : {model.score(X_train, y_train)}')
+        st.write(f'Test-set : {model.score(X_test, y_test)}')
+
+    # 정확도를 계산하여 모델의 성능을 평가합니다.
+    accuracy = accuracy_score(y_test, test_pred_dt)
+    st.write(accuracy)
+
 
 def lightGBM_model(df):
     X,y = data_preprocessing(df)
