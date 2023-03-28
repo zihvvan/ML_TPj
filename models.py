@@ -91,8 +91,8 @@ def xgBoost_model(df):
     # 훈련 및 검증 데이터 분할
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    train_pred_dt = xgb.predict(X_train) 
-    test_pred_dt = xgb.predict(X_valid)
+    # train_pred_dt = xgb.predict(X_train) 
+    # test_pred_dt = xgb.predict(X_valid)
 
     # 정확도 계산
 
