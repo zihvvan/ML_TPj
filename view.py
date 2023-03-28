@@ -6,19 +6,19 @@ import pre_process
 def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀")
     tab1, tab2, tab3, tab4 = st.tabs(["성적 예측","데이터셋 전처리","LinearRegression 지표분석", "PolynomialRegression 지표분석"])
+    df = pre_process.load_data(1)
     with tab1:
             st.header("성적 예측 모델")
             models.linear_model()
     with tab2:
             st.header("데이터셋 전처리 전")
-            df = pre_process.load_data(1)
             st.write(df)
             st.header("데이터셋 전처리 후")
             processed_df = pre_process.pre_processing(df)
             st.write(processed_df)
     with tab3:
             st.header("LinearRegression")
-            st.write("## info(include='all')")
+            st.write("## info()")
             linear_process.info_linear_model(df)
             st.write("## Describe(include='all')")
             linear_process.describe_linear_model(df)
