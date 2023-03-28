@@ -78,7 +78,7 @@ def run_model(X, y):
     hyper_param_tuner.fit(X,y)
     best_params = hyper_param_tuner.best_params_
     st.write(f"이 모델의 최적의 Alpha 값 :  {best_params['alpha']}")
-    # st.write(f"이 모델의 최적의 Max_iter 횟수  :  {best_params['max_iter']})
+    st.write(f"이 모델의 최적의 Max_iter 횟수  :  {best_params['max_iter']}")
     # 관계도
     st.write(model.coef_)
     st.write(model.intercept_)
