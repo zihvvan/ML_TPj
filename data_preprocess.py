@@ -123,10 +123,10 @@ def linear_process(df):
     ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [0, 1, 2, 4, 5])], remainder='passthrough')
     X = ct.fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
-    st.write(X_test)
-    # reg = LinearRegression()
-    # reg.fit(X_train, y_train) # 훈련 세트로 학습
-    # reg = reg.intercept_
+    reg = LinearRegression()
+    reg.fit(X_train, y_train) # 훈련 세트로 학습
+    reg = reg.intercept_
+    st.write(reg)
     # y_pred = reg.predict(X_test)
 
     # train_score = model.score(X_train, y_train) # 훈련 세트
