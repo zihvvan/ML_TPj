@@ -18,10 +18,9 @@ def view_model1():
             st.write(processed_df)
     with tab3:
             st.header("LinearRegression")
-            st.write("## info()")
-            linear_process.info_linear_model(df)
             st.write("## Describe(include='all')")
             linear_process.describe_linear_model(df)
+            linear_process.linear_processed_df(df)
     with tab4:
             st.header("PolynomialRegression")
             st.write("## Describe(include='all')")
