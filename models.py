@@ -82,6 +82,11 @@ def lightGBM_model(df):
     st.write(accuracy)
 
 def xgBoost_model(df):
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/XGBoost_model.pkl"
+        xgb = joblib.load(model_path)
+        st.write("## XGBoost_model model")
+        
     X,y = data_preprocessing(df)
     # 훈련 및 검증 데이터 분할
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -96,17 +101,13 @@ def xgBoost_model(df):
         'objective': 'binary:logistic',
         'eval_metric': 'logloss'
     }
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/XGBoost_model.pkl"
-        xgb = joblib.load(model_path)
-        st.write("## XGBoost_model model")
     # 모델 훈련
-        num_rounds = 100
-        xgb_model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
+    num_rounds = 100
+    xgb_model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
 
-        # 검증 데이터 예측
-        y_pred = xgb_model.predict(dvalid)
+    # 검증 데이터 예측
+    y_pred = xgb_model.predict(dvalid)
 
-        # 정확도 계산
-        acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
-        print(f'Accuracy: {acc}')
+    # 정확도 계산
+    acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
+    print(f'Accuracy: {acc}')
