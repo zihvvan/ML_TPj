@@ -15,7 +15,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.datasets import load_breast_cancer
 
 def data_preprocessing(df):
     df1 = df.drop(['BusinessTravel','Department','Education','EducationField','EmployeeCount','EmployeeNumber','JobInvolvement','JobLevel', 'JobRole', 'MaritalStatus',  'MonthlyRate', 'Over18', 'OverTime', 'PerformanceRating','StandardHours', 'TotalWorkingYears', 'TrainingTimesLastYear', 'YearsAtCompany', 'YearsInCurrentRole', 'YearsSinceLastPromotion','YearsWithCurrManager'],axis=1) # 필요없는 feature 삭제
@@ -142,9 +141,6 @@ def linear_model():
             
             st.write()
 
-
-
-
 def random_forest_model(df):
     X,y = data_preprocessing(df)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
@@ -202,8 +198,6 @@ def random_forest_model(df):
             else:
                 st.write("근속")
 
-                
-
 def lightGBM_model(df):
     X,y = data_preprocessing(df)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
@@ -260,8 +254,6 @@ def lightGBM_model(df):
                 st.write("퇴사")
             else:
                 st.write("근속")
-
-                
 
 def xgBoost_model(df):
     with st.echo(code_location="below"):

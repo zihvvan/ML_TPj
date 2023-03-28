@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import joblib
 
 def pre_processing(df):
     # 필요없는 Columns 드랍
