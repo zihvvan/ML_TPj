@@ -12,7 +12,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
 from sklearn.model_selection import GridSearchCV
-import model1, model2, pre_process
+import model1, model2
+import pre_process
 
 def view_model1():
 
