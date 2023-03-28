@@ -56,7 +56,7 @@ def random_forest_model(df):
         st.write(f'Test-set : {model.score(X_test, y_test)}')
 
     # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_test, test_pred)
+    accuracy = accuracy_score(y_test, test_pred_dt)
     st.write(accuracy)
 
 def lightGBM_model(df):
@@ -66,10 +66,19 @@ def lightGBM_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/LightGBM_model.pkl"
         model = joblib.load(model_path)
-        st.write("## LightGBM model")
+        st.write("## Randomforest model")
+    
+    train_pred_dt = model.predict(X_train) 
+    test_pred_dt = model.predict(X_test)
+    
+    predict_button_dt = st.button('예측')
+
+    if predict_button_dt:        
+        st.write(f'Train-set : {model.score(X_train, y_train)}')
+        st.write(f'Test-set : {model.score(X_test, y_test)}')
 
     # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_test, test_pred)
+    accuracy = accuracy_score(y_test, test_pred_dt)
     st.write(accuracy)
 
 def xgBoost_model(df):
