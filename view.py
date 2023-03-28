@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import polynomial_process, linear_process, models
+import polynomial_process, visualization_process, models
 import pre_process
 
 def view_model1():
@@ -20,7 +20,7 @@ def view_model1():
             st.write(processed_df)
     with tab3:
             st.header("시각화")
-            linear_process.visualization(df, s_df, comparison)
+            visualization_process.visualization(df, s_df, comparison)
     with tab4:
             st.header("PolynomialRegression")
             st.write("## Describe(include='all')")
