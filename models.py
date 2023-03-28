@@ -41,30 +41,30 @@ def show_user_interface(model_num):
     st.header("random_forest")
     # 첫번째 행
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
-    나이 = r1_col1.slider("나이",20,70)
-    일일급여 = r1_col2.slider("일일급여", 110, 1500)
-    회사와의거리 = r1_col3.slider("회사와의거리", 1, 30)
-    근무환경만족 = r1_col4.slider("근무환경만족", 1, 4)
+    나이 = r1_col1.slider("나이",20,70,key=model_num)
+    일일급여 = r1_col2.slider("일일급여", 110, 1500,key=model_num)
+    회사와의거리 = r1_col3.slider("회사와의거리", 1, 30,key=model_num)
+    근무환경만족 = r1_col4.slider("근무환경만족", 1, 4,key=model_num)
 
     # 두번째 행
     r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
-    시간당임금 = r2_col1.slider("시간당임금",30, 100)
-    직업만족도 = r2_col2.slider("직업만족도",1,4)
-    월수입 = r2_col3.slider('월수입',1000,20000)
-    이직회사수 = r2_col4.slider('이직회사수',0,9)
+    시간당임금 = r2_col1.slider("시간당임금",30, 100,key=model_num)
+    직업만족도 = r2_col2.slider("직업만족도",1,4,key=model_num)
+    월수입 = r2_col3.slider('월수입',1000,20000,key=model_num)
+    이직회사수 = r2_col4.slider('이직회사수',0,9,key=model_num)
 
     # 세번째 행
     r3_col1, r3_col2, r3_col3, r3_col4 = st.columns(4)
-    급여인상비율 = r3_col1.slider("급여인상률",10,25)
-    동료관계만족도 = r3_col2.slider('동료관계만족도',1,4)
-    스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3)
-    워라벨 = r3_col4.slider('워라벨',1,4)
+    급여인상비율 = r3_col1.slider("급여인상률",10,25,key=model_num)
+    동료관계만족도 = r3_col2.slider('동료관계만족도',1,4,key=model_num)
+    스톡옵션레벨 = r3_col3.slider('스톡옵션레벨',0,3,key=model_num)
+    워라벨 = r3_col4.slider('워라벨',1,4,key=model_num)
 
     성별 = st.selectbox(
         '성별',
-    ('남자', '여자'))
+    ('남자', '여자'),key=model_num)
 
-    predict_button = st.button("퇴사유무 예측",key=model_num)
+    predict_button = st.button("퇴사유무 예측")
     
     if predict_button:
             variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
