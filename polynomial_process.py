@@ -112,7 +112,7 @@ def poly_model(df):
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
     comparison, total_df2 = run_model(X, y)
-    draw_table(total_df1, total_df2)
+    # draw_table(total_df1, total_df2)
     return scaled_df, comparison
 
 def linear_process(df):
