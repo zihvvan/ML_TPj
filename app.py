@@ -141,7 +141,6 @@ def linear_model():
         st.write("모델링 소요시간이 짧으며 구현과 해석이 쉬운 선형 회귀 모델을 사용하였습니다.")
 
     st.write("---")
-
     with st.echo(code_location="below"):
         # 학교 지역 (라디오 버튼)
         st.write("**학생들이 다니는 학교의 지역을 선택할 수 있습니다.**")
@@ -151,7 +150,6 @@ def linear_model():
         )
         
     st.write("---")
-
     with st.echo(code_location="below"):
         # 학교 종류 (라디오 버튼)
         st.write("**학생들이 다니는 학교의 종류를 구분하여 선택할 수 있습니다.**")
@@ -161,7 +159,6 @@ def linear_model():
         )
 
     st.write("---")    
-
     with st.echo(code_location="below"):
         # 수업 방식 (라디오 버튼)
         st.write("**학생들이 듣는 수업 방식을 선택할 수 있습니다.**")
@@ -171,7 +168,6 @@ def linear_model():
         )
 
     st.write("---")    
-
     with st.echo(code_location="below"):
         # 반 학생수 (숫자)
         st.write("**학급의 인원을 선택할 수 있습니다.(10~30명)**")
@@ -183,7 +179,6 @@ def linear_model():
         )
 
     st.write("---")    
-
     with st.echo(code_location="below"):
         # 성별 입력 (라디오 버튼)
         st.write("**학생의 성별을 선택할 수 있습니다.**")
@@ -193,7 +188,6 @@ def linear_model():
         )
 
     st.write("---")
-
     with st.echo(code_location="below"):
         # 점심 유무
         st.write("**시험 전 학생들의 점심식사 유무를 선택할 수 있습니다.**")
@@ -203,7 +197,6 @@ def linear_model():
         )
 
     st.write("---")
-
     with st.echo(code_location="below"):
         # 사전 시험 (숫자)
         st.write("**학생들의 사전 시험점수를 선택할 수 있습니다.(0~100점)**")
@@ -227,7 +220,7 @@ def linear_model():
     df_input_data_set = pd.DataFrame(input_data_set)
 
     st.write("---")
-    
+
     with st.echo(code_location="below"):
         st.write("**예측하기**")
         # 실행 버튼
