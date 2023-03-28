@@ -103,7 +103,7 @@ def xgBoost_model(df):
 
     xgb_model.fit(X_train, y_train, early_stopping_rounds=200, eval_metric='auc', eval_set=[(X_valid, y_valid)])
 
-    y_pred = best_model.predict(X_valid)
+    y_pred = xgb_model.predict(X_valid)
 
     # 정확도 계산
     acc = accuracy_score(y_valid, y_pred)
