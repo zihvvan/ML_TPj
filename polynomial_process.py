@@ -91,7 +91,7 @@ def run_model(X, y):
     r2 = r2_score(y_test, y_test_predict) # R2
 
     index = ["다항선형회귀모델(Lasso)"]
-   total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : best_params['alpha'], "그리드 max_iter": best_params['max_iter']}
+    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : best_params['alpha'], "그리드 max_iter": best_params['max_iter']}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
     # 테이블로 평가
