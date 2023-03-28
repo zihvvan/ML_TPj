@@ -21,7 +21,7 @@ import pre_process
 def describe_linear_model(df):
     st.write(df.describe(include='all'))
 
-def linear_processed_df(df, s_df, comparison1):
+def visualization(df, s_df, comparison1):
     df1 = df.drop(['school','classroom','student_id'], axis=1)
 
     X = df1.iloc[:, :-1].values

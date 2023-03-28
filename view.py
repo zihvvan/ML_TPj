@@ -18,10 +18,9 @@ def view_model1():
             processed_df = pre_process.pre_processing(df)
             st.write(processed_df)
     with tab3:
-            st.header("LinearRegression")
-            st.write("## Describe(include='all')")
+            st.header("시각화")
             linear_process.describe_linear_model(df)
-            linear_process.linear_processed_df(df, s_df, comparison)
+            linear_process.visualization(df, s_df, comparison)
     with tab4:
             st.header("PolynomialRegression")
             st.write("## Describe(include='all')")
