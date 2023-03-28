@@ -18,6 +18,7 @@ def view_model1():
             processed_df = pre_process.pre_processing(df)
             st.header("Describe(include='all')")
             visualization_process.describe_linear_model(df)
+            st.header("Min-Max Scaling")
             st.write(processed_df)
     with tab3:
             st.header("시각화")
