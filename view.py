@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import polynomial_process, models
+import polynomial_process, linear_process, models
 import pre_process
 
 def view_model1():
@@ -19,11 +19,11 @@ def view_model1():
     with tab3:
             st.header("LinearRegression")
             st.write("## Describe()")
-            polynomial_process.poly_model(df)
+            linear_process.show_linear_model(df)
     with tab4:
             st.header("PolynomialRegression")
             st.write("## Describe()")
-            polynomial_process.poly_model(df)
+            polynomial_process.show_poly_model(df)
 
 
 def view_model2():

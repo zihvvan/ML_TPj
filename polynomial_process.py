@@ -106,7 +106,7 @@ def run_model(X, y):
     fig = px.scatter(comparison, x="실제값", y="예측값")
     st.plotly_chart(fig)
 
-def poly_model(df):
+def show_poly_model(df):
     df2 = pre_process.pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
