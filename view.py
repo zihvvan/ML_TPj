@@ -18,12 +18,15 @@ def view_model1():
             st.write(processed_df)
     with tab3:
             st.header("LinearRegression")
-            st.write("## Describe()")
-            linear_process.show_linear_model(df)
+            st.write("## info(include='all')")
+            linear_process.info_linear_model(df)
+            st.write("## Describe(include='all')")
+            linear_process.describe_linear_model(df)
     with tab4:
             st.header("PolynomialRegression")
-            st.write("## Describe()")
-            polynomial_process.show_poly_model(df)
+            st.write("## Describe(include='all')")
+            p_df = polynomial_process.poly_model(df)
+            polynomial_process.describe_describe_poly_model(p_df)
 
 
 def view_model2():

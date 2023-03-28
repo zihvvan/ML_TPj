@@ -15,5 +15,8 @@ from sklearn.model_selection import GridSearchCV
 import pre_process
 
 
-def show_linear_model(df):
+def describe_linear_model(df):
     st.write(df.describe(include='all'))
+
+def info_linear_model(df)
+    st.write(df.info())
