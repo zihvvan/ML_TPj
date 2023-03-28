@@ -62,7 +62,7 @@ def linear_processed_df(df):
 
 
     labels = df1['school_setting'].unique()
-    sizes = df1['school_setting'].value_counts()
+    values = df1['school_setting'].value_counts()
 
     # pull is given as a fraction of the pie radius
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0.2, 0, 0])])
