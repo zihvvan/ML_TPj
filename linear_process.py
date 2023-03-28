@@ -42,17 +42,11 @@ def linear_processed_df(df, s_df):
     mean_squared_error(y_test, y_pred, squared=False) # RMSE
     r2_score(y_test, y_pred) # R2
 
-    specs = [[{'type': 'pie'}, {'type': 'pie'}]]
-
-    fig = make_subplots(rows=1, cols=2, specs=specs)
-    
 
     st.write("## 컬럼별 상관 관계")
-    fig.add_trace(go.imshow(df1.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto'))
-    # fig = px.imshow(df1.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
-    fig.add_trace(go.imshow(s_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto'))
-    # fig = px.imshow(s_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
-    fig.update_layout(height=600, width=800, title_text="OjectType의 데이터 분포")
+    fig = px.imshow(df1.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
+    fig = px.imshow(s_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
+    fig.update_layout(height=600, width=800)
     st.plotly_chart(fig)
     st.write('---')
 
