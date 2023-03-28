@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
 from sklearn.model_selection import GridSearchCV
-import pre_processing
+import preprocessing
 
 # def pre_processing(df):
 #     # 필요없는 Columns 드랍
