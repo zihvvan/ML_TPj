@@ -87,13 +87,13 @@ def run_model(X, y):
     y_test_predict = model.predict(X_test)
 
     mae = mean_absolute_error(y_test, y_test_predict) # 실제 값, 예측 값 # MAE
-    mse = mean_squared_error(y_test, y_test_predict) # MSE
+    # mse = mean_squared_error(y_test, y_test_predict) # MSE
     rmse = mean_squared_error(y_test, y_test_predict, squared=False) # RMSE
 
     r2 = r2_score(y_test, y_test_predict) # R2
 
     index = ["다항선형회귀모델(Lasso)"]
-    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : best_params['alpha'], "그리드 max_iter": best_params['max_iter']}
+    total_info = {"Intercept": intercept, "MAE" : mae, "RMSE": rmse, "R2" : r2, "그리드 alpha" : best_params['alpha'], "그리드 max_iter": best_params['max_iter']}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
     # 테이블로 평가
@@ -132,12 +132,12 @@ def linear_process(df):
     test_score = reg.score(X_test, y_test) # 테스트 세트
 
     mae = mean_absolute_error(y_test, y_pred) # 실제 값, 예측 값 # MAE
-    mse = mean_squared_error(y_test, y_pred) # MSE
+    # mse = mean_squared_error(y_test, y_pred) # MSE
     rmse = mean_squared_error(y_test, y_pred, squared=False) # RMSE
     r2 = r2_score(y_test, y_pred) # R2
 
     index = ["다중선형회귀모델"]
-    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : "X", "그리드 max_iter": "X"}
+    total_info = {"Intercept": intercept, "MAE" : mae,"RMSE": rmse, "R2" : r2, "그리드 alpha" : "X", "그리드 max_iter": "X"}
     total_df = pd.DataFrame([total_info], index=index)
     st.write(total_df)
 
