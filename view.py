@@ -30,7 +30,7 @@ def view_model1():
 
 def view_model2():
     st.title("회사퇴사 예측 모델")
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["RandomForest", "XGBoost", 'LightGBM','데이터셋', '시각화'])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["RandomForest", "XGBoost", 'LightGBM','데이터셋', '결정트리 시각화'])
     df = pre_process.load_data(2)
     with tab1:
             # RandomForest Model
