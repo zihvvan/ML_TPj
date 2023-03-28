@@ -55,13 +55,13 @@ def random_forest_model(df):
     # 첫번째 행
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
     나이 = r1_col1.slider("나이",20,70)
-    일일급여 = r1_col2.slider("일일급여", 1, 1500)
+    일일급여 = r1_col2.slider("일일급여", 110, 1500)
     회사와의거리 = r1_col3.slider("회사와의거리", 1, 30)
     근무환경만족 = r1_col4.slider("근무환경만족", 1, 4)
 
     # 두번째 행
     r2_col1, r2_col2, r2_col3, r2_col4 = st.columns(4)
-    시간당임금 = r2_col1.slider("시간당임금",15, 100)
+    시간당임금 = r2_col1.slider("시간당임금",30, 100)
     직업만족도 = r2_col2.slider("직업만족도",1,4)
     월수입 = r2_col3.slider('월수입',1,4)
     이직회사수 = r2_col4.slider('이직회사수',0,9)
