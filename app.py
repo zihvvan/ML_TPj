@@ -191,6 +191,7 @@ def linear_model():
 
     with st.echo(code_location="below"):
         # 점심 유무
+        st.write("**시험 전 학생들의 점심식사 유무를 선택할 수 있습니다.**")
         lunch = st.radio(
             label="점심식사 유무", # 상단 표시되는 이름
             options=["먹음", "안먹음"], # 선택 옵션
