@@ -37,7 +37,7 @@ def view_model1():
 
     st.title("다중선형회귀 vs 다항선형회귀")
     # tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression", '지표분석'])
-    tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression"])
+    tab1, tab2 = st.tabs(["LinearRegression", "Polynomial Regression"])
     df = load_data(1)
     #########################
     with tab1:
