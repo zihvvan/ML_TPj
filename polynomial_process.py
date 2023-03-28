@@ -35,7 +35,7 @@ def make_polynomial_df(concated_df):
     polynomial_features_names = polynomial_transformer.get_feature_names_out(poly_columns)
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
 
-    # st.write(poly_df.describe(include='all'))
+    st.write(poly_df.describe(include='all'))
 
     fig = px.imshow(concated_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
     fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
@@ -112,8 +112,3 @@ def poly_model(df):
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
     run_model(X, y)
-    return pre_processed_df
-
-def describe_poly_model(df):
-    st.write(df.describe(include="all"))
-
