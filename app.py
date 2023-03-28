@@ -38,7 +38,7 @@ def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀")
     # tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression", '지표분석'])
     tab1, tab2 = st.tabs(["LinearRegression", "Polynomial Regression"])
-    df = pre_processing.load_data(1)
+    df = preprocessing.load_data(1)
     #########################
     with tab1:
             st.header("LinearRegression")
@@ -58,7 +58,7 @@ def view_model1():
 def view_model2():
     st.title("회사퇴사 예측 모델")
     tab1, tab2, tab3 = st.tabs(["RandomForest", "XGBoost", 'LightGBM'])
-    df = pre_processing.load_data(2)
+    df = preprocessing.load_data(2)
     #########################
     with tab1:
             st.header("RandomForest")
