@@ -3,6 +3,7 @@ import seaborn as sns
 import pandas as pd
 import joblib
 import plotly.express as px
+import plotly.graph_objects as go
 from PIL import Image
 from math import sqrt
 from sklearn.metrics import mean_absolute_error
@@ -56,4 +57,13 @@ def linear_processed_df(df):
     comparison
     colors = ['red', 'blue']
     fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
+    st.plotly_chart(fig)
+
+
+
+    labels = df1['school_setting'].unique()
+    sizes = df1['school_setting'].value_counts()
+
+    # pull is given as a fraction of the pie radius
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0.2, 0, 0])])
     st.plotly_chart(fig)
