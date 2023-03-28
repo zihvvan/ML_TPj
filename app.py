@@ -11,6 +11,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso, Ridge
+from sklearn.model_selection import GridSearchCV
 
 def pre_processing(df):
     # 필요없는 Columns 드랍
@@ -56,21 +57,26 @@ def split_dataset(pre_processed_df):
     X = pre_processed_df.drop('시험점수',axis=1)
     y = pre_processed_df['시험점수']
 
+    return X, y
+
+def run_model(X, y):
     # 테스트셋 분리
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
-    return X_train, X_test, y_train, y_test
 
-def run_model(X_train, X_test, y_train, y_test):
-    # 모델 선언(그리드 서치)
+    # 모델 선언(선형, 라쏘모델, 그리드 서치)
     hyper_params = {
-        'alpha' : [0.01, 0.1, 1, 10]
+        'alpha' : [0.01, 0.1, 1, 10],
+        'max_iter' : [100, 500, 1000, 2000, 3000]
     }
-    model = LinearRegression()
+    model = LinearRegression() # 선형회귀 
     model.fit(X_train, y_train) # 훈련 세트로 학습
-    X_train, X_test, y_train, y_test = X_train, X_test, y_train, y_test
-    # 예측
+
     y_pred = model.predict(X_test)
 
+    lasso_model = Lasso()
+    hyper_param_tuner = GridSearchCV(lasso_model,hyper_params,cv=5)
+    hyper_param_tuner.fit()
+    
     # 관계도
     st.write(model.coef_)
     st.write(model.intercept_)
@@ -116,8 +122,8 @@ def line_model2(df):
     df2 = pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
-    X_train, X_test, y_train, y_test = split_dataset(pre_processed_df)
-    run_model(X_train, X_test, y_train, y_test)
+    X, y = split_dataset(pre_processed_df)
+    run_model(X, y)
 
 # 이미지 불러오기
 def line_model1():
@@ -230,11 +236,6 @@ def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀")
     tab1, tab2, tab3 = st.tabs(["LinearRegression", "Polynomial Regression", '지표분석'])
     df = load_data()
-    st.write("전처리 전 데이터") # 마크다운으로 꾸미기
-    st.write(df)
-    st.write("전처리 후 데이터")
-    p_df = pre_processing(df)
-    show_processed_df(p_df)
     #########################
     with tab1:
             st.header("LinearRegression")
@@ -245,6 +246,11 @@ def view_model1():
     with tab3:
             st.header("지표 분석")
             # show_poly_info(line_model2.pre_processed_df)
+            st.write("전처리 전 데이터") # 마크다운으로 꾸미기
+            st.write(df)
+            st.write("전처리 후 데이터")
+            p_df = pre_processing(df)
+            show_processed_df(p_df)
 
 def view_model2():
     st.write("To be continued")
