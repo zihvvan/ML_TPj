@@ -40,10 +40,19 @@ def random_forest_model(df):
     X,y = data_preprocessing(df)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
 
-    clf = RandomForestClassifier(n_estimators=15, random_state=42)
-    clf.fit(X_train, y_train)
-    train_pred = clf.predict(X_train)
-    test_pred = clf.predict(X_test) #
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/RandomForest_model.pkl"
+        model = joblib.load(model_path)
+        st.write("## Randomforest model")
+    
+    train_pred_dt = model.predict(X_train) 
+    test_pred_dt = model.predict(X_test)
+    
+    predict_button_dt = st.button('예측')
+
+    if predict_button_dt:        
+        st.write(f'Train-set : {model.score(X_train, y_train)}')
+        st.write(f'Test-set : {model.score(X_test, y_test)}')
 
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_test, test_pred)
@@ -53,10 +62,10 @@ def lightGBM_model(df):
     X,y = data_preprocessing(df)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
 
-    lgb_model = lgb.LGBMClassifier(n_estimators=15, random_state=42)
-    lgb_model.fit(X_train, y_train)
-    train_pred = lgb_model.predict(X_train)
-    test_pred = lgb_model.predict(X_test)
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/LightGBM_model.pkl"
+        model = joblib.load(model_path)
+        st.write("## Randomforest model")
 
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_test, test_pred)
@@ -64,30 +73,33 @@ def lightGBM_model(df):
 
 def xgBoost_model(df):
     X,y = data_preprocessing(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
-
 
     # 훈련 및 검증 데이터 분할
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    dtrain = xgb.DMatrix(X_train, label=y_train)
-    dvalid = xgb.DMatrix(X_valid, label=y_valid)
+    with st.echo(code_location="below"):
+        model_path = "Data/pkl/XGBoost_model.pkl"
+        model = joblib.load(model_path)
+        st.write("## Randomforest model")
 
-    # 하이퍼 파라미터 설정
-    params = {
-        'max_depth': 3,
-        'eta': 0.1,
-        'objective': 'binary:logistic',
-        'eval_metric': 'logloss'
-    }
+    # dtrain = xgb.DMatrix(X_train, label=y_train)
+    # dvalid = xgb.DMatrix(X_valid, label=y_valid)
 
-    # 모델 훈련
-    num_rounds = 100
-    model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
+    # # 하이퍼 파라미터 설정
+    # params = {
+    #     'max_depth': 3,
+    #     'eta': 0.1,
+    #     'objective': 'binary:logistic',
+    #     'eval_metric': 'logloss'
+    # }
 
-    # 검증 데이터 예측
-    y_pred = model.predict(dvalid)
+    # # 모델 훈련
+    # num_rounds = 100
+    # model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
 
-    # 정확도 계산
-    acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
-    st.write(accuracy)
+    # # 검증 데이터 예측
+    # y_pred = model.predict(dvalid)
+
+    # # 정확도 계산
+    # acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
+    # st.write(accuracy)

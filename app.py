@@ -136,7 +136,7 @@ def poly_model(df):
 def linear_model():
 
     with st.echo(code_location="below"):
-        model_path = "Data/multi_LinearRegression_model.pkl"
+        model_path = "Data/pkl/multi_LinearRegression_model.pkl"
         model = joblib.load(model_path)
         st.write("## 다중 선형 회귀 모델")
 
