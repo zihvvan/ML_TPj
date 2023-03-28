@@ -75,7 +75,7 @@ def lightGBM_model(df):
 
 def xgBoost_model(df):
     with st.echo(code_location="below"):
-        model_path = "Data/pkl/XGBoost_model2.pkl"
+        model_path = "Data/pkl/XGBoost.pkl"
         xgb_model = joblib.load(model_path)
         st.write("## XGBoost_model")
 
