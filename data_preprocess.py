@@ -125,24 +125,23 @@ def linear_process(df):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
     reg = LinearRegression()
     reg.fit(X_train, y_train) # 훈련 세트로 학습
-    reg = reg.intercept_
-    st.write(reg)
-    # y_pred = reg.predict(X_test)
+    intercept = reg.intercept_
+    y_pred = reg.predict(X_test)
 
-    # train_score = model.score(X_train, y_train) # 훈련 세트
-    # test_score = model.score(X_test, y_test) # 테스트 세트
+    train_score = model.score(X_train, y_train) # 훈련 세트
+    test_score = model.score(X_test, y_test) # 테스트 세트
 
-    # mae = mean_absolute_error(y_test, y_pred) # 실제 값, 예측 값 # MAE
-    # mse = mean_squared_error(y_test, y_pred) # MSE
-    # rmse = mean_squared_error(y_test, y_pred, squared=False) # RMSE
-    # r2 = r2_score(y_test, y_pred) # R2
+    mae = mean_absolute_error(y_test, y_pred) # 실제 값, 예측 값 # MAE
+    mse = mean_squared_error(y_test, y_pred) # MSE
+    rmse = mean_squared_error(y_test, y_pred, squared=False) # RMSE
+    r2 = r2_score(y_test, y_pred) # R2
 
-    # index = ["다중선형회귀모델"]
-    # total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : "X", "그리드 max_iter": "X"}
-    # total_df = pd.DataFrame([total_info], index=index)
-    # st.write(total_df)
+    index = ["다중선형회귀모델"]
+    total_info = {"Intercept": intercept, "MAE" : mae, "MSE" : mse, "RMSE": rmse, "R2" : r2, "그리드 alpha" : "X", "그리드 max_iter": "X"}
+    total_df = pd.DataFrame([total_info], index=index)
+    st.write(total_df)
 
-    # return total_df
+    return total_df
 
 def draw_table(total_df1):
     pass
