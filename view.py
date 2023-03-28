@@ -7,7 +7,7 @@ def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀(Lasso)")
     tab1, tab2, tab3 = st.tabs(["성적 예측","데이터셋 지표분석","시각화"])
     df = pre_process.load_data(1)
-    s_df, comparison = data_preprocess.poly_model(df)
+    s_df, comparison, data_frame1 = data_preprocess.poly_model(df)
     with tab1:
             st.header("성적 예측 모델")
             models.linear_model()
@@ -20,7 +20,8 @@ def view_model1():
             st.header("데이터셋 Drop & One-Hot Enconding")
             st.write(processed_df)
             st.header("Min-Max Scaling")
-            data_frame = data_preprocess.linear_process(df)
+            data_frame2 = data_preprocess.linear_process(df)
+            data_preprocess.draw_table(data_frame1, data_frame2 )
     with tab3:
             st.header("시각화")
             visualization_process.visualization(df, s_df, comparison)

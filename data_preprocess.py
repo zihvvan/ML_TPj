@@ -95,7 +95,7 @@ def run_model(X, y):
     index = ["다항선형회귀모델(Lasso)"]
     total_info = {"Intercept": intercept, "MAE" : mae, "RMSE": rmse, "R2" : r2, "그리드 alpha" : best_params['alpha'], "그리드 max_iter": best_params['max_iter']}
     total_df = pd.DataFrame([total_info], index=index)
-    st.write(total_df)
+    # st.write(total_df)
     # 테이블로 평가
     comparison = pd.DataFrame(
         {
@@ -110,9 +110,9 @@ def poly_model(df):
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
-    comparison, total_df2 = run_model(X, y)
+    comparison, total_df = run_model(X, y)
     # draw_table(total_df1, total_df2)
-    return scaled_df, comparison
+    return scaled_df, comparison, total_df
 
 def linear_process(df):
     df1 = df.drop(['school','classroom','student_id'], axis=1)
@@ -139,9 +139,9 @@ def linear_process(df):
     index = ["다중선형회귀모델"]
     total_info = {"Intercept": intercept, "MAE" : mae,"RMSE": rmse, "R2" : r2, "그리드 alpha" : "X", "그리드 max_iter": "X"}
     total_df = pd.DataFrame([total_info], index=index)
-    st.write(total_df)
 
     return total_df
 
-def draw_table(total_df1):
-    pass
+def draw_table(total_df1, total_df2):
+    total_set = pd.concat(total_df1, total_df2)
+    st.write(total_set)
