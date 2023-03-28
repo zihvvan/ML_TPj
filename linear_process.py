@@ -109,7 +109,7 @@ def linear_processed_df(df, s_df, comparison1):
     fig.add_trace(scatter_trace, row=1, col=1)
     scatter_trace1 = go.Scatter(x=comparison1["실제값"], y=comparison1["예측값"], mode="markers", 
                                 marker=dict(
-            color=x,  # set color equal to a variable
+            color=colors,  # set color equal to a variable
             colorscale="Viridis",  # choose a colorscale
             showscale=True,  # show the color scale
             colorbar=dict(title="Colorbar"),  # set the title of the colorbar
