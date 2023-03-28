@@ -93,11 +93,13 @@ def linear_processed_df(df, s_df, comparison1):
             '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
         }
     )
-    comparison
-    colors = ['red', 'blue']
-    fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
-    st.plotly_chart(fig)
+    
+    fig = make_subplots(rows=1, cols=2)
 
+    fig.add_trace(go.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
+    fig.add_trace(go.scatter(comparison1, x="실제값", y="예측값", color_discrete_sequence=colors)
     colors = ['red', 'blue']
-    fig = px.scatter(comparison1, x="실제값", y="예측값", color_discrete_sequence=colors)
+    # fig = px.scatter(comparison, x="실제값", y="예측값", color_discrete_sequence=colors)
+    # st.plotly_chart(fig)
+    # fig = px.scatter(comparison1, x="실제값", y="예측값", color_discrete_sequence=colors)
     st.plotly_chart(fig)
