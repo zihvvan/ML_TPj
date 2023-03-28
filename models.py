@@ -102,3 +102,9 @@ def xgBoost_model(df):
     xgb_model = XGBClassifier(n_estimators=200, learning_rate=0.1, max_depth=3, min_child_weight=3, colsample_bytree=1)
 
     xgb_model.fit(X_train, y_train, early_stopping_rounds=200, eval_metric='auc', eval_set=[(X_valid, y_valid)])
+
+    y_pred = best_model.predict(X_valid)
+
+    # 정확도 계산
+    acc = accuracy_score(y_valid, y_pred)
+    st.write(acc)
