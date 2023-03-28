@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 import plotly.express as px
 # import lightgbm as lgb
-import xgboost as xgb
+from xgboost import XGBClassifier
 from PIL import Image
 from math import sqrt
 from sklearn import preprocessing
@@ -91,23 +91,14 @@ def xgBoost_model(df):
     # 훈련 및 검증 데이터 분할
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    dtrain = xgb.DMatrix(X_train, label=y_train)
-    dtest = xgb.DMatrix(X_test, label=y_test)
+    # xgb_model = XGBClassifier(n_estimators=100)
 
-    # 하이퍼 파라미터 설정
-    params = {
-        'max_depth': 3,
-        'eta': 0.1,
-        'objective': 'binary:logistic',
-        'eval_metric': 'logloss'
-    }
-    # 모델 훈련
-    num_rounds = 100
-    xgb_model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
+    # params = {'max_depth':[5,7], 'min_child_weight':[1,3], 'colsample_bytree':[0.5,0.75]}
+    # gridcv = GridSearchCV(xgb_model, param_grid=params, cv=3)
 
-    # 검증 데이터 예측
-    y_pred = xgb_model.predict(dvalid)
+    # gridcv.fit(X_train, y_train, early_stopping_rounds=30, eval_metric='auc', eval_set=[(X_valid, y_valid)])
+    # print(gridcv.best_params_)
 
-    # 정확도 계산
-    acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
-    print(f'Accuracy: {acc}')
+    xgb_model = XGBClassifier(n_estimators=1000, learning_rate=0.02, max_depth=5, min_child_weight=3, colsample_bytree=0.75, reg_alpha=0.03)
+
+    xgb_model.fit(X_train, y_train, early_stopping_rounds=200, eval_metric='auc', eval_set=[(X_valid, y_valid)])
