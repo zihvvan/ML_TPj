@@ -200,6 +200,7 @@ def linear_model():
 
     with st.echo(code_location="below"):
         # 사전 시험 (숫자)
+        st.write("**학생들의 사전 시험점수를 선택할 수 있습니다.(0~100점)**")
         pretest = st.number_input(
             label="사전 시험", # 상단 표시되는 이름
             min_value=0.0, # 최솟값
