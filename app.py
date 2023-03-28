@@ -164,6 +164,7 @@ def linear_model():
             label="수업 타입", # 상단 표시되는 이름
             options=["일반", "체험"], # 선택 옵션
         )
+        st.write("학생들이 듣는 수업 방식을 선택할 수 있습니다.")
 
     with st.echo(code_location="below"):
         # 반 학생수 (숫자)
