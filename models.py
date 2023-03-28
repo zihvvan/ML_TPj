@@ -101,12 +101,12 @@ def xgBoost_model(df):
         xgb = joblib.load(model_path)
         st.write("## XGBoost_model model")
     # 모델 훈련
-    num_rounds = 100
-    xgb_model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
+        num_rounds = 100
+        xgb_model = xgb.train(params, dtrain, num_rounds, evals=[(dvalid, 'validation')], early_stopping_rounds=10)
 
-    # 검증 데이터 예측
-    y_pred = xgb_model.predict(dvalid)
+        # 검증 데이터 예측
+        y_pred = xgb_model.predict(dvalid)
 
-    # 정확도 계산
-    acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
-    print(f'Accuracy: {acc}')
+        # 정확도 계산
+        acc = accuracy_score(y_valid, [1 if i >= 0.5 else 0 for i in y_pred])
+        print(f'Accuracy: {acc}')
