@@ -45,3 +45,16 @@ def linear_processed_df(df):
     fig.layout.update({'width':800, 'height':600})
     st.plotly_chart(fig)
     st.write('---')
+
+    # 테이블로 평가
+    comparison = pd.DataFrame(
+        {
+            '실제값' : y_test, # 실제값
+            '예측값' : y_pred, #  머신러닝 모델을 통해 예측한 예측값
+        }
+    )
+    comparison
+    colors = ['red', 'blue']
+    import plotly.express as px
+    fig = px.scatter(comparison, x="실제값", y="예측값")
+    st.plotly_chart(fig)
