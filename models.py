@@ -19,21 +19,13 @@ from sklearn.metrics import accuracy_score
 from sklearn.datasets import load_breast_cancer
 
 def data_preprocessing(df):
-    df1 = df.drop(['EmployeeCount','EmployeeNumber','Over18','StandardHours'],axis=1)
-    df2 = df1.loc[:,['Age','BusinessTravel','DailyRate','Department','DistanceFromHome','Education','EducationField','EnvironmentSatisfaction','Gender','HourlyRate','JobInvolvement','JobLevel', 'JobSatisfaction',
-        'MaritalStatus', 'MonthlyIncome', 'MonthlyRate', 'NumCompaniesWorked','OverTime', 'PercentSalaryHike', 'PerformanceRating',
-        'RelationshipSatisfaction', 'StockOptionLevel',
-        'TotalWorkingYears', 'TrainingTimesLastYear', 'WorkLifeBalance',
-        'YearsAtCompany', 'YearsInCurrentRole', 'YearsSinceLastPromotion',
-        'YearsWithCurrManager','JobRole','Attrition']]
-
-    df2.info()
-
-    X = df2.iloc[:,:-1].values
-    cy = df2.iloc[:,-1:].values   
-    y = np.array([1 if x[0] == "Yes" else 0 for x in cy])
-
-    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [1,3,6,8,13,17,29])], remainder='passthrough')
+    df1 = df.drop(['BusinessTravel','Department','Education','EducationField','EmployeeCount','EmployeeNumber','JobInvolvement','JobLevel', 'JobRole', 'MaritalStatus',  'MonthlyRate', 'Over18', 'OverTime', 'PerformanceRating','StandardHours', 'TotalWorkingYears', 'TrainingTimesLastYear', 'YearsAtCompany', 'YearsInCurrentRole', 'YearsSinceLastPromotion','YearsWithCurrManager'],axis=1) # 필요없는 feature 삭제
+    df2 = df1.loc[:,['Age','DailyRate','DistanceFromHome','EnvironmentSatisfaction','Gender','HourlyRate', 'JobSatisfaction','MonthlyIncome', 'NumCompaniesWorked', 'PercentSalaryHike', 'RelationshipSatisfaction', 'StockOptionLevel','WorkLifeBalance','Attrition']] # 종속변수값 재배치
+    # df2.info() # 전처리 해야할 object 타입 확인
+    X = df2.iloc[:,:-1].values # 독립변수 값들 OneHot인코딩을 위해 나누기
+    cy = df2.iloc[:,-1:].values
+    y = np.array([1 if x[0] == "Yes" else 0 for x in cy]) # 리스트 컴프리핸션으로 종속변수 YES값은 1로 NO값은 0으로 만들어 NUMPY배열로 변환환
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [4])], remainder='passthrough')
     X = ct.fit_transform(X)
     return X,y
 
