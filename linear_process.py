@@ -20,5 +20,5 @@ def describe_linear_model(df):
 
 def info_linear_model(df):
     info = df.info()
-    info_df = pd.Dataframe(info,index[0])
+    info_df = pd.DataFrame(info,index[0])
     st.write(info_df)
