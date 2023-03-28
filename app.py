@@ -182,6 +182,7 @@ def linear_model():
 
     with st.echo(code_location="below"):
         # 성별 입력 (라디오 버튼)
+        st.write("**학생의 성별을 선택할 수 있습니다.**")
         gender = st.radio(
             label="성별", # 상단 표시되는 이름
             options=["Male", "Female"], # 선택 옵션
