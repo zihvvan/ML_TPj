@@ -115,7 +115,7 @@ def run_model(X, y):
     st.plotly_chart(fig)
 
 def poly_model(df):
-    df2 = pre_processing.pre_processing(df)
+    df2 = preprocessing.pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
