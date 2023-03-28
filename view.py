@@ -26,7 +26,7 @@ def view_model1():
             st.header("PolynomialRegression")
             st.write("## Describe(include='all')")
             p_df = polynomial_process.poly_model(df)
-            polynomial_process.describe_describe_poly_model(p_df)
+            polynomial_process.describe_poly_model(p_df)
 
 
 def view_model2():
