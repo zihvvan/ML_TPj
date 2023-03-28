@@ -133,7 +133,10 @@ def poly_model(df):
 
 # 이미지 불러오기
 def linear_model():
-
+    st.header("지표 분석")
+    st.write("전처리 전 데이터") # 마크다운으로 꾸미기
+    st.write(df)
+    
     with st.echo(code_location="below"):
         model_path = "Data/multi_LinearRegression_model.pkl"
         model = joblib.load(model_path)
