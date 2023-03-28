@@ -21,7 +21,7 @@ import pre_process
 def describe_linear_model(df):
     st.write(df.describe(include='all'))
 
-def linear_processed_df(df):
+def linear_processed_df(df, p_df):
     df1 = df.drop(['school','classroom','student_id'], axis=1)
 
     X = df1.iloc[:, :-1].values
@@ -48,6 +48,14 @@ def linear_processed_df(df):
     st.plotly_chart(fig)
     st.write('---')
 
+    fig = px.imshow(p_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
+    fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
+    fig.layout.update({'width':800, 'height':600})
+    st.plotly_chart(fig)
+    st.write('---')
+
+
+
     st.write("## 파이차트 ")
 
 
@@ -73,7 +81,7 @@ def linear_processed_df(df):
     fig.add_trace(go.Pie(labels=teaching_labels, values=teaching_values, pull=[0.1, 0], textinfo='label+percent', insidetextorientation='radial'), row=2, col=2)
 
     # subplot 레이아웃 설정
-    fig.update_layout(height=600, width=800, title_text="Subplots")
+    fig.update_layout(height=600, width=800, title_text="OjectType의 데이터 분포")
 
     # subplot을 streamlit에 출력
     st.plotly_chart(fig)

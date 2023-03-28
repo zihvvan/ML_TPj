@@ -36,11 +36,11 @@ def make_polynomial_df(concated_df):
     poly_df = pd.DataFrame(polynomial_data, columns=polynomial_features_names).drop('1', axis=1)
     st.write(poly_df.describe(include='all'))
 
-    fig = px.imshow(concated_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
-    fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
-    fig.layout.update({'width':800, 'height':600})
-    st.plotly_chart(fig)
-    st.write('---')
+    # fig = px.imshow(concated_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
+    # fig.update_layout(title='컬럼별 상관관계',xaxis_nticks=36)
+    # fig.layout.update({'width':800, 'height':600})
+    # st.plotly_chart(fig)
+    # st.write('---')
     return poly_df
 
 def split_dataset(pre_processed_df):
@@ -110,3 +110,4 @@ def poly_model(df):
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
     run_model(X, y)
+    return pre_processed_df
