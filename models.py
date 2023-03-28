@@ -65,7 +65,7 @@ def show_user_interface(model_num):
         '성별',
     ('남자', '여자'),key="test13")
 
-    predict_button = st.button("퇴사유무 예측",,key="test14")
+    predict_button = st.button("퇴사유무 예측",key="test14")
     
     if predict_button:
             variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
