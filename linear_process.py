@@ -18,5 +18,5 @@ import pre_process
 def describe_linear_model(df):
     st.write(df.describe(include='all'))
 
-def info_linear_model(df)
+def info_linear_model(df):
     st.write(df.info())
