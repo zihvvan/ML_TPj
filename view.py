@@ -52,9 +52,9 @@ def view_model2():
             X,y = data_preprocess_attrition.make_dummies(df1)
             st.write(X)
             st.header("모델별 지표 분석")
+            data_preprocess_attrition.create_table()
     with tab5:
             df = pre_process.load_data(2)
             decision_tree.decision_tree_preprocessing(df)
-            data_preprocess_attrition.create_table()
 
             
