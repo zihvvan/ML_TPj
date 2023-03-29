@@ -35,7 +35,6 @@ def random_forest_score(X_train, X_test, y_train, y_test):
     model.fit(X_train, y_train)
     train_pred = model.predict(X_train)
     test_pred = model.predict(X_test)
-    intercept = model.intercept_
     mae = mean_absolute_error(y_test, test_pred) # 실제 값, 예측 값 # MAE
     rmse = mean_squared_error(y_test, test_pred, squared=False) # RMSE
     r2 = r2_score(y_test, y_pred)
