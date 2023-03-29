@@ -17,6 +17,6 @@ def create_table():
         "XGBoost" : 0.8639455782312925,
         "GridXGBoost" : 0.8673469387755102
     }
-
-    model_scores = pd.DataFrame([model_score_data],index="성능")
+    index = "성능"
+    model_scores = pd.DataFrame([model_score_data], index_col=index)
     st.write(model_scores)
