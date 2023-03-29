@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import data_preprocess, visualization_process, models
+import data_preprocess_score, visualization_process_score, models
 import pre_process
 
 def view_model1():
@@ -14,17 +14,17 @@ def view_model1():
             st.header("원본 데이터")
             st.write(df)
             st.header("데이터셋 통계자료 ")
-            processed_df = pre_process.pre_processing(df)
-            visualization_process.describe_linear_model(df)
+            processed_df = pre_process.s_pre_processing(df)
+            visualization_process_score.describe_linear_model(df)
             st.header("데이터셋 Drop & One-Hot Enconding")
             st.write(processed_df)
             st.header("Min-Max Scaling")
-            data_frame2 = data_preprocess.linear_process(df)
-            s_df, comparison, data_frame1 = data_preprocess.poly_model(df)
-            data_preprocess.draw_table(data_frame1, data_frame2 )
+            data_frame2 = data_preprocess_score.linear_process(df)
+            s_df, comparison, data_frame1 = data_preprocess_score.poly_model(df)
+            data_preprocess_score.draw_table(data_frame1, data_frame2 )
     with tab3:
             st.header("시각화")
-            visualization_process.visualization(df, s_df, comparison)
+            visualization_process_score.visualization(df, s_df, comparison)
 
 
 
@@ -42,7 +42,12 @@ def view_model2():
             # LightGBM Model
             models.lightGBM_model(df)
     with tab4:
-            st.write('준비중')
+            st.header("원본 데이터")
+            st.write(df)
+            st.header("데이터셋 통계자료 ")
+            df1 = pre_process.a_pre_processing(df)
+            processed_df = data_preprocess_attrition.make_dummies(df1)
+            st.header("데이터셋 Drop & One-Hot Enconding")
     with tab5:
             st.write('준비중')
 
