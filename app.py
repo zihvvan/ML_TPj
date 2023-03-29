@@ -26,6 +26,7 @@ def main():
         st.markdown(":point_down:")
         st.markdown("[![Git](https://img.shields.io/badge/git-444444?style=for-the-badge&logo=git)](https://github.com/mastgm0817/ML_TPrj)")
         st.markdown("[![Notion](https://img.shields.io/badge/Notion-444444?style=for-the-badge&logo=Notion)](https://bit.ly/3lSMdPR)")
+        st.markdown("[![Colab](https://img.shields.io/badge/Colab-444444?style=for-the-badge&logo=Colab)](http://bit.ly/3KimLfO)")
     if add_selectbox == "성적 예측 모델":
         view.view_model1()
     else:
