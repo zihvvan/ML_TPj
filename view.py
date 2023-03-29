@@ -27,12 +27,12 @@ def view_model1():
             st.write("---")
             st.header("Min-Max Scaling")
             st.write("데이터 정규화, 이상치 처리, 머신 러닝 모델 성능 향상을 위한 데이터 전처리 기법")
-            data_frame2 = data_preprocess.linear_process(df)
-            s_df, comparison, data_frame1 = data_preprocess.poly_model(df)
-            data_preprocess.draw_table(data_frame1, data_frame2 )
+            data_frame2 = data_preprocess_score.linear_process(df)
+            s_df, comparison, data_frame1 = data_preprocess_score.poly_model(df)
+            data_preprocess_score.draw_table(data_frame1, data_frame2 )
     with tab3:
             st.header("시각화")
-            visualization_process.visualization(df, s_df, comparison)
+            visualization_process_score.visualization(df, s_df, comparison)
 
 
 
