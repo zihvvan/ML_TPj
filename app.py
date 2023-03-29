@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import view
-from datetime import datetime, timedelta
+from datetime import date
 def cal_time():
     today = date.today()
     future_date = date(2023, 8, 24)
