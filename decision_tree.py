@@ -7,8 +7,10 @@ import multiprocessing
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
 from sklearn.metrics import confusion_matrix
 from sklearn import tree
+from sklearn.tree import export_graphviz
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import cross_val_score
@@ -56,8 +58,9 @@ def decision_tree_preprocessing(df):
     fig = heatm.get_figure()
     # seaborn을 사용한 heatmap 시각화
     st.pyplot(fig)
-    # plt.ylabel('True')
-    # plt.xlabel('Predicted')
-    # plt.show()
-    # st.pyplot(fig)
-    # st.pyplot(fig=None, clear_figure=None, **kwargs)
+
+    fig = plt.figure(figsize=(30, 15))
+    plot_tree(model, max_depth=5, fontsize=10, feature_names=df_dummy.columns) # 독립변수명을 추가로 지정
+
+    # Matplotlib 그림을 Streamlit에서 출력
+    st.pyplot(fig)
