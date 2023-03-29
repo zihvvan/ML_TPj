@@ -306,7 +306,7 @@ def xgBoost_model(df):
             print("Feature ", i, X_train.columns[i], " importance: ", importance)
             dict[X_train.columns[i]] = importance
         idf = pd.DataFrame([dict])
-        st.write(f"Features 사이의 Importance 수치 {idf})
+        st.write(f"Features 사이의 Importance 수치 {idf}")
 
     # X,y = data_preprocessing(df)
     # # # 훈련 및 검증 데이터 분할
