@@ -55,15 +55,17 @@ def decision_tree_preprocessing(df):
     labels = [f'{v1}\n{v2}\n{v3}' for v1, v2, v3 in
             zip(group_names,group_counts,group_percentages)]
     labels = np.asarray(labels).reshape(2,2)
-    heatm = sns.heatmap(cf_matrix, annot=labels, fmt='', cmap='coolwarm')
-    fig = heatm.get_figure()
-    # seaborn을 사용한 heatmap 시각화
-    fig.set_size_inches(6, 4)
-    st.pyplot(fig)
+    with st.echo(code_location="below"):
+        heatm = sns.heatmap(cf_matrix, annot=labels, fmt='', cmap='coolwarm')
+        fig = heatm.get_figure()
+        # seaborn을 사용한 heatmap 시각화
+        fig.set_size_inches(6, 4)
+        st.pyplot(fig)
 
     st.header("트리 시각화")
-    fig = plt.figure(figsize=(30, 15))
-    plot_tree(model, max_depth=3, fontsize=10, feature_names=df_dummy.columns) # 독립변수명을 추가로 지정
+    with st.echo(code_location="below"):
+        fig = plt.figure(figsize=(30, 15))
+        plot_tree(model, max_depth=3, fontsize=10, feature_names=df_dummy.columns) # 독립변수명을 추가로 지정
 
-    # Matplotlib 그림을 Streamlit에서 출력
-    st.pyplot(fig)
+        # Matplotlib 그림을 Streamlit에서 출력
+        st.pyplot(fig)
