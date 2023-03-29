@@ -149,6 +149,9 @@ def random_forest_model(df):
         model_path = "Data/pkl/RandomForest_model.pkl"
         model = joblib.load(model_path)
         st.write("## Randomforest")
+        st.write("**의사 결정 트리(Decision Tree)를 기반으로 하는 앙상블(Ensemble) 학습 알고리즘**")
+        st.write("여러 개의 의사 결정 트리 생성 및 각각의 트리가 예측한 결과를 투표(voting)통해 최종 결과를 도출합니다.**")
+        st.write("일반화(generalization) 성능을 향상시키고, 과적합(overfitting)을 방지할 수 있습니다.")
     
     train_pred_dt = model.predict(X_train) 
     test_pred_dt = model.predict(X_test)
@@ -207,6 +210,7 @@ def lightGBM_model(df):
         # model_path = "Data/pkl/Gridedlightgbm.pkl" #그리드 pkl파일
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
+        st.write("Gradient Boosting 알고리즘을 기반으로 하는 알고리즘")
 
     
     train_pred_dt = model.predict(X_train) 
@@ -291,6 +295,7 @@ def xgBoost_model(df):
         # model_path = "Data/pkl/GridedXGBoost.pkl" #그리드 pkl파일
         xgb_model = joblib.load(model_path)
         st.write("## XGBoost_model")
+        st.write("Gradient Boosting 알고리즘 중에서도 분할(split) 방법을 최적화하여 학습하는 알고리즘")
 
     X,y = data_preprocessing(df)
     # # 훈련 및 검증 데이터 분할
