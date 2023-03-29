@@ -34,8 +34,11 @@ def split_dataset_score(X,y):
 
 def random_forest_score(X_train, X_test, y_train, y_test):
 
-    model = RandomForestClassifier(n_estimators=15, random_state=42)
-    model.fit(X_train, y_train)
+    # model = RandomForestClassifier(n_estimators=15, random_state=42)
+    # model.fit(X_train, y_train)
+    model_path = "Data/pkl/RandomForest_model.pkl"
+    model = joblib.load(model_path)
+
     train_pred = model.predict(X_train)
     test_pred = model.predict(X_test)
     mae = mean_absolute_error(y_test, test_pred) # 실제 값, 예측 값 # MAE
@@ -55,8 +58,11 @@ def random_forest_score(X_train, X_test, y_train, y_test):
 
 def lightgbm_score(X_train, X_test, y_train, y_test):
 
-    lgb_model = lgb.LGBMClassifier(n_estimators=15, random_state=42,  num_iterations= 50) 
-    lgb_model.fit(X_train, y_train)
+    # lgb_model = lgb.LGBMClassifier(n_estimators=15, random_state=42,  num_iterations= 50) 
+    # lgb_model.fit(X_train, y_train)
+    model_path = "Data/pkl/LightGBM_model.pkl"
+    lgb_model = joblib.load(model_path)
+
     train_pred = lgb_model.predict(X_train)
     test_pred = lgb_model.predict(X_test)
     mae = mean_absolute_error(y_test, test_pred) # 실제 값, 예측 값 # MAE
