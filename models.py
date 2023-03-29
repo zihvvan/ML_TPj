@@ -203,49 +203,51 @@ def lightGBM_model(df):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
 
     with st.echo(code_location="below"):
-        # model_path = "Data/pkl/LightGBM_model.pkl"
-        model_path = "Data/pkl/Gridedlightgbm.pkl"
+        model_path = "Data/pkl/LightGBM_model.pkl"
+        # model_path = "Data/pkl/Gridedlightgbm.pkl"
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
 
     
-    # train_pred_dt = model.predict(X_train) 
-    # test_pred_dt = model.predict(X_test)
+    train_pred_dt = model.predict(X_train) 
+    test_pred_dt = model.predict(X_test)
     
-    # predict_button_dt2 = st.button('예측하기')
+    predict_button_dt2 = st.button('예측하기')
 
-    # if predict_button_dt2:        
-    #     st.write(f'Train-set : {model.score(X_train, y_train)}')
-    #     st.write(f'Test-set : {model.score(X_test, y_test)}')
+    if predict_button_dt2:        
+        st.write(f'Train-set : {model.score(X_train, y_train)}')
+        st.write(f'Test-set : {model.score(X_test, y_test)}')
 
-    # # 정확도를 계산하여 모델의 성능을 평가합니다.
-    # accuracy = accuracy_score(y_test, test_pred_dt)
-    # st.write(accuracy)
-    
-    # 하이퍼파라미터 후보군 설정
-    param_grid = {
-        'max_depth': [3, 5, 7],
-        'learning_rate': [0.05, 0.1, 0.15]
-    }
-
-    # GridSearchCV를 이용한 하이퍼파라미터 튜닝
-    grid_search = GridSearchCV(
-        estimator=lgb_model, 
-        param_grid=param_grid,
-        cv=5, # 교차 검증 횟수
-        n_jobs=-1 # 모든 CPU 코어 사용
-    )
-
-    grid_search.fit(X_train, y_train)
-
-    # 최적의 하이퍼파라미터 조합
-    best_params = grid_search.best_params_
-    print(best_params)
-
-    # 최적의 모델
-    best_model = grid_search.best_estimator_    
-    accuracy = accuracy_score(y_test, best_model.predict(X_test))
+    # 정확도를 계산하여 모델의 성능을 평가합니다.
+    accuracy = accuracy_score(y_test, test_pred_dt)
     st.write(accuracy)
+
+
+############ 그리드 ################
+    # # 하이퍼파라미터 후보군 설정
+    # param_grid = {
+    #     'max_depth': [3, 5, 7],
+    #     'learning_rate': [0.05, 0.1, 0.15]
+    # }
+
+    # # GridSearchCV를 이용한 하이퍼파라미터 튜닝
+    # grid_search = GridSearchCV(
+    #     estimator=lgb_model, 
+    #     param_grid=param_grid,
+    #     cv=5, # 교차 검증 횟수
+    #     n_jobs=-1 # 모든 CPU 코어 사용
+    # )
+
+    # grid_search.fit(X_train, y_train)
+
+    # # 최적의 하이퍼파라미터 조합
+    # best_params = grid_search.best_params_
+    # print(best_params)
+
+    # # 최적의 모델
+    # best_model = grid_search.best_estimator_    
+    # accuracy = accuracy_score(y_test, best_model.predict(X_test))
+    # st.write(accuracy)
 
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
     나이 = r1_col1.slider("나이",20,70,key="test21")
