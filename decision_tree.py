@@ -2,8 +2,12 @@ import numpy as np
 import streamlit as st
 import pandas as pd
 import graphviz
+import plotly.express as px
 import multiprocessing
 import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.preprocessing import StandardScaler
@@ -37,3 +41,22 @@ def decision_tree_preprocessing(df):
     y_pred = model.predict(X_test)
     acc = accuracy_score(y_test, y_pred)
     st.write(acc)
+
+    # 예측 결과를 바탕으로 confusion matrix 생성
+    cf_matrix = confusion_matrix(y_test, y_pred)
+
+    # 그룹 이름과 개수를 통해 label 생성
+    group_names = ['True Negative','False Positive','False Negative','True Positive']
+    group_counts = ['{0:0.0f}'.format(value) for value in cf_matrix.flatten()]
+    group_percentages = ['{0:.2%}'.format(value) for value in cf_matrix.flatten()/np.sum(cf_matrix)]
+    labels = [f'{v1}\n{v2}\n{v3}' for v1, v2, v3 in
+            zip(group_names,group_counts,group_percentages)]
+    labels = np.asarray(labels).reshape(2,2)
+
+    # seaborn을 사용한 heatmap 시각화
+    sns.heatmap(cf_matrix, annot=labels, fmt='', cmap='coolwarm')
+    # plt.ylabel('True')
+    # plt.xlabel('Predicted')
+    # plt.show()
+    # st.pyplot(fig)
+    # st.pyplot(fig=None, clear_figure=None, **kwargs)
