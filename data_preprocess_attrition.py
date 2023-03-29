@@ -86,8 +86,8 @@ def xgBoost_score(X_train, X_valid, y_train, y_valid):
 
 
 
-    mae = mean_absolute_error(y_test, test_pred) # 실제 값, 예측 값 # MAE
-    rmse = mean_squared_error(y_test, test_pred, squared=False) # RMSE
+    mae = mean_absolute_error(y_valid, test_pred) # 실제 값, 예측 값 # MAE
+    rmse = mean_squared_error(y_valid, test_pred, squared=False) # RMSE
     r2 = r2_score(y_test, test_pred)
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     train_score = lgb_model.score(X_train, y_train)
