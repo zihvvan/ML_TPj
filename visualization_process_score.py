@@ -61,8 +61,8 @@ def visualization(df, s_df, comparison1):
     a_values = df1['school_setting'].value_counts()
     st_labels = df1['school_type'].unique()
     st_values = df1['school_type'].value_counts()
-    gender_labels = df1['school_type'].unique()
-    gender_values = df1['school_type'].value_counts()
+    gender_labels = df1['gender'].unique()
+    gender_values = df1['gender'].value_counts()
     teaching_labels = df1['teaching_method'].unique()
     teaching_values = df1['teaching_method'].value_counts()
 
