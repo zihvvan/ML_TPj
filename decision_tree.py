@@ -60,7 +60,7 @@ def decision_tree_preprocessing(df):
     st.pyplot(fig)
 
     fig = plt.figure(figsize=(30, 15))
-    plot_tree(model, max_depth=5, fontsize=10, feature_names=df_dummy.columns) # 독립변수명을 추가로 지정
+    plot_tree(model, max_depth=3, fontsize=10, feature_names=df_dummy.columns) # 독립변수명을 추가로 지정
 
     # Matplotlib 그림을 Streamlit에서 출력
     st.pyplot(fig)
