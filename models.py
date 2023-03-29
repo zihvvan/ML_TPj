@@ -211,8 +211,9 @@ def lightGBM_model(df):
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
         st.write("**Gradient Boosting 알고리즘 중에서도 분할(split) 방법을 최적화하여 학습하는 알고리즘입니다.**")
-        st.write("매우 빠른 학습 속도와 높은 정확도를 동시에 달성할 수 있습니다. 또한, leaf-wise(잎노드 방식) 트리 성장 방법을 사용하여 깊은 트리를 만들 수 있으며,")
-        st.write("regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.")
+        st.write("*매우 빠른 학습 속도와 높은 정확도를 동시에 달성할 수 있습니다.*")
+        st.write("*또한, leaf-wise(잎노드 방식) 트리 성장 방법을 사용하여 깊은 트리를 만들 수 있습니다.*")
+        st.write("*regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.*")
 
     
     train_pred_dt = model.predict(X_train) 
