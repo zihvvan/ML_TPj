@@ -210,8 +210,10 @@ def lightGBM_model(df):
         # model_path = "Data/pkl/Gridedlightgbm.pkl" #그리드 pkl파일
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
-        st.write("**Gradient Boosting 알고리즘을 기반으로 하는 알고리즘**")
-        st.write("이전 모델의 오차를 다음 모델이 보완하면서 학습을 진행합니다. 이를 통해 예측 성능을 개선하며, 과적합을 방지할 수 있습니다.")
+        st.write("**Gradient Boosting 알고리즘 중에서도 분할(split) 방법을 최적화하여 학습하는 알고리즘입니다.**")
+        st.write("매우 빠른 학습 속도와 높은 정확도를 동시에 달성할 수 있습니다.")
+        st.write("또한, leaf-wise(잎노드 방식) 트리 성장 방법을 사용하여 깊은 트리를 만들 수 있습니다.")
+        st.write("regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.")
 
     
     train_pred_dt = model.predict(X_train) 
@@ -296,7 +298,9 @@ def xgBoost_model(df):
         # model_path = "Data/pkl/GridedXGBoost.pkl" #그리드 pkl파일
         xgb_model = joblib.load(model_path)
         st.write("## XGBoost_model")
-        st.write("Gradient Boosting 알고리즘 중에서도 분할(split) 방법을 최적화하여 학습하는 알고리즘")
+        st.write("**Gradient Boosting 알고리즘을 기반으로 하는 알고리즘**")
+        st.write("이전 모델의 오차를 다음 모델이 보완하면서 학습을 진행합니다.")
+        st.write("regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.")
 
     # X,y = data_preprocessing(df)
     # # # 훈련 및 검증 데이터 분할
