@@ -19,4 +19,5 @@ def create_table():
     }
     index = ["성능"]
     model_scores = pd.DataFrame([model_score_data], index=index)
+    st.header("성능 비교")
     st.write(model_scores)
