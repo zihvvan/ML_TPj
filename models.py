@@ -301,12 +301,7 @@ def xgBoost_model(df):
         st.write("**Gradient Boosting 알고리즘을 기반으로 하는 알고리즘**")
         st.write("이전 모델의 오차를 다음 모델이 보완하면서 학습을 진행합니다.")
         st.write("regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.")
-        dict = {}
-        for i, importance in enumerate(xgb_model.feature_importances_):
-            print("Feature ", i, X_train.columns[i], " importance: ", importance)
-            dict[X_train.columns[i]] = importance
-        idf = pd.DataFrame([dict])
-        st.write(f"Features 사이의 Importance 수치 {idf}")
+        
 
     # X,y = data_preprocessing(df)
     # # # 훈련 및 검증 데이터 분할
