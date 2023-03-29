@@ -7,7 +7,7 @@ def main():
     st.image(image1, width=600)
 
     add_selectbox = st.sidebar.selectbox(
-        "모델을 선택하요. ",
+        "모델을 선택하세요. ",
         ("성적 예측 모델", "회사퇴사 예측 모델")
     )
 
