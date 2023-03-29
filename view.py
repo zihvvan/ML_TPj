@@ -63,7 +63,9 @@ def view_model2():
             st.write("분석의 효율성을 높이기 위해 필요한 과정입니다.")
             X,y = data_preprocess_attrition.make_dummies(df1)
             st.write(X)
+            st.write("---")
             st.header("모델별 지표 분석")
+            st.write("모델들을 비교, 평가하기 위해 지표 분석 사용")
             data_preprocess_attrition.create_table()
     with tab5:
             df = pre_process.load_data(2)
