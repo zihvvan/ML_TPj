@@ -45,6 +45,8 @@ def view_model2():
             st.header("원본 데이터")
             st.write(df)
             st.header("데이터셋 통계자료 ")
+            describe = describe_attrition_model(df)
+            st.write(describe)
             df1 = pre_process.a_pre_processing(df)
             processed_df = data_preprocess_attrition.make_dummies(df1)
             st.header("데이터셋 Drop & One-Hot Enconding")
