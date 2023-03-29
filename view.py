@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import data_preprocess_score, visualization_process_score, models
+import data_preprocess_score, data_preprocess_attrition, visualization_process_score, visualization_process_attrition, models
 import pre_process
 
 def view_model1():
