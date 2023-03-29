@@ -45,3 +45,5 @@ def random_forest_score(X_train, X_test, y_train, y_test):
     index = ["RandomForest"]
     total_info = { "MAE" : mae,"RMSE": rmse, "R2" : r2, "정확도": accuracy}
     total_df = pd.DataFrame([total_info], index=index)
+
+    st.write(total_df)
