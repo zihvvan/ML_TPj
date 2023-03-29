@@ -44,6 +44,7 @@ def visualization(df, s_df, comparison1):
 
 
     st.write("## 컬럼별 상관 관계")
+    st.write("변수 간 관계 파악")
     fig = px.imshow(df1.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
     fig = px.imshow(s_df.corr(),text_auto=True, color_continuous_scale='RdBu_r', aspect='auto')
     fig.update_layout(height=600, width=800)
@@ -53,6 +54,7 @@ def visualization(df, s_df, comparison1):
 
 
     st.write("## 파이차트 ")
+    st.write("데이터의 구성 비율 파악, 비교, 시각적, 직관적 이해를 위한 파이차트")
 
 
     a_labels = df1['school_setting'].unique()
@@ -85,8 +87,9 @@ def visualization(df, s_df, comparison1):
 
 
     # 테이블로 평가
-
+    st.write("---")
     st.write("## LinearRegression 산점도")
+    st.write("데이터 분포 확인, 모델링 결과 검증")
     comparison = pd.DataFrame(
         {
             '실제값' : y_test, # 실제값

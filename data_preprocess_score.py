@@ -143,6 +143,8 @@ def linear_process(df):
     return total_df
 
 def draw_table(total_df1, total_df2):
+    st.write("---")
     st.header("지표 분석")
+    st.write("모델들을 비교, 평가하기 위해 지표 분석 사용")
     total_set = pd.concat([total_df2, total_df1], axis=0, join='inner')
     st.write(total_set)
