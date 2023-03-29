@@ -55,5 +55,6 @@ def view_model2():
     with tab5:
             df = pre_process.load_data(2)
             decision_tree.decision_tree_preprocessing(df)
+            data_preprocess_attrition.create_table()
 
             

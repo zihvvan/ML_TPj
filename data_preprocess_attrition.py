@@ -9,8 +9,14 @@ def make_dummies(df):
     return X,y
 
 def create_table():
-    lgbm_score_data = {
-        'LightGBM' : 0.8503401360544217,
-        'Grid_LightGBM' : 0.8707482993197279,
-        
+    model_score_data = {
+        "Random_Forest" : 0.9863945578231292,
+        "Grid_Random_Forest" : 0.9863945578231292,
+        "LightGBM" : 0.9931972789115646,
+        "Grid_LightGBM" : 0.9183673469387755,
+        "XGBoost" : 0.8639455782312925,
+        "GridXGBoost" : 0.8673469387755102
     }
+
+    model_scores = pd.DataFrame([model_score_data])
+    st.write(model_scores)

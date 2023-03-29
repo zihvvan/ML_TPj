@@ -42,7 +42,6 @@ def decision_tree_preprocessing(df):
 
     y_pred = model.predict(X_test)
     acc = accuracy_score(y_test, y_pred)
-    st.write(acc)
 
     # 예측 결과를 바탕으로 confusion matrix 생성
     cf_matrix = confusion_matrix(y_test, y_pred)
