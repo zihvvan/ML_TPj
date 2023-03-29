@@ -32,7 +32,7 @@ def view_model1():
             data_preprocess.draw_table(data_frame1, data_frame2 )
     with tab3:
             st.header("시각화")
-            visualization_process.visualization(df, s_df, comparison
+            visualization_process.visualization(df, s_df, comparison)
 
 
 
