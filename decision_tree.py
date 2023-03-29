@@ -53,8 +53,9 @@ def decision_tree_preprocessing(df):
             zip(group_names,group_counts,group_percentages)]
     labels = np.asarray(labels).reshape(2,2)
     heatm = sns.heatmap(cf_matrix, annot=labels, fmt='', cmap='coolwarm')
+    fig = heatm.get_figure()
     # seaborn을 사용한 heatmap 시각화
-    st.pyplot(heatm.fig)
+    st.pyplot(fig)
     # plt.ylabel('True')
     # plt.xlabel('Predicted')
     # plt.show()
