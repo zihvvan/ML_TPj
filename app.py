@@ -3,13 +3,11 @@ from PIL import Image
 import view
 from datetime import datetime, timedelta
 def cal_time():
-    today = datetime.today()
+    today = date.today()
+    future_date = date(2023, 8, 24)
+    delta = future_date - today
 
-    after_100_days = today + timedelta(days=100)
-
-    countdown = after_100_days - today
-
-    return countdown.days
+    return delta
 
 def main():
     image1 = Image.open('image/main.webp')
