@@ -211,7 +211,8 @@ def lightGBM_model(df):
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
         st.write("**Gradient Boosting 알고리즘을 기반으로 하는 알고리즘**")
-        st.write("이전 모델의 오차를 다음 모델이 보완하면서 학습을 진행합니다. 이를 통해 예측 성능을 개선하며, 과적합을 방지할 수 있습니다.")
+        st.write("이전 모델의 오차를 다음 모델이 보완하면서 학습을 진행합니다.")
+        st.write("이를 통해 예측 성능을 개선하며, 과적합을 방지할 수 있습니다.")
 
     
     train_pred_dt = model.predict(X_train) 
