@@ -3,6 +3,8 @@ import seaborn as sns
 import pandas as pd
 import joblib
 import plotly.express as px
+import lightgbm as lgb
+from xgboost import XGBClassifier
 from PIL import Image
 from math import sqrt
 from sklearn.compose import ColumnTransformer
