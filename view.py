@@ -47,8 +47,9 @@ def view_model2():
             st.header("데이터셋 통계자료 ")
             visualization_process_attrition.describe_attrition_model(df)
             df1 = pre_process.a_pre_processing(df)
-            processed_df = data_preprocess_attrition.make_dummies(df1)
             st.header("데이터셋 Drop & One-Hot Enconding")
+            X,y = data_preprocess_attrition.make_dummies(df1)
+            st.write(X)
     with tab5:
             st.write('준비중')
 
