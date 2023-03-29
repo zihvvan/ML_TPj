@@ -53,6 +53,8 @@ def view_model2():
             st.header("모델별 지표 분석")
             X_train, X_test, y_train, y_test = data_preprocess_attrition.split_dataset_score(X,y)
             data_preprocess_attrition.random_forest_score(X_train, X_test, y_train, y_test)
+            data_preprocess_attrition.lightgbm_score(X_train, X_test, y_train, y_test)
+            data_preprocess_attrition.xgBoost_score(X_train, X_test, y_train, y_test)
     with tab5:
             st.write('준비중')
 

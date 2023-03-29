@@ -29,6 +29,7 @@ def make_dummies(df):
 def split_dataset_score(X,y):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
     return X_train, X_test, y_train, y_test
+
 def random_forest_score(X_train, X_test, y_train, y_test):
 
     model = RandomForestClassifier(n_estimators=15, random_state=42)
@@ -45,6 +46,53 @@ def random_forest_score(X_train, X_test, y_train, y_test):
 
 
     index = ["RandomForest"]
+    total_info = { "MAE" : mae,"RMSE": rmse, "정확도": accuracy, "Train점수": train_score, "Test점수": test_score}
+    total_df = pd.DataFrame([total_info], index=index)
+
+    st.write(total_df)
+
+def lightgbm_score(X_train, X_test, y_train, y_test):
+
+    lgb_model = lgb.LGBMClassifier(n_estimators=15, random_state=42,  num_iterations= 50) 
+    lgb_model.fit(X_train, y_train)
+    train_pred = lgb_model.predict(X_train)
+    test_pred = lgb_model.predict(X_test)
+    mae = mean_absolute_error(y_test, test_pred) # 실제 값, 예측 값 # MAE
+    rmse = mean_squared_error(y_test, test_pred, squared=False) # RMSE
+    r2 = r2_score(y_test, test_pred)
+    # 정확도를 계산하여 모델의 성능을 평가합니다.
+    accuracy = accuracy_score(y_test, test_pred)
+    train_score = lgb_model.score(X_train, y_train)
+    test_score= lgb_model.score(X_test, y_test)
+
+
+    index = ["LightGBM"]
+    total_info = { "MAE" : mae,"RMSE": rmse, "정확도": accuracy, "Train점수": train_score, "Test점수": test_score}
+    total_df = pd.DataFrame([total_info], index=index)
+
+    st.write(total_df)
+
+def xgBoost_score(X_train, X_valid, y_train, y_valid):
+
+    xgb_model = XGBClassifier(n_estimators=200, learning_rate=0.1, max_depth=3, min_child_weight=3, colsample_bytree=1)
+    xgb_model.fit(X_train, y_train, early_stopping_rounds=200, eval_metric='auc', eval_set=[(X_valid, y_valid)])
+
+    y_pred = xgb_model.predict(X_valid)
+
+    # 정확도 계산
+    accuracy = accuracy_score(y_valid, y_pred)
+
+
+
+    mae = mean_absolute_error(y_test, test_pred) # 실제 값, 예측 값 # MAE
+    rmse = mean_squared_error(y_test, test_pred, squared=False) # RMSE
+    r2 = r2_score(y_test, test_pred)
+    # 정확도를 계산하여 모델의 성능을 평가합니다.
+    train_score = lgb_model.score(X_train, y_train)
+    test_score= lgb_model.score(X_valid, y_valid)
+
+
+    index = ["xgBoost"]
     total_info = { "MAE" : mae,"RMSE": rmse, "정확도": accuracy, "Train점수": train_score, "Test점수": test_score}
     total_df = pd.DataFrame([total_info], index=index)
 
