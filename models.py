@@ -203,7 +203,8 @@ def lightGBM_model(df):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
 
     with st.echo(code_location="below"):
-        model_path = "Data/pkl/LightGBM_model.pkl"
+        # model_path = "Data/pkl/LightGBM_model.pkl"
+        model_path = "Data/pkl/Gridedlightgbm.pkl"
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
     
