@@ -3,7 +3,7 @@ from PIL import Image
 import view
 
 def main():
-    image1 = Image.open('image/m_img.png')
+    image1 = Image.open('image/main.webp')
     st.image(image1, width=600)
 
     add_selectbox = st.sidebar.selectbox(
