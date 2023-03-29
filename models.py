@@ -204,7 +204,7 @@ def lightGBM_model(df):
 
     with st.echo(code_location="below"):
         model_path = "Data/pkl/LightGBM_model.pkl"
-        # model_path = "Data/pkl/Gridedlightgbm.pkl"
+        # model_path = "Data/pkl/Gridedlightgbm.pkl" #그리드 pkl파일
         model = joblib.load(model_path)
         st.write("## lightGBM_model")
 
@@ -248,6 +248,7 @@ def lightGBM_model(df):
     # best_model = grid_search.best_estimator_    
     # accuracy = accuracy_score(y_test, best_model.predict(X_test))
     # st.write(accuracy)
+############ 그리드 ################
 
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
     나이 = r1_col1.slider("나이",20,70,key="test21")
@@ -287,6 +288,7 @@ def lightGBM_model(df):
 def xgBoost_model(df):
     with st.echo(code_location="below"):
         model_path = "Data/pkl/XGBoost.pkl"
+        # model_path = "Data/pkl/GridedXGBoost.pkl" #그리드 pkl파일
         xgb_model = joblib.load(model_path)
         st.write("## XGBoost_model")
 
@@ -306,7 +308,38 @@ def xgBoost_model(df):
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_valid, y_pred)
     st.write(accuracy)
-    
+
+############ 그리드 ################
+#     # 훈련 및 검증 데이터 분할
+# X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# # XGBClassifier 객체 생성
+# xgb_model = XGBClassifier()
+
+# # GridSearchCV를 위한 하이퍼 파라미터 설정
+# param_grid = {
+#     'max_depth': [3, 5, 7],
+#     'learning_rate': [0.1, 0.01, 0.001],
+#     'n_estimators': [100, 200, 300],
+#     'min_child_weight': [1, 3, 5],
+#     'colsample_bytree': [0.7, 0.8, 0.9, 1.0]
+# }
+
+# # GridSearchCV 객체 생성
+# grid = GridSearchCV(xgb_model, param_grid, cv=3, n_jobs=-1, scoring='accuracy', verbose=3)
+
+# # GridSearchCV로 모델 훈련
+# grid.fit(X_train, y_train)
+
+# # 최적의 하이퍼 파라미터 출력
+# print(f'Best parameter: {grid.best_params_}')
+
+# # 최적의 모델로 예측 및 검증
+# y_pred = grid.predict(X_valid)
+# acc = accuracy_score(y_valid, y_pred)
+# print(f'Accuracy: {acc}')
+############ 그리드 ################   
+
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
     나이 = r1_col1.slider("나이",20,70,key="test31")
     일일급여 = r1_col2.slider("일일급여", 110, 1500,key="test32")
