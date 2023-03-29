@@ -40,10 +40,12 @@ def random_forest_score(X_train, X_test, y_train, y_test):
     r2 = r2_score(y_test, test_pred)
     # 정확도를 계산하여 모델의 성능을 평가합니다.
     accuracy = accuracy_score(y_test, test_pred)
+    train_score = model.score(X_train, y_train)
+    test_score= model.score(X_test, y_test)
 
 
     index = ["RandomForest"]
-    total_info = { "MAE" : mae,"RMSE": rmse, "R2" : r2, "정확도": accuracy}
+    total_info = { "MAE" : mae,"RMSE": rmse, "정확도": accuracy, "Train점수": train_score, "Test점수": test_score}
     total_df = pd.DataFrame([total_info], index=index)
 
     st.write(total_df)
