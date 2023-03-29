@@ -106,7 +106,7 @@ def run_model(X, y):
     return comparison, total_df
 
 def poly_model(df):
-    df2 = pre_process.pre_processing(df)
+    df2 = pre_process.s_pre_processing(df)
     scaled_df = scaler_df(df2)
     pre_processed_df = make_polynomial_df(scaled_df)
     X, y = split_dataset(pre_processed_df)
