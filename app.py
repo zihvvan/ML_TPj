@@ -16,7 +16,7 @@ def main():
     with st.sidebar:
         add_selectbox = st.sidebar.selectbox(
             "모델을 선택하세요. ",
-            ("성적 예측 모델", "회사퇴사 예측 모델")
+            ("성적 예측 모델", "회사퇴사 예측 모델") 
         )
         days = cal_time()
         st.markdown(f"<div style='font-weight:bold; font-size:30px; text-align:center'>D - {days}</div>", unsafe_allow_html=True)
