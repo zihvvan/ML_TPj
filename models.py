@@ -142,29 +142,29 @@ def linear_model():
             st.write()
 
 def random_forest_model(df):
-    X,y = data_preprocessing(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
+    # X,y = data_preprocessing(df)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
 
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/RandomForest_model.pkl"
-        model = joblib.load(model_path)
-        st.write("## Randomforest")
-        st.write("**의사 결정 트리(Decision Tree)를 기반으로 하는 앙상블(Ensemble) 학습 알고리즘**")
-        st.write("여러 개의 의사 결정 트리 생성 및 각각의 트리가 예측한 결과를 투표(voting)통해 최종 결과를 도출할 수 있으며, 일반화(generalization) 성능을 향상시키고, 과적합(overfitting)을 방지할 수 있습니다.")
+    # with st.echo(code_location="below"):
+    #     model_path = "Data/pkl/RandomForest_model.pkl"
+    #     model = joblib.load(model_path)
+    #     st.write("## Randomforest")
+    #     st.write("**의사 결정 트리(Decision Tree)를 기반으로 하는 앙상블(Ensemble) 학습 알고리즘**")
+    #     st.write("여러 개의 의사 결정 트리 생성 및 각각의 트리가 예측한 결과를 투표(voting)통해 최종 결과를 도출할 수 있으며, 일반화(generalization) 성능을 향상시키고, 과적합(overfitting)을 방지할 수 있습니다.")
         
     
-    train_pred_dt = model.predict(X_train) 
-    test_pred_dt = model.predict(X_test)
+    # train_pred_dt = model.predict(X_train) 
+    # test_pred_dt = model.predict(X_test)
     
-    predict_button_dt1 = st.button('예측')
+    # predict_button_dt1 = st.button('예측')
 
-    if predict_button_dt1:        
-        st.write(f'Train-set : {model.score(X_train, y_train)}')
-        st.write(f'Test-set : {model.score(X_test, y_test)}')
+    # if predict_button_dt1:        
+    #     st.write(f'Train-set : {model.score(X_train, y_train)}')
+    #     st.write(f'Test-set : {model.score(X_test, y_test)}')
 
-    # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_test, test_pred_dt)
-    st.write(accuracy)
+    # # 정확도를 계산하여 모델의 성능을 평가합니다.
+    # accuracy = accuracy_score(y_test, test_pred_dt)
+    # st.write(accuracy)
 
     r1_col1, r1_col2, r1_col3, r1_col4  = st.columns(4)
     나이 = r1_col1.slider("나이",20,70,key="test1")
@@ -196,38 +196,39 @@ def random_forest_model(df):
             variable1 = np.array([나이, 일일급여, 회사와의거리, 근무환경만족, 성별=="남자", 시간당임금, 직업만족도, 월수입, 이직회사수, 급여인상비율, 동료관계만족도, 스톡옵션레벨, 워라벨])
             model1 = joblib.load('Data/pkl/RandomForest_model.pkl')
             pred1 = model1.predict([variable1])
+            st.write(pred1)
             if pred1 == 1:
                 st.write("퇴사")
             else:
                 st.write("근속")
 
 def lightGBM_model(df):
-    X,y = data_preprocessing(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
+    # X,y = data_preprocessing(df)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=20)
 
-    with st.echo(code_location="below"):
-        model_path = "Data/pkl/LightGBM_model.pkl"
-        # model_path = "Data/pkl/Gridedlightgbm.pkl" #그리드 pkl파일
-        model = joblib.load(model_path)
-        st.write("## lightGBM_model")
-        st.write("**Gradient Boosting 알고리즘 중에서도 분할(split) 방법을 최적화하여 학습하는 알고리즘입니다.**")
-        st.write("매우 빠른 학습 속도와 높은 정확도를 동시에 달성할 수 있습니다.")
-        st.write("또한, leaf-wise(잎노드 방식) 트리 성장 방법을 사용하여 깊은 트리를 만들 수 있습니다.")
-        st.write("regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.")
+    # with st.echo(code_location="below"):
+    #     model_path = "Data/pkl/LightGBM_model.pkl"
+    #     # model_path = "Data/pkl/Gridedlightgbm.pkl" #그리드 pkl파일
+    #     model = joblib.load(model_path)
+    #     st.write("## lightGBM_model")
+    #     st.write("**Gradient Boosting 알고리즘 중에서도 분할(split) 방법을 최적화하여 학습하는 알고리즘입니다.**")
+    #     st.write("매우 빠른 학습 속도와 높은 정확도를 동시에 달성할 수 있습니다.")
+    #     st.write("또한, leaf-wise(잎노드 방식) 트리 성장 방법을 사용하여 깊은 트리를 만들 수 있습니다.")
+    #     st.write("regularization 및 early stopping 기능을 제공하여 과적합을 방지할 수 있습니다.")
 
     
-    train_pred_dt = model.predict(X_train) 
-    test_pred_dt = model.predict(X_test)
+    # train_pred_dt = model.predict(X_train) 
+    # test_pred_dt = model.predict(X_test)
     
-    predict_button_dt2 = st.button('예측하기')
+    # predict_button_dt2 = st.button('예측하기')
 
-    if predict_button_dt2:        
-        st.write(f'Train-set : {model.score(X_train, y_train)}')
-        st.write(f'Test-set : {model.score(X_test, y_test)}')
+    # if predict_button_dt2:        
+    #     # st.write(f'Train-set : {model.score(X_train, y_train)}')
+    #     # st.write(f'Test-set : {model.score(X_test, y_test)}')
+    # st.write(accuracy)
 
     # 정확도를 계산하여 모델의 성능을 평가합니다.
-    accuracy = accuracy_score(y_test, test_pred_dt)
-    st.write(accuracy)
+    # accuracy = accuracy_score(y_test, test_pred_dt)
 
 
 ############ 그리드 ################
