@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import data_preprocess_score, data_preprocess_attrition, visualization_process_score, visualization_process_attrition, models
 import pre_process
+import decision_tree
 
 def view_model1():
     st.title("다중선형회귀 vs 다항선형회귀(Lasso)")
@@ -51,11 +52,8 @@ def view_model2():
             X,y = data_preprocess_attrition.make_dummies(df1)
             st.write(X)
             st.header("모델별 지표 분석")
-            X_train, X_test, y_train, y_test = data_preprocess_attrition.split_dataset_score(X,y)
-            data_preprocess_attrition.random_forest_score(X_train, X_test, y_train, y_test)
-            data_preprocess_attrition.lightgbm_score(X_train, X_test, y_train, y_test)
-            data_preprocess_attrition.xgBoost_score(X_train, X_test, y_train, y_test)
     with tab5:
-            st.write('준비중')
+            df = pre_process.load_data(2)
+            decision_tree.decision_tree_preprocessing(df)
 
             
