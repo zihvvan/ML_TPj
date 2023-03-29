@@ -47,6 +47,8 @@ def decision_tree_preprocessing(df):
     cf_matrix = confusion_matrix(y_test, y_pred)
 
     # 그룹 이름과 개수를 통해 label 생성
+    st.header("HeatMap")
+
     group_names = ['True Negative','False Positive','False Negative','True Positive']
     group_counts = ['{0:0.0f}'.format(value) for value in cf_matrix.flatten()]
     group_percentages = ['{0:.2%}'.format(value) for value in cf_matrix.flatten()/np.sum(cf_matrix)]
@@ -59,6 +61,7 @@ def decision_tree_preprocessing(df):
     fig.set_size_inches(6, 4)
     st.pyplot(fig)
 
+    st.header("트리 시각화")
     fig = plt.figure(figsize=(30, 15))
     plot_tree(model, max_depth=3, fontsize=10, feature_names=df_dummy.columns) # 독립변수명을 추가로 지정
 
