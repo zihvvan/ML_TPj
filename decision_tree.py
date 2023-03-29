@@ -56,7 +56,7 @@ def decision_tree_preprocessing(df):
     heatm = sns.heatmap(cf_matrix, annot=labels, fmt='', cmap='coolwarm')
     fig = heatm.get_figure()
     # seaborn을 사용한 heatmap 시각화
-    fig.set_size_inches(10, 8)
+    fig.set_size_inches(6, 4)
     st.pyplot(fig)
 
     fig = plt.figure(figsize=(30, 15))
